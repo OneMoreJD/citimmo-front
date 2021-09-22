@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    
+    this.registerService.submitRegistration(this.registrationForm.value);    
   }
 
 }

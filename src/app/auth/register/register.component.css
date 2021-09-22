@@ -1,6 +1,6 @@
 #registration {
     display: flex;
-    margin: 5% 35% 5% 30%;
+    margin: 5% 20% 5% 20%;
     justify-content: left;
     align-items: stretch;
     flex-direction: column;
@@ -9,8 +9,9 @@
 mat-form-field {
     width: 100%;
 }
+
 fieldset {
-    border-radius: 3px;
+    border-radius: 5px;
     padding: 5%;
 }
 
