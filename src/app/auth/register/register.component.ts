@@ -16,10 +16,16 @@ export class RegisterComponent implements OnInit {
     password: ['', Validators.required]
   });
 
+  public showClearPassword: boolean;
+
   constructor(private fb:FormBuilder,
               private registerService:RegisterService) { }
 
   ngOnInit(): void {
+  }
+
+  toggleShowClearPassword(){
+    this.showClearPassword = !this.showClearPassword;
   }
 
   onSubmit(){
