@@ -8,6 +8,7 @@ import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { RegisterComponent } from './auth/register/register.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RegisterComponent } from './auth/register/register.component';
     BrowserAnimationsModule,
     HomeModule,
     SharedModule,
-    AuthModule
+    AuthModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
