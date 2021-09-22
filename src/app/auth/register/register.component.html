@@ -1,0 +1,52 @@
+<div>
+    <form class="registration-form" (ngSubmit)="registrationForm.valid && onSubmit()" [formGroup]="registrationForm">
+        <table>
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Firstname</mat-label>
+                        <input matInput type="text" formControlName="firstname" required name="firstname" id="firstname">
+                    </mat-form-field>
+                </td>
+                <td>                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Lastname</mat-label>
+                        <input matInput type="text" formControlName="lastname" required name="lastname" id="lastname">
+                    </mat-form-field>
+                </td>
+                <td>                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" formControlName="email" required name="email" id="email">
+                    </mat-form-field>
+                </td>
+                <td>                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Phone</mat-label>
+                        <input matInput type="text" formControlName="phone" name="phone" id="phone">
+                    </mat-form-field>
+                </td>
+                <td>                    
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit" mat-raised-button [disabled]="registrationForm.invalid" color="primary">Register</button>
+                    <button type="reset" mat-raised-button>Reset</button>
+                </td>   
+            </tr>
+        </table>
+    </form>
+</div>
