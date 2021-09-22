@@ -1,1 +1,29 @@
-<p>quick-search works!</p>
+<p>Je viens faire une recherche</p>
+<form [formGroup]="quickSearchForm" (ngSubmit)="quickSearchForm.valid && onSubmit()">
+
+  <div>
+    <mat-radio-group [formControl]="transactionControl" labelPosition="before">
+      <mat-radio-button value="buy">Pour acheter</mat-radio-button>
+      <mat-radio-button value="rent">Pour louer</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Localisation</mat-label>
+      <input [formControl]="locationControl" matInput placeholder="code postal, ville, département...">
+      <mat-hint>obligatoire</mat-hint>
+      <mat-error *ngIf="locationControl.invalid">{{getLocationErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Budget</mat-label>
+      <span><input [formControl]="budgetControl" matInput></span>
+      <mat-hint>en €</mat-hint>
+    </mat-form-field>
+  </div>
+
+  <button type="submit" mat-flat-button color="primary" [disabled]="quickSearchForm.invalid">Go</button>
+</form>
