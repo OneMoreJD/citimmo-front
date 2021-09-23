@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-quick-search',
@@ -14,9 +16,7 @@ export class QuickSearchComponent implements OnInit {
   locationControl = new FormControl('', Validators.required);
   budgetControl = new FormControl('', Validators.pattern('^[0-9]*$'));
 
-  url: string = 'http://localhost:3000';
-
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.quickSearchForm = this.formBuilder.group({
@@ -27,14 +27,15 @@ export class QuickSearchComponent implements OnInit {
   }
 
   onSubmit() {
-    const formData = new FormData();
-    formData.append('transaction', this.transactionControl.value);
-    formData.append('location', this.locationControl.value);
-    formData.append('budget', this.budgetControl.value);
+    const url = environment.domain + environment.urls.quickSearch;
+    const params = new HttpParams()
+      .set("transaction", this.transactionControl.value)
+      .set("location", this.locationControl.value)
+      .set("budget", this.budgetControl.value);
 
-    this.http.post(this.url, formData).subscribe(
+    this.http.get(url, { params }).subscribe(
       (res) => console.log(res),
-      (err) => console.log(err)
+      (err) => this.snackBar.open("Oups, il y a un problème...", "Fermer")
     );
   }
 

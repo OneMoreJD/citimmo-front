@@ -16,7 +16,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [],
@@ -40,7 +42,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatTabsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule { }
