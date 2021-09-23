@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../../../environments/environment';
+import { QuickSearchService } from './quick-search.service';
 
 @Component({
   selector: 'app-quick-search',
@@ -16,7 +17,7 @@ export class QuickSearchComponent implements OnInit {
   locationControl = new FormControl('', Validators.required);
   budgetControl = new FormControl('', Validators.pattern('^[0-9]*$'));
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient, private snackBar: MatSnackBar) { }
+  constructor(private formBuilder: FormBuilder, private qsService: QuickSearchService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.quickSearchForm = this.formBuilder.group({
@@ -27,16 +28,13 @@ export class QuickSearchComponent implements OnInit {
   }
 
   onSubmit() {
-    const url = environment.domain + environment.urls.quickSearch;
-    const params = new HttpParams()
-      .set("transaction", this.transactionControl.value)
-      .set("location", this.locationControl.value)
-      .set("budget", this.budgetControl.value);
-
-    this.http.get(url, { params }).subscribe(
-      (res) => console.log(res),
-      (err) => this.snackBar.open("Oups, il y a un problème...", "Fermer")
-    );
+    let adverts = this.qsService.getAdverts(this.quickSearchForm).subscribe(
+      data => {
+        adverts = data;
+        console.log(data)
+      },
+      err => this.snackBar.open("Oups, il y a un problème...", "Fermer")
+    )
   }
 
   getLocationErrorMessage() {
