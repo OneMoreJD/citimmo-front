@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,12 +10,12 @@ export class QuickSearchService {
 
   constructor(private http: HttpClient) { }
 
-  getAdverts(form: FormGroup): Observable<any> {
+  getAdverts(transaction: string, budget: string, locations: string[]): Observable<any> {
     const url = environment.domain + environment.urls.quickSearch;
     const params = new HttpParams()
-      .set("transaction", form.controls['transaction'].value)
-      .set("location", form.controls['location'].value)
-      .set("budget", form.controls['budget'].value);
+      .set("transaction", transaction)
+      .set("location", locations.toString())
+      .set("budget", budget);
 
     const adverts = this.http.get(url, { params });
     return adverts;

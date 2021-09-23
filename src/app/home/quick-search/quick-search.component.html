@@ -10,7 +10,18 @@
 
           <mat-form-field appearance="outline">
             <mat-label>Localisation</mat-label>
-            <input [formControl]="locationControl" matInput placeholder="code postal, ville, département...">
+            <mat-chip-list #chipList aria-label="location selection">
+              <mat-chip *ngFor="let loc of locations" [selectable]="selectable" [removable]="removable" (removed)="remove(loc)">
+                {{loc}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="Ajouter une/des ville(s)"
+                     [formControl]="locationControl"
+                     [matChipInputFor]="chipList"
+                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                     [matChipInputAddOnBlur]="addOnBlur"
+                     (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
             <mat-hint>obligatoire</mat-hint>
             <mat-error *ngIf="locationControl.invalid">{{getLocationErrorMessage()}}</mat-error>
           </mat-form-field>
@@ -19,6 +30,7 @@
             <mat-label>Budget</mat-label>
             <span><input [formControl]="budgetControl" matInput></span>
             <mat-hint>en €</mat-hint>
+            <mat-error *ngIf="budgetControl.invalid">{{getBudgetErrorMessage()}}</mat-error>
           </mat-form-field>
       </div>
 
