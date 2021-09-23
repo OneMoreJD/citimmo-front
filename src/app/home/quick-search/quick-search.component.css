@@ -1,33 +1,28 @@
 .flex {
   display: flex;
 }
-
 .col {
   flex-direction: column;
 }
-
 .row {
   flex-direction: row;
+}
+.space-between {
+  justify-content: space-between;
+}
+.align-center {
+  align-self: center;
+}
+.wrap {
+  flex-wrap: wrap;
 }
 
 .container {
   margin: auto;
   border-radius: 25px;
-  border: 0.2em solid;
+  border: 2px solid;
   padding: 20px;
-  width: 50%;
-}
-
-.form-container {
-  justify-content: space-around;
-}
-
-.button-container {
-  align-self: flex-end;
-}
-
-#title {
-  align-self: center;
+  max-width: 500px;
 }
 
 .mat-radio-button ~ .mat-radio-button {
