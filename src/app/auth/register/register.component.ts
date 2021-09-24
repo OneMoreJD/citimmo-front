@@ -29,7 +29,10 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    this.registerService.submitRegistration(this.registrationForm.value);    
+    this.registerService.submitRegistration(this.registrationForm.value).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    );    
   }
 
 }
