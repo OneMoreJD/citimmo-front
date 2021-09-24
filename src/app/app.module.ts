@@ -11,10 +11,12 @@ import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AdvertsListComponent
   ],
   imports: [
     BrowserModule,
