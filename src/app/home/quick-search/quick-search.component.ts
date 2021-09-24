@@ -37,6 +37,7 @@ export class QuickSearchComponent implements OnInit {
       this.maxBudget = 5000;
       this.intervalBudget = 100;
     }
+    this.budgetControl.setValue('');
     console.log(event);
   }
 
@@ -54,7 +55,10 @@ export class QuickSearchComponent implements OnInit {
         adverts = data;
         console.log(data)
       },
-      err => this.snackBar.open("Oups, il y a un problème...", "Fermer")
+      err => {
+        console.log(err);
+        this.snackBar.open("Oups, il y a un problème...", "Fermer");
+      }
     )
   }
 }
