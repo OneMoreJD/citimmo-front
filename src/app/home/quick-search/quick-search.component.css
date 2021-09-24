@@ -29,7 +29,11 @@
   margin-left: 16px;
 }
 
-.mat-form-field {
+mat-form-field {
+  margin-top: 20px;
+}
+
+app-location-control {
   margin-top: 20px;
 }
 

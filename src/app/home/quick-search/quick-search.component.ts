@@ -1,9 +1,7 @@
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { QuickSearchService } from './quick-search.service';
-import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-quick-search',
@@ -12,41 +10,9 @@ import { MatChipInputEvent } from '@angular/material/chips';
 })
 export class QuickSearchComponent implements OnInit {
 
+  locations = [];
   maxBudget = 1000000;
   intervalBudget = 10000;
-
-  visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  locations: string[] = [];
-
-  add(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-
-    // Add our location
-    if ((value || '').trim()) {
-      this.locations.push(value.trim());
-    }
-
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
-  }
-
-  remove(location: string): void {
-    const index = this.locations.indexOf(location);
-
-    if (index >= 0) {
-      this.locations.splice(index, 1);
-    }
-  }
-
-
-
 
   quickSearchForm: FormGroup;
   transactionControl = new FormControl('buy');
@@ -63,6 +29,22 @@ export class QuickSearchComponent implements OnInit {
     });
   }
 
+  onTransactionChange(event) {
+    if (this.transactionControl.value === 'buy') {
+      this.maxBudget = 1000000;
+      this.intervalBudget = 10000;
+    } else {
+      this.maxBudget = 5000;
+      this.intervalBudget = 100;
+    }
+    console.log(event);
+  }
+
+  onLocationsChange(locations: string[]) {
+    this.locations = locations;
+    this.locationControl.setValue(this.locations);
+  }
+
   onSubmit() {
     console.log(this.locations);
     console.log(this.transactionControl.value);
@@ -74,11 +56,5 @@ export class QuickSearchComponent implements OnInit {
       },
       err => this.snackBar.open("Oups, il y a un problème...", "Fermer")
     )
-  }
-
-  getLocationErrorMessage() {
-    if (this.locationControl.hasError('required')) {
-      return 'Ce champ est obligatoire';
-    }
   }
 }

@@ -2,30 +2,16 @@
   <p class="align-center">Je viens faire une recherche</p>
   <form class="flex col" [formGroup]="quickSearchForm" (ngSubmit)="quickSearchForm.valid && onSubmit()">
 
-    <mat-radio-group [formControl]="transactionControl" labelPosition="before">
+    <mat-radio-group [formControl]="transactionControl" (change)="onTransactionChange($event)" labelPosition="before">
       <mat-radio-button value="buy">Pour acheter</mat-radio-button>
       <mat-radio-button value="rent">Pour louer</mat-radio-button>
     </mat-radio-group>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Localisation</mat-label>
-      <mat-chip-list #chipList aria-label="location selection">
-        <mat-chip *ngFor="let loc of locations" [selectable]="selectable" [removable]="removable"
-          (removed)="remove(loc)">
-          {{loc}}
-          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-        </mat-chip>
-        <input placeholder="Ajouter une/des ville(s)" [formControl]="locationControl" [matChipInputFor]="chipList"
-          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
-          (matChipInputTokenEnd)="add($event)">
-      </mat-chip-list>
-      <mat-hint>obligatoire</mat-hint>
-      <mat-error *ngIf="locationControl.invalid">{{getLocationErrorMessage()}}</mat-error>
-    </mat-form-field>
+    <app-location-control (locationsChanged)="onLocationsChange($event)"></app-location-control>
 
     <div class="flex row space-between wrap">
       <div class="slider-container">
-        <mat-label>Budget</mat-label>
+        <mat-label>Budget max</mat-label>
         <div class="flex">
           <mat-slider [formControl]="budgetControl" [step]="intervalBudget" min="0" [max]="maxBudget"></mat-slider>
           <ng-container *ngIf="budgetControl.value < maxBudget; else elseTemplate">
