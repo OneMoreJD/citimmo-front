@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
 import { RegistrationDetails } from './register-dto.model';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
-  private url:string = "http://localhost:8080/register";
+  private url: string = environment.API_BACK_URL + '/register';
 
   constructor(private http: HttpClient) { }
 
-  submitRegistration(registrationDetails:RegistrationDetails){    
-    registrationDetails.password=this.obfuscateMe(registrationDetails.password);
-    //console.log(registrationDetails);
+  submitRegistration(registrationDetails: RegistrationDetails) {
+    registrationDetails.password = this.obfuscateMe(registrationDetails.password);
     return this.http.post(this.url, registrationDetails);
   }
 
-  private obfuscateMe(value:string) : string {    
-    value = btoa(value);    
-    let obfuscated:string[] = [];
+  private obfuscateMe(value: string): string {
+    value = btoa(value);
+    let obfuscated: string[] = [];
     return value;
     /***
     for(let i=0; i<value.length;i++){
