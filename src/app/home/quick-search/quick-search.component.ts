@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { QuickSearchService } from './quick-search.service';
 
 @Component({
   selector: 'app-quick-search',
@@ -9,14 +10,16 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class QuickSearchComponent implements OnInit {
 
+  locations = [];
+  maxBudget = 1000000;
+  intervalBudget = 10000;
+
   quickSearchForm: FormGroup;
   transactionControl = new FormControl('buy');
   locationControl = new FormControl('', Validators.required);
-  budgetControl = new FormControl('', Validators.pattern('^[0-9]*$'));
+  budgetControl = new FormControl('');
 
-  url: string = 'http://localhost:3000';
-
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) { }
+  constructor(private formBuilder: FormBuilder, private qsService: QuickSearchService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.quickSearchForm = this.formBuilder.group({
@@ -26,21 +29,32 @@ export class QuickSearchComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    const formData = new FormData();
-    formData.append('transaction', this.transactionControl.value);
-    formData.append('location', this.locationControl.value);
-    formData.append('budget', this.budgetControl.value);
-
-    this.http.post(this.url, formData).subscribe(
-      (res) => console.log(res),
-      (err) => console.log(err)
-    );
+  onTransactionChange(event) {
+    if (this.transactionControl.value === 'buy') {
+      this.maxBudget = 1000000;
+      this.intervalBudget = 10000;
+    } else {
+      this.maxBudget = 5000;
+      this.intervalBudget = 100;
+    }
+    console.log(event);
   }
 
-  getLocationErrorMessage() {
-    if (this.locationControl.hasError('required')) {
-      return 'Ce champ est obligatoire';
-    }
+  onLocationsChange(locations: string[]) {
+    this.locations = locations;
+    this.locationControl.setValue(this.locations);
+  }
+
+  onSubmit() {
+    console.log(this.locations);
+    console.log(this.transactionControl.value);
+    console.log(this.budgetControl.value);
+    let adverts = this.qsService.getAdverts(this.transactionControl.value, this.budgetControl.value, this.locations).subscribe(
+      data => {
+        adverts = data;
+        console.log(data)
+      },
+      err => this.snackBar.open("Oups, il y a un problème...", "Fermer")
+    )
   }
 }
