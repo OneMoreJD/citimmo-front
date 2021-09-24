@@ -32,3 +32,16 @@
 .mat-form-field {
   margin-top: 20px;
 }
+
+.mat-slider {
+  width: 200px;
+}
+
+.slider-container {
+  margin-top: 20px;
+}
+
+.slider-label {
+  align-self: center;
+  margin: 0 0 0 16px;
+}

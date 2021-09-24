@@ -12,6 +12,9 @@ import { MatChipInputEvent } from '@angular/material/chips';
 })
 export class QuickSearchComponent implements OnInit {
 
+  maxBudget = 1000000;
+  intervalBudget = 10000;
+
   visible = true;
   selectable = true;
   removable = true;
@@ -48,7 +51,7 @@ export class QuickSearchComponent implements OnInit {
   quickSearchForm: FormGroup;
   transactionControl = new FormControl('buy');
   locationControl = new FormControl('', Validators.required);
-  budgetControl = new FormControl('', Validators.pattern('^[0-9]*$'));
+  budgetControl = new FormControl('');
 
   constructor(private formBuilder: FormBuilder, private qsService: QuickSearchService, private snackBar: MatSnackBar) { }
 
@@ -62,6 +65,8 @@ export class QuickSearchComponent implements OnInit {
 
   onSubmit() {
     console.log(this.locations);
+    console.log(this.transactionControl.value);
+    console.log(this.budgetControl.value);
     let adverts = this.qsService.getAdverts(this.transactionControl.value, this.budgetControl.value, this.locations).subscribe(
       data => {
         adverts = data;
@@ -74,12 +79,6 @@ export class QuickSearchComponent implements OnInit {
   getLocationErrorMessage() {
     if (this.locationControl.hasError('required')) {
       return 'Ce champ est obligatoire';
-    }
-  }
-
-  getBudgetErrorMessage() {
-    if (this.budgetControl.hasError('pattern')) {
-      return 'Un budget avec des chiffres, svp...';
     }
   }
 }

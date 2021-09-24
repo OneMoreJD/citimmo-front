@@ -19,6 +19,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSliderModule } from '@angular/material/slider';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatTabsModule,
     MatRadioModule,
     MatSnackBarModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSliderModule
   ]
 })
 export class MaterialModule { }

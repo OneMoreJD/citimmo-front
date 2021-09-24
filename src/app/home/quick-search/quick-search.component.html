@@ -24,12 +24,18 @@
     </mat-form-field>
 
     <div class="flex row space-between wrap">
-      <mat-form-field appearance="outline">
+      <div class="slider-container">
         <mat-label>Budget</mat-label>
-        <span><input [formControl]="budgetControl" matInput></span>
-        <mat-hint>en €</mat-hint>
-        <mat-error *ngIf="budgetControl.invalid">{{getBudgetErrorMessage()}}</mat-error>
-      </mat-form-field>
+        <div class="flex">
+          <mat-slider [formControl]="budgetControl" [step]="intervalBudget" min="0" [max]="maxBudget"></mat-slider>
+          <ng-container *ngIf="budgetControl.value < maxBudget; else elseTemplate">
+            <mat-label class="slider-label">{{budgetControl.value | currency:'EUR':'':'1.0-0':'fr-FR'}}€</mat-label>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <mat-label class="slider-label">{{budgetControl.value | currency:'EUR':'':'1.0-0':'fr-FR'}}€ et +</mat-label>
+          </ng-template>
+        </div>
+      </div>
 
       <div class="align-center">
         <button type="submit" mat-flat-button color="primary" [disabled]="quickSearchForm.invalid">Go</button>
