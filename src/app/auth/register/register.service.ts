@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class RegisterService {
-  private url: string = environment.API_BACK_URL + '/register';
+  private url: string = environment.domain + environment.urls.register;
 
   constructor(private http: HttpClient) { }
 
