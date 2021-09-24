@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  API_BACK_URL: 'http://localhost:8080'
+  domain: 'http://localhost:8080',
+  urls: {
+    quickSearch: '/adverts/filter'
+  }
 };
 
 /*

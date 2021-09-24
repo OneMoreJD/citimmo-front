@@ -1,29 +1,32 @@
-<p>Je viens faire une recherche</p>
-<form [formGroup]="quickSearchForm" (ngSubmit)="quickSearchForm.valid && onSubmit()">
+<div class="flex col container">
+  <p class="align-center">Je viens faire une recherche</p>
+  <form class="flex col" [formGroup]="quickSearchForm" (ngSubmit)="quickSearchForm.valid && onSubmit()">
 
-  <div>
-    <mat-radio-group [formControl]="transactionControl" labelPosition="before">
+    <mat-radio-group [formControl]="transactionControl" (change)="onTransactionChange($event)" labelPosition="before">
       <mat-radio-button value="buy">Pour acheter</mat-radio-button>
       <mat-radio-button value="rent">Pour louer</mat-radio-button>
     </mat-radio-group>
-  </div>
 
-  <div>
-    <mat-form-field appearance="outline">
-      <mat-label>Localisation</mat-label>
-      <input [formControl]="locationControl" matInput placeholder="code postal, ville, département...">
-      <mat-hint>obligatoire</mat-hint>
-      <mat-error *ngIf="locationControl.invalid">{{getLocationErrorMessage()}}</mat-error>
-    </mat-form-field>
-  </div>
+    <app-location-control (locationsChanged)="onLocationsChange($event)"></app-location-control>
 
-  <div>
-    <mat-form-field appearance="outline">
-      <mat-label>Budget</mat-label>
-      <span><input [formControl]="budgetControl" matInput></span>
-      <mat-hint>en €</mat-hint>
-    </mat-form-field>
-  </div>
+    <div class="flex row space-between wrap">
+      <div class="slider-container">
+        <mat-label>Budget max</mat-label>
+        <div class="flex">
+          <mat-slider [formControl]="budgetControl" [step]="intervalBudget" min="0" [max]="maxBudget"></mat-slider>
+          <ng-container *ngIf="budgetControl.value < maxBudget; else elseTemplate">
+            <mat-label class="slider-label">{{budgetControl.value | currency:'EUR':'':'1.0-0':'fr-FR'}}€</mat-label>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <mat-label class="slider-label">{{budgetControl.value | currency:'EUR':'':'1.0-0':'fr-FR'}}€ et +</mat-label>
+          </ng-template>
+        </div>
+      </div>
 
-  <button type="submit" mat-flat-button color="primary" [disabled]="quickSearchForm.invalid">Go</button>
-</form>
+      <div class="align-center">
+        <button type="submit" mat-flat-button color="primary" [disabled]="quickSearchForm.invalid">Go</button>
+      </div>
+    </div>
+
+  </form>
+</div>
