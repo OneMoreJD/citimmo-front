@@ -19,10 +19,13 @@ export class RegisterService {
   private obfuscateMe(value:string) : string {    
     value = btoa(value);    
     let obfuscated:string[] = [];
+    return value;
+    /***
     for(let i=0; i<value.length;i++){
       obfuscated.push(Number(value.charCodeAt(i)).toString(16));
     }
     return obfuscated.join("").toString();
+     */
   }
 
 }
