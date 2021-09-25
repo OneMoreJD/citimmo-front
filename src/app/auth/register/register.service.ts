@@ -12,7 +12,8 @@ export class RegisterService {
   constructor(private http: HttpClient) { }
 
   submitRegistration(registrationDetails: RegistrationDetails) {
-    registrationDetails.password = this.obfuscateMe(registrationDetails.password);
+    // registrationDetails.password = this.obfuscateMe(registrationDetails.password);
+    console.log(registrationDetails);
     return this.http.post(this.url, registrationDetails);
   }
 
