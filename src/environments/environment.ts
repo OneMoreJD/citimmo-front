@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  domain: 'http://localhost:9080',
+  domain: 'http://localhost:8080',
   urls: {
     quickSearch: '/adverts/filter',
     register: '/register',
