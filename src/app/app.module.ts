@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
+import { RegisterComponent } from './auth/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.component';
@@ -26,6 +28,7 @@ import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.compon
     BrowserAnimationsModule,
     HomeModule,
     SharedModule,
+    AuthModule,
     HttpClientModule
   ],
   providers: [
