@@ -1,0 +1,34 @@
+<mat-toolbar color="primary" class="mat-toolbar" >
+
+  <div  fxFlex fxLayout >
+    <div  fxHide.xs class="div02">
+    <a routerLink="/"> <img src="../assets/images/Image02.jpg" alt="HeaderLogo" class="img01"></a>
+    </div>
+
+
+    <div fxHide.gt-xs lex fxLayout  fxLayoutAlign="center" style="background-Image: url('assets/images/Image02.jpg')" class="background_NavBar div02">
+      <button  fxF mat-icon-button class="colorMatIcon" (click)="onToggleSidenav()">
+          <mat-icon >menu</mat-icon>
+      </button>
+    </div>
+  </div>
+
+
+
+  <div style="background-Image: url('assets/images/Image08-08.jpg')" class="background_NavBar div01" >
+    <div fxFlex fxLayout  fxLayoutAlign="end top"  fxHide.xs>
+      <ul  fxLayout fxLayoutGap="15px" class="navigation-items ul01">
+        <li>
+            <a routerLink="/login">Login</a>
+        </li>
+        <li>
+            <a routerLink="/register">Register</a>
+        </li>
+        <li>
+            <a routerLink="/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</mat-toolbar>

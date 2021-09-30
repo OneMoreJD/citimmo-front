@@ -6,7 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [HomeComponent, QuickSearchComponent],
+  declarations: [
+    HomeComponent,
+    QuickSearchComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,

@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "citimmo-front"
+  "defaultProject": "citimmo-front",
+  "cli": {
+    "analytics": false
+  }
 }
