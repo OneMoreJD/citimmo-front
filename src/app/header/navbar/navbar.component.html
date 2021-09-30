@@ -2,12 +2,12 @@
 
   <div  fxFlex fxLayout >
     <div  fxHide.xs class="div02">
-    <a routerLink="/"> <img src="../assets/images/Image02.jpg" alt="HeaderLogo" class="img01"></a>
+      <img src="../assets/images/Image02.jpg" alt="HeaderLogo" class="img01 imageCursor" (click)="gotoHome()">
     </div>
 
 
-    <div fxHide.gt-xs lex fxLayout  fxLayoutAlign="center" style="background-Image: url('assets/images/Image02.jpg')" class="background_NavBar div02">
-      <button  fxF mat-icon-button class="colorMatIcon" (click)="onToggleSidenav()">
+    <div fxHide.gt-xs style="background-Image: url('assets/images/Image02.jpg')" class="background_NavBar div02">
+      <button  fxFlex fxLayout  fxLayoutAlign="right" mat-icon-button class="colorMatIcon" (click)="onToggleSidenav()">
           <mat-icon >menu</mat-icon>
       </button>
     </div>
@@ -16,8 +16,8 @@
 
 
   <div style="background-Image: url('assets/images/Image08-08.jpg')" class="background_NavBar div01" >
-    <div fxFlex fxLayout  fxLayoutAlign="end top"  fxHide.xs>
-      <ul  fxLayout fxLayoutGap="15px" class="navigation-items ul01">
+    <div fxFlex fxLayout  fxLayoutAlign="end center"  fxHide.xs>
+      <ul  fxLayout fxLayoutGap="15px" class="navigation-items ">
         <li>
             <a routerLink="/login">Login</a>
         </li>

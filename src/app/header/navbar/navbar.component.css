@@ -5,7 +5,7 @@
 
 .div01{
   width: 90% ;
-  height :100%;
+  height : 150px;
 }
 
 .div02{
@@ -18,8 +18,8 @@
     height: 150px;
   }
 
-  .ul01{
-    margin-right: 10px;
+  .imageCursor:hover{
+    cursor:pointer;
   }
 
 .background_NavBar {
@@ -47,7 +47,7 @@ a:hover, a:active{
 }
 .navigation-items{
   list-style-type: none;
-  padding: 2%;
+  padding-right: 1%;
   margin: 0;
 }
 mat-toolbar{
