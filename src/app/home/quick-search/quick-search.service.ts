@@ -11,10 +11,11 @@ export class QuickSearchService {
   constructor(private http: HttpClient) { }
 
   getAdverts(transaction: string, budget: string, locations: string[]): Observable<any> {
+
     const url = environment.domain + environment.urls.quickSearch;
     const params = new HttpParams()
       .set("transaction", transaction)
-      .set("location", locations.toString())
+      .set("locations", locations.toString())
       .set("budget", budget);
 
     const adverts = this.http.get(url, { params });

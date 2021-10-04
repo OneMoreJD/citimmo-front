@@ -12,13 +12,18 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.component';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app-routing.module';
 import {AuthHttpInterceptor} from './auth/auth-http.interceptor';
+import { HeaderModule } from './header/header.module';
+import { HeaderComponent } from './header/header.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AdvertsListComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,8 @@ import {AuthHttpInterceptor} from './auth/auth-http.interceptor';
     SharedModule,
     AuthModule,
     HttpClientModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    HeaderModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR'},

@@ -20,6 +20,10 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -47,7 +51,11 @@ import { MatSliderModule } from '@angular/material/slider';
     MatRadioModule,
     MatSnackBarModule,
     MatChipsModule,
-    MatSliderModule
+    MatSliderModule,
+    MatSidenavModule,
+    FlexLayoutModule,
+    MatToolbarModule,
+    MatListModule
   ]
 })
 export class MaterialModule { }
