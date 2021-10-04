@@ -12,12 +12,14 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.component';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app-routing.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AdvertsListComponent
   ],
   imports: [
     BrowserModule,

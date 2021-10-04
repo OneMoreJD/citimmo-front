@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { QuickSearchService } from './quick-search.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quick-search',
@@ -19,7 +20,7 @@ export class QuickSearchComponent implements OnInit {
   locationControl = new FormControl('', Validators.required);
   budgetControl = new FormControl('');
 
-  constructor(private formBuilder: FormBuilder, private qsService: QuickSearchService, private snackBar: MatSnackBar) { }
+  constructor(private formBuilder: FormBuilder, private qsService: QuickSearchService, private snackBar: MatSnackBar, private router: Router) { }
 
   ngOnInit(): void {
     this.quickSearchForm = this.formBuilder.group({
@@ -37,6 +38,7 @@ export class QuickSearchComponent implements OnInit {
       this.maxBudget = 5000;
       this.intervalBudget = 100;
     }
+    this.budgetControl.setValue('');
     console.log(event);
   }
 
@@ -49,12 +51,17 @@ export class QuickSearchComponent implements OnInit {
     console.log(this.locations);
     console.log(this.transactionControl.value);
     console.log(this.budgetControl.value);
-    let adverts = this.qsService.getAdverts(this.transactionControl.value, this.budgetControl.value, this.locations).subscribe(
+    const budget = this.budgetControl.value == this.maxBudget ? '' : this.budgetControl.value;
+    let adverts = this.qsService.getAdverts(this.transactionControl.value, budget, this.locations).subscribe(
       data => {
         adverts = data;
+        this.router.navigate(['/adverts'], { state: { adverts: JSON.stringify(adverts)}});
         console.log(data)
       },
-      err => this.snackBar.open("Oups, il y a un problème...", "Fermer")
-    )
+      err => {
+        console.log(err);
+        this.snackBar.open("Oups, il y a un problème...", "Fermer");
+      }
+    );
   }
 }
