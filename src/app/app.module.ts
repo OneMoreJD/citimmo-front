@@ -10,10 +10,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
-import { RegisterComponent } from './auth/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.component';
+import { RouterModule } from '@angular/router';
+import { ROUTES } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.compon
     HomeModule,
     SharedModule,
     AuthModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR'}

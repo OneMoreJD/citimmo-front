@@ -1,0 +1,32 @@
+#login {
+  display: flex;
+  margin: 5% 20% 5% 20%;
+  justify-content: left;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+fieldset {
+  border-radius: 5px;
+  padding: 5%;
+}
+
+.login-title {
+  text-align: center;
+}
+
+.login-form {
+  width: 100%;
+}
+
+button {
+  margin: 0 10px 0 0;
+}
+
+.eye-icon:hover {
+  cursor: pointer;
+}
