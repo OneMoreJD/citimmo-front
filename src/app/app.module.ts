@@ -15,11 +15,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.component';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app-routing.module';
+import { HeaderModule } from './header/header.module';
+import { HeaderComponent } from './header/header.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdvertsListComponent
+    AdvertsListComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { ROUTES } from './app-routing.module';
     SharedModule,
     AuthModule,
     HttpClientModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    HeaderModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR'}
