@@ -8,7 +8,6 @@ import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderModule } from './header/header.module';
-import { LoginModule } from './auth/login/login.module';
 
 import { HeaderComponent } from './header/header.component'
 
@@ -27,7 +26,6 @@ import { HeaderComponent } from './header/header.component'
     SharedModule,
     HttpClientModule,
     HeaderModule,
-    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
