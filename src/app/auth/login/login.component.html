@@ -22,7 +22,10 @@
               <mat-icon *ngIf="showClearPassword" matSuffix class="eye-icon" (click)="toggleShowClearPassword()">visibility_off</mat-icon>
             </mat-form-field>
           </td>
+        </tr>
+        <tr>
           <td>
+            <mat-card *ngIf="error" class="error"> {{ error }} </mat-card>
           </td>
         </tr>
         <tr>
