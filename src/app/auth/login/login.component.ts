@@ -9,12 +9,13 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent implements OnInit {
 
-  public loginForm : FormGroup = this.fb.group({
+  public loginForm: FormGroup = this.fb.group({
     username: ['', [Validators.email, Validators.required]],
     password: ['', Validators.required]
   });
 
   public showClearPassword: boolean;
+  public error: string | null;
 
   constructor(private fb: FormBuilder, private loginService: LoginService) { }
 
@@ -26,9 +27,13 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.error = null;
     this.loginService.submitLogin(this.loginForm.value).subscribe(
-      (res) => console.log(res),
-      (err) => console.log(err)
+      (data) => console.log(data),
+      (err) => {
+        this.error = 'Http Status : ' + err.status + ' - ' + err.error;
+        console.log(err);
+      }
     );
   }
 }
