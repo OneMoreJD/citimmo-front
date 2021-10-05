@@ -16,3 +16,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .wrap {
   flex-wrap: wrap;
 }
+.font-primary {
+  color: #3f51b5;
+}
+.font-accent {
+  color: #ff4081;
+}

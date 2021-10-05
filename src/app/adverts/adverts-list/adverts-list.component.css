@@ -3,10 +3,6 @@ mat-card {
   margin: 12px;
 }
 
-mat-card-title {
-  color:#3f51b5;
-}
-
 .container {
   justify-content: space-between;
   height: 100%;
