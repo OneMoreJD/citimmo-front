@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { QuickSearchService } from '../../home/quick-search/quick-search.service';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  currentCriteria: any;
+
+  constructor(private qsService: QuickSearchService) { }
 
   ngOnInit(): void {
+    this.currentCriteria = this.qsService.criteria;
+    console.log(this.currentCriteria);
   }
 
 }

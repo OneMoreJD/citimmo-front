@@ -48,13 +48,11 @@ export class QuickSearchComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.locations);
-    console.log(this.transactionControl.value);
-    console.log(this.budgetControl.value);
     const budget = this.budgetControl.value == this.maxBudget ? '' : this.budgetControl.value;
     this.qsService.getAdverts(this.transactionControl.value, budget, this.locations).subscribe(
       data => {
-        this.router.navigate(['/adverts'], { state: { adverts: JSON.stringify(data)}});
+        this.qsService.adverts = data;
+        this.router.navigate(['/adverts']);
       },
       err => {
         console.log(err);
