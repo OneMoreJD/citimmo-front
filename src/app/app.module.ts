@@ -13,18 +13,11 @@ import { AuthModule } from './auth/auth.module';
 import { RegisterComponent } from './auth/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.component';
-import { RoomsPipe } from './adverts/adverts-list/rooms.pipe';
-import { SearchComponent } from './adverts/search/search.component';
-import { AdvertsComponent } from './adverts/adverts.component';
+import { AdvertsModule } from './adverts/adverts.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AdvertsListComponent,
-    RoomsPipe,
-    SearchComponent,
-    AdvertsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +26,7 @@ import { AdvertsComponent } from './adverts/adverts.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HomeModule,
+    AdvertsModule,
     SharedModule,
     AuthModule,
     HttpClientModule
