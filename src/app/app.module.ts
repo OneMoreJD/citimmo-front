@@ -15,12 +15,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.component';
 import { RoomsPipe } from './adverts/adverts-list/rooms.pipe';
+import { SearchComponent } from './adverts/search/search.component';
+import { AdvertsComponent } from './adverts/adverts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdvertsListComponent,
-    RoomsPipe
+    RoomsPipe,
+    SearchComponent,
+    AdvertsComponent
   ],
   imports: [
     BrowserModule,
