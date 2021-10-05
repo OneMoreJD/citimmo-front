@@ -1,1 +1,11 @@
 <p>search works!</p>
+<form [formGroup]="searchForm">
+  <div class="flex row wrap">
+    <mat-form-field appearance="outline">
+      <mat-label>Type de bien</mat-label>
+      <mat-select [formControl]="estateTypeControl" multiple>
+        <mat-option *ngFor="let type of estateTypeList" [value]="type">{{type}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</form>
