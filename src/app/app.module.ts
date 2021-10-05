@@ -14,11 +14,13 @@ import { RegisterComponent } from './auth/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.component';
+import { RoomsPipe } from './adverts/adverts-list/rooms.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdvertsListComponent
+    AdvertsListComponent,
+    RoomsPipe
   ],
   imports: [
     BrowserModule,

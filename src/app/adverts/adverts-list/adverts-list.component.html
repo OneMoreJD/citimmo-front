@@ -1,1 +1,19 @@
-<p>adverts-list works!</p>
+<div  class="flex row wrap">
+  <mat-card *ngFor="let adv of adverts">
+    <div class="flex col container">
+      <div class="flex row wrap">
+        <img src="https://via.placeholder.com/200x150.png">
+        <div class="flex col wrap card-content">
+          <mat-card-title>{{adv.title}}</mat-card-title>
+          <mat-card-subtitle>{{adv.price | currency:'EUR':'':'1.0-0':'fr-FR'}}€</mat-card-subtitle>
+            <div class="flex col">
+              <span>{{adv.address.city}}</span>
+              <span>{{adv.surfaceInt}} m²</span>
+              <span>{{adv.rooms | rooms:adv.bedrooms}}</span>
+            </div>
+        </div>
+      </div>
+      <button mat-raised-button color="accent" [disabled]="false" aria-label="Postuler">Postuler</button>
+    </div>
+  </mat-card>
+</div>

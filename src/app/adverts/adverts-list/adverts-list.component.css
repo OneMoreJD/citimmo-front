@@ -1,0 +1,28 @@
+mat-card {
+  max-width: 400px;
+  margin: 12px;
+}
+
+mat-card-title {
+  color:#3f51b5;
+}
+
+.container {
+  justify-content: space-between;
+  height: 100%;
+}
+
+img {
+  width: 180px;
+  align-self: flex-start;
+}
+
+.card-content {
+  width: 200px;
+  margin-left: 12px;
+}
+
+button {
+  align-self: flex-end;
+  margin-top: 6px;
+}
