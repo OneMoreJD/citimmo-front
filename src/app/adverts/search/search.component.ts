@@ -12,6 +12,11 @@ export class SearchComponent implements OnInit {
 
   readonly PRIMARY_COLOR = '#3f51b5';
   readonly ACCENT_COLOR = '#ff4081';
+  readonly MAX_INT_SURFACE = 200;
+  readonly MAX_EXT_SURFACE = 100;
+  readonly SLIDER_STEP = 10;
+
+
   locations = [];
 
   currentCriteria: any;
@@ -27,50 +32,57 @@ export class SearchComponent implements OnInit {
     locationControl: new FormControl('', Validators.required),
     roomsControl: new FormControl(),
     bedroomsControl: new FormControl(),
-    insideSurfaceControl: new FormControl([0, 160]),
+    insideSurfaceControl: new FormControl(),
     outsideSurfaceControl: new FormControl()
   });
 
   maxRooms: number = 0;
 
-  insideSliderOptions: Options = {
-    floor: 0,
-    ceil: 160,
-    step: 5,
-    noSwitching: true,
-    getSelectionBarColor: () => {return this.PRIMARY_COLOR},
-    getPointerColor: () => {return this.PRIMARY_COLOR},
-    // translate: (value: number): string => { return value + 'm²' },
-    hideLimitLabels: true,
-    hidePointerLabels: true
-  };
+  minIntSurface: number = 0;
+  maxIntSurface: number = this.MAX_INT_SURFACE;
+  floorIntSurface: number = 0;
+  ceilIntSurface: number = this.MAX_INT_SURFACE;
+  stepIntSurface: number = this.SLIDER_STEP;
+  intSurfaceLabel: string = '';
 
-  outsideSliderOptions: Options = {
-    floor: 0,
-    ceil: 2000,
-    step: 100,
-    showSelectionBar: true,
-    getSelectionBarColor: () => { return this.PRIMARY_COLOR },
-    getPointerColor: () => { return this.PRIMARY_COLOR },
-    // translate: (value: number): string => { return value + 'm²' },
-    hideLimitLabels: true,
-    hidePointerLabels: true
-  };
+  maxExtSurface: number = 0;
+  floorExtSurface: number = 0;
+  ceilExtSurface: number = this.MAX_EXT_SURFACE;
+  stepExtSurface: number = this.SLIDER_STEP;
+  extSurfaceLabel: string = '';
 
-  constructor(private qsService: QuickSearchService, private formBuilder: FormBuilder) { }
+  insideSliderOptions: Options;
+  outsideSliderOptions: Options;
+
+  constructor(private qsService: QuickSearchService) {
+
+    this.insideSliderOptions = {
+      floor: this.floorIntSurface,
+      ceil: this.ceilIntSurface,
+      step: this.stepIntSurface,
+      noSwitching: true,
+      getSelectionBarColor: () => {return this.PRIMARY_COLOR},
+      getPointerColor: () => {return this.PRIMARY_COLOR},
+      hideLimitLabels: true,
+      hidePointerLabels: true
+    };
+
+    this.outsideSliderOptions = {
+      floor: this.floorExtSurface,
+      ceil: this.ceilExtSurface,
+      step: this.stepExtSurface,
+      showSelectionBar: true,
+      getSelectionBarColor: () => { return this.PRIMARY_COLOR },
+      getPointerColor: () => { return this.PRIMARY_COLOR },
+      hideLimitLabels: true,
+      hidePointerLabels: true
+    };
+   }
 
   ngOnInit(): void {
     this.currentCriteria = this.qsService.criteria;
     console.log(this.currentCriteria);
 
-    // this.searchForm = this.formBuilder.group({
-    //   estateType: this.estateTypeControl,
-    //   locations: this.locationControl,
-    //   rooms: this.roomsControl,
-    //   bedrooms: this.bedroomsControl,
-    //   inside: this.insideSurfaceControl,
-    //   outside: this.outsideSurfaceControl
-    // });
   }
 
   onLocationsChange(locations: string[]) {

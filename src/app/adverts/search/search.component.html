@@ -38,12 +38,20 @@
           <mat-panel-title>
             Surface
           </mat-panel-title>
-          <mat-panel-description>
-
+          <mat-panel-description *ngIf="minIntSurface != floorIntSurface || maxIntSurface != ceilIntSurface || maxExtSurface != floorExtSurface">
+            Intérieur : {{maxIntSurface | intSurfaceSlider:ceilIntSurface:minIntSurface:floorIntSurface}} / Extérieur : {{maxExtSurface | extSurfaceSlider:ceilExtSurface:floorExtSurface}}
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <ngx-slider formControlName="insideSurfaceControl" [options]="insideSliderOptions"></ngx-slider>
-        <ngx-slider formControlName="outsideSurfaceControl" [options]="outsideSliderOptions"></ngx-slider>
+        <span>
+          <mat-label>Surface intérieure : </mat-label>
+          <mat-label class="mat-body-2">{{maxIntSurface | intSurfaceSlider:ceilIntSurface:minIntSurface:floorIntSurface}}</mat-label>
+        </span>
+        <ngx-slider formControlName="insideSurfaceControl" [options]="insideSliderOptions" [(value)]="minIntSurface" [(highValue)]="maxIntSurface"></ngx-slider>
+        <span>
+          <mat-label>Surface extérieure (balcon, terrasse, jardin...) : </mat-label>
+          <mat-label class="mat-body-2">{{maxExtSurface | extSurfaceSlider:ceilExtSurface:floorExtSurface}}</mat-label>
+        </span>
+        <ngx-slider formControlName="outsideSurfaceControl" [options]="outsideSliderOptions" [(value)]="maxExtSurface"></ngx-slider>
       </mat-expansion-panel>
     </mat-accordion>
 

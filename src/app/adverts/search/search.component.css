@@ -2,3 +2,7 @@ mat-accordion {
   width: 30vw;
   margin: .25em 0;
 }
+ngx-slider {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}

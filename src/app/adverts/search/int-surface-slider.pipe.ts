@@ -11,15 +11,15 @@ export class IntSurfaceSliderPipe implements PipeTransform {
     }
 
     if (min === floor && max < ceil) {
-      return `Jusqu'à ${max} m²`;
+      return `jusqu'à ${max} m²`;
     }
 
     if (min > floor && max === ceil) {
-      return `A partir de ${min} m²`;
+      return `à partir de ${min} m²`;
     }
 
     if (min > floor && max < ceil) {
-      return `De ${min} à ${max} m²`;
+      return `de ${min} à ${max} m²`;
     }
   }
 }

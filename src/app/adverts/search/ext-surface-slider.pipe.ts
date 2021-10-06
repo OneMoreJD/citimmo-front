@@ -7,11 +7,11 @@ export class ExtSurfaceSliderPipe implements PipeTransform {
 
   transform(max: number, ceil: number, floor: number): string {
     if (max === floor) {
-      return `Pas d'extérieur`;
+      return `pas d'extérieur`;
     } else if (max === ceil) {
       return `${max} m² et +`;
     } else {
-      return `Moins de ${max}`;
+      return `moins de ${max} m²`;
     }
   }
 }
