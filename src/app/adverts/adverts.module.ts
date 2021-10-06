@@ -6,6 +6,7 @@ import { SearchComponent } from './search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { RoomsPipe } from './adverts-list/rooms.pipe';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RoomsPipe } from './adverts-list/rooms.pipe';
     CommonModule,
     FormsModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSliderModule
   ],
   exports: [
     AdvertsComponent
