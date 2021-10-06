@@ -7,13 +7,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { RoomsPipe } from './adverts-list/rooms.pipe';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { IntSurfaceSliderPipe } from './search/int-surface-slider.pipe';
+import { ExtSurfaceSliderPipe } from './search/ext-surface-slider.pipe';
 
 @NgModule({
   declarations: [
     AdvertsComponent,
     AdvertsListComponent,
     SearchComponent,
-    RoomsPipe
+    RoomsPipe,
+    IntSurfaceSliderPipe,
+    ExtSurfaceSliderPipe
   ],
   imports: [
     CommonModule,
