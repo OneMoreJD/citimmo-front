@@ -4,10 +4,12 @@ import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.component';
+import { AdvertsCreationComponent } from './adverts/adverts-creation/adverts-creation.component';
 
 export const ROUTES: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'adverts', component: AdvertsListComponent},
+  { path: 'adverts/create', component: AdvertsCreationComponent},
   { path: 'login', component: LoginComponent },
   { path: '', component: HomeComponent }
 ];
