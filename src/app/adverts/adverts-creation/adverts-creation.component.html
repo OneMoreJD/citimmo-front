@@ -1,0 +1,49 @@
+<div id="advert-creation">
+    <h2 class="advert-creation-title">New Advert</h2>
+    <form  (ngSubmit)="createAdvertForm.valid && onSubmit()" [formGroup]="createAdvertForm">
+        <table class="advert-creation-form">
+            <tr>
+                <td colspan="3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Title</mat-label>
+                        <input matInput type="text" formControlName="title" required name="title" id="title">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput formControlName="description" required name="description" id="description"></textarea>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td class="transaction-type">
+                    <label>Type of operation: </label>
+                    <mat-radio-group formControlName="transactionType" required>
+                        <mat-radio-button value="sale">Sale</mat-radio-button>
+                        <mat-radio-button value="rent">Rent</mat-radio-button>
+                    </mat-radio-group>
+                </td>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Estate Type</mat-label>
+                        <mat-select formControlName="estateType" id="estateType" name="estateType" required>
+                            <ng-container *ngFor="let type of estateTypeList | keyvalue">
+                                <mat-option value="{{type.value}}">{{ type.value }}</mat-option>
+                            </ng-container>        
+                        </mat-select>
+                    </mat-form-field>   
+                </td>
+                <td>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Price</mat-label>
+                        <input matInput type="number" formControlName="price" required name="price" id="price" required placeholder="0">
+                        <span matSuffix>&euro;</span>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

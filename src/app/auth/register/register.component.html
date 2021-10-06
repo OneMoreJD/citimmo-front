@@ -48,7 +48,8 @@
                         <mat-form-field appearance="fill">
                             <mat-label>Password</mat-label>
                             <input matInput [type]="showClearPassword ? 'text' : 'password'" formControlName="password" required name="password" id="password">
-                            <mat-icon class="eye-icon" (click)="toggleShowClearPassword()">remove_red_eye</mat-icon>
+                            <mat-icon *ngIf="!showClearPassword" matSuffix class="eye-icon" (click)="toggleShowClearPassword()">visibility</mat-icon>
+                            <mat-icon *ngIf="showClearPassword" matSuffix class="eye-icon" (click)="toggleShowClearPassword()">visibility_off</mat-icon>
                         </mat-form-field>
                     </td>
                     <td>

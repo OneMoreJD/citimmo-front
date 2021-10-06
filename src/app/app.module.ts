@@ -17,11 +17,21 @@ import { RouterModule } from '@angular/router';
 import { ROUTES } from './app-routing.module';
 import {AuthHttpInterceptor} from './auth/auth-http.interceptor';
 import { HeaderModule } from './header/header.module';
+<<<<<<< HEAD
+=======
+import { HeaderComponent } from './header/header.component';
+import { AdvertsCreationComponent } from './adverts/adverts-creation/adverts-creation.component'
+>>>>>>> 8f30bbbb11f1da8d33598edd5d2ca108669e3b23
 
 @NgModule({
   declarations: [
     AppComponent,
     AdvertsListComponent,
+<<<<<<< HEAD
+=======
+    HeaderComponent,
+    AdvertsCreationComponent
+>>>>>>> 8f30bbbb11f1da8d33598edd5d2ca108669e3b23
   ],
   imports: [
     BrowserModule,
