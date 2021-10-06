@@ -28,11 +28,4 @@ export class NavbarComponent {
   public onToggleSidenav = () => {
     this.sidenavToggle.emit();
   }
-
-  public gotoHome(){
-    console.log("affichage home")
-    let link = ['/'];
-    this.router.navigate(link);
-  }
-
 }

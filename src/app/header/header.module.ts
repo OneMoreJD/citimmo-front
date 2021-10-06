@@ -3,25 +3,27 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { NavbarModule } from './navbar/navbar.module';
 import { SideNavModule } from './side-nav/side-nav.module';
-import { NavbarComponent } from './navbar/navbar.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { HeaderComponent } from './header.component';
+import { RouterModule } from '@angular/router';
+import { ROUTES } from '../app-routing.module';
+
 
 
 @NgModule({
   declarations: [
-    NavbarComponent,
-    SideNavComponent
+    HeaderComponent
 ],
   imports: [
     CommonModule,
     SharedModule,
     NavbarModule,
-    SideNavModule
-
+    SideNavModule,
+    RouterModule.forRoot(ROUTES)
   ],
   exports: [
-    NavbarComponent,
-    SideNavComponent
+    RouterModule,
+    HeaderComponent
  ]
 
 })

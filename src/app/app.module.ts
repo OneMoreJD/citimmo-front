@@ -16,13 +16,11 @@ import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.compon
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app-routing.module';
 import { HeaderModule } from './header/header.module';
-import { HeaderComponent } from './header/header.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     AdvertsListComponent,
-    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +32,6 @@ import { HeaderComponent } from './header/header.component'
     SharedModule,
     AuthModule,
     HttpClientModule,
-    RouterModule.forRoot(ROUTES),
     HeaderModule,
   ],
   providers: [
