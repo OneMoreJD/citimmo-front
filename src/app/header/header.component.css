@@ -1,0 +1,22 @@
+*{
+  margin: 0;
+  padding: 0;
+  }
+
+main {
+  padding: 10px;
+}
+
+.header {
+  width: 100% ;
+}
+
+.bg{
+  width: 100%;
+  height: 100%;
+    background-size: cover;
+}
+
+.mat-sidenav-container{
+  margin:0;
+}

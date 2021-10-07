@@ -10,14 +10,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
-import { RegisterComponent } from './auth/register/register.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdvertsModule } from './adverts/adverts.module';
+import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.component';
+import { RouterModule } from '@angular/router';
+import { ROUTES } from './app-routing.module';
+import {AuthHttpInterceptor} from './auth/auth-http.interceptor';
+import { HeaderModule } from './header/header.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AdvertsListComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,10 +34,12 @@ import { AdvertsModule } from './adverts/adverts.module';
     AdvertsModule,
     SharedModule,
     AuthModule,
-    HttpClientModule
+    HttpClientModule,
+    HeaderModule,
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'fr-FR'}
+    { provide: LOCALE_ID, useValue: 'fr-FR'},
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,34 @@
+<mat-toolbar color="primary" class="mat-toolbar" >
+
+  <div  fxFlex fxLayout >
+    <div  fxHide.xs class="div02">
+      <img src="../assets/images/headerLogo.jpg" alt="headerLogo" class="headerLogo Cursor" routerLink="/">
+    </div>
+
+
+    <div fxHide.gt-xs style="background-Image: url('assets/images/headerLogo.jpg')" class="Cursor background_NavBar div02">
+      <button  fxFlex fxLayout  fxLayoutAlign="right" mat-icon-button class="colorMatIcon" (click)="onToggleSidenav()">
+          <mat-icon >menu</mat-icon>
+      </button>
+    </div>
+  </div>
+
+
+
+  <div style="background-Image: url('assets/images/headerBandeau.jpg')" class="background_NavBar div01" >
+    <div fxFlex fxLayout  fxLayoutAlign="end center"  fxHide.xs>
+      <ul  fxLayout fxLayoutGap="15px" class="navigation-items ">
+        <li>
+            <a *ngIf ="!logger" class="Cursor" routerLink="/login">Login</a>
+        </li>
+        <li>
+            <a *ngIf ="!logger" class="Cursor" routerLink="/register">Register</a>
+        </li>
+        <li>
+            <a *ngIf ="logger"class="Cursor" routerLink="/logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</mat-toolbar>

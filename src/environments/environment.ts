@@ -6,7 +6,9 @@ export const environment = {
   production: false,
   domain: 'http://localhost:8080',
   urls: {
-    quickSearch: '/adverts/filter'
+    quickSearch: '/adverts/filter',
+    register: '/register',
+    login: '/login'
   }
 };
 
