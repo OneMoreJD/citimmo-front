@@ -34,13 +34,21 @@
 
   <div class="flex row wrap space-between">
     <mat-accordion>
-      <mat-expansion-panel hideToggle>
+      <mat-expansion-panel hideToggle [(expanded)]="collapseSurface">
         <mat-expansion-panel-header>
           <mat-panel-title>
             Surface
           </mat-panel-title>
-          <mat-panel-description *ngIf="minIntSurface != floorIntSurface || maxIntSurface != ceilIntSurface || maxExtSurface != floorExtSurface">
-            Intérieur : {{maxIntSurface | intSurfaceSlider:ceilIntSurface:minIntSurface:floorIntSurface}} / Extérieur : {{maxExtSurface | extSurfaceSlider:ceilExtSurface:floorExtSurface}}
+          <mat-panel-description>
+            <ng-container *ngIf="minIntSurface != floorIntSurface || maxIntSurface != ceilIntSurface || maxExtSurface != floorExtSurface; else surfaceTemplate">
+              <div class="flex col wrap">
+                <span>Int : {{maxIntSurface | intSurfaceSlider:ceilIntSurface:minIntSurface:floorIntSurface}}</span>
+                <span>Ext : {{maxExtSurface | extSurfaceSlider:ceilExtSurface:floorExtSurface}}</span>
+              </div>
+            </ng-container>
+            <ng-template #surfaceTemplate>
+              <span>Pas de critère</span>
+            </ng-template>
           </mat-panel-description>
         </mat-expansion-panel-header>
         <span>
@@ -57,7 +65,7 @@
     </mat-accordion>
 
     <mat-accordion>
-      <mat-expansion-panel hideToggle>
+      <mat-expansion-panel hideToggle [(expanded)]="collapseBudget">
         <mat-expansion-panel-header>
           <mat-panel-title>
             Budget
@@ -80,7 +88,7 @@
     </mat-accordion>
 
     <mat-accordion>
-      <mat-expansion-panel hideToggle>
+      <mat-expansion-panel hideToggle [(expanded)]="collapseOther">
         <mat-expansion-panel-header>
           <mat-panel-title>
             Autres

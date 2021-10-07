@@ -63,6 +63,10 @@ export class SearchComponent implements OnInit {
   outsideSliderOptions: Options;
   budgetSliderOptions: Options;
 
+  collapseSurface: boolean;
+  collapseBudget: boolean;
+  collapseOther: boolean;
+
   constructor(private qsService: QuickSearchService) {
 
     this.insideSliderOptions = {
@@ -121,5 +125,8 @@ export class SearchComponent implements OnInit {
 
   onSearch() {
     console.log(this.searchForm);
+    this.collapseBudget = false;
+    this.collapseOther = false;
+    this.collapseSurface = false;
   }
 }

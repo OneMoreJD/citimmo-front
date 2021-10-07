@@ -16,3 +16,6 @@ app-location-control {
 #search-button {
   align-self: center;
 }
+mat-panel-title {
+  align-items: center;
+}
