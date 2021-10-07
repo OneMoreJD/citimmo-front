@@ -17,24 +17,30 @@ import { RouterModule } from '@angular/router';
 import { ROUTES } from './app-routing.module';
 import {AuthHttpInterceptor} from './auth/auth-http.interceptor';
 import { HeaderModule } from './header/header.module';
+import { AdvertDetailsComponent } from './adverts/advert-details/advert-details.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { GridColsDirective } from './adverts/advert-details/grid-cols.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     AdvertsListComponent,
+    AdvertDetailsComponent,
+    GridColsDirective,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HomeModule,
-    SharedModule,
-    AuthModule,
-    HttpClientModule,
-    HeaderModule,
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        HomeModule,
+        SharedModule,
+        AuthModule,
+        HttpClientModule,
+        HeaderModule,
+        MatGridListModule,
+    ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR'},
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }
