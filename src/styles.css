@@ -16,6 +16,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .wrap {
   flex-wrap: wrap;
 }
+.space-between {
+  justify-content: space-between;
+}
+.space-evenly {
+  justify-content: space-evenly;
+}
 .font-primary {
   color: #3f51b5;
 }

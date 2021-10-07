@@ -118,4 +118,8 @@ export class SearchComponent implements OnInit {
   test(event) {
     console.log(event);
   }
+
+  onSearch() {
+    console.log(this.searchForm);
+  }
 }
