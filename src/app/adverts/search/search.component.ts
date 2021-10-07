@@ -116,7 +116,6 @@ export class SearchComponent implements OnInit {
 
   updateMaxRooms() {
     this.maxRooms = Math.max(...this.searchForm.controls['roomsControl'].value);
-    console.log(this.maxRooms);
   }
 
   test(event) {

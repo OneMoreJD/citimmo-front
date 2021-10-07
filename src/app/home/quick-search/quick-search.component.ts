@@ -39,7 +39,6 @@ export class QuickSearchComponent implements OnInit {
       this.intervalBudget = 100;
     }
     this.budgetControl.setValue('');
-    console.log(event);
   }
 
   onLocationsChange(locations: string[]) {
