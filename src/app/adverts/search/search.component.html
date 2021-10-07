@@ -55,6 +55,29 @@
       </mat-expansion-panel>
     </mat-accordion>
 
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Budget
+          </mat-panel-title>
+          <mat-panel-description>
+            <ng-container *ngIf="(minBudget == floorBudget && maxBudget == ceilBudget); else budgetDescriptionTemplate">
+              <mat-label>{{maxBudget | currency:'EUR':'':'1.0-0':'fr-FR'}}€ et +</mat-label>
+            </ng-container>
+            <ng-template #budgetDescriptionTemplate>
+              <span>
+                <mat-label *ngIf="minBudget > floorBudget">min : {{minBudget | currency:'EUR':'':'1.0-0':'fr-FR'}}€</mat-label>
+                <mat-label *ngIf="minBudget > floorBudget && maxBudget < ceilBudget" class="space">/</mat-label>
+                <mat-label *ngIf="maxBudget < ceilBudget">max : {{maxBudget | currency:'EUR':'':'1.0-0':'fr-FR'}}€</mat-label>
+              </span>
+            </ng-template>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ngx-slider formControlName="budgetControl" [options]="budgetSliderOptions" [(value)]="minBudget" [(highValue)]="maxBudget"></ngx-slider>
+      </mat-expansion-panel>
+    </mat-accordion>
+
 
   </div>
 

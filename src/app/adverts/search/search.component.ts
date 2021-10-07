@@ -33,10 +33,18 @@ export class SearchComponent implements OnInit {
     roomsControl: new FormControl(),
     bedroomsControl: new FormControl(),
     insideSurfaceControl: new FormControl(),
-    outsideSurfaceControl: new FormControl()
+    outsideSurfaceControl: new FormControl(),
+    budgetControl: new FormControl()
   });
 
   maxRooms: number = 0;
+
+  minBudget: number = 0;
+  maxBudget: number = 1000000;
+  floorBudget: number = 0;
+  ceilBudget: number = 1000000;
+  stepBudget: number = 10000;
+  BudgetLabel: string = '';
 
   minIntSurface: number = 0;
   maxIntSurface: number = this.MAX_INT_SURFACE;
@@ -53,6 +61,7 @@ export class SearchComponent implements OnInit {
 
   insideSliderOptions: Options;
   outsideSliderOptions: Options;
+  budgetSliderOptions: Options;
 
   constructor(private qsService: QuickSearchService) {
 
@@ -77,6 +86,17 @@ export class SearchComponent implements OnInit {
       hideLimitLabels: true,
       hidePointerLabels: true
     };
+
+    this.budgetSliderOptions = {
+      floor: this.floorBudget,
+      ceil: this.ceilBudget,
+      step: this.stepBudget,
+      noSwitching: true,
+      getSelectionBarColor: () => {return this.PRIMARY_COLOR},
+      getPointerColor: () => {return this.PRIMARY_COLOR},
+      hideLimitLabels: true,
+      hidePointerLabels: true
+    };
    }
 
   ngOnInit(): void {
@@ -93,5 +113,9 @@ export class SearchComponent implements OnInit {
   updateMaxRooms() {
     this.maxRooms = Math.max(...this.searchForm.controls['roomsControl'].value);
     console.log(this.maxRooms);
+  }
+
+  test(event) {
+    console.log(event);
   }
 }
