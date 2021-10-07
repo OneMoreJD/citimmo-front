@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AuthenticateService } from 'src/app/auth/authenticate.service';
 import { SharedModule } from '../../shared/shared.module';
 
 @Component({
@@ -11,9 +12,12 @@ export class SideNavComponent implements OnInit {
   @Output()
   sidenavClose = new EventEmitter();
 
-  constructor() { }
+  logger:boolean;
+
+  constructor(private authenticateService:AuthenticateService) { }
 
   ngOnInit(): void {
+    this.authenticateService.logger$.subscribe(logger => this.logger = logger);
   }
 
   public onSidenavClose = () => {

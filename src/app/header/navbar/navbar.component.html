@@ -2,11 +2,11 @@
 
   <div  fxFlex fxLayout >
     <div  fxHide.xs class="div02">
-      <img src="../assets/images/Image02.jpg" alt="HeaderLogo" class="img01 Cursor" routerLink="/">
+      <img src="../assets/images/headerLogo.jpg" alt="headerLogo" class="headerLogo Cursor" routerLink="/">
     </div>
 
 
-    <div fxHide.gt-xs style="background-Image: url('assets/images/Image02.jpg')" class="Cursor background_NavBar div02">
+    <div fxHide.gt-xs style="background-Image: url('assets/images/headerLogo.jpg')" class="Cursor background_NavBar div02">
       <button  fxFlex fxLayout  fxLayoutAlign="right" mat-icon-button class="colorMatIcon" (click)="onToggleSidenav()">
           <mat-icon >menu</mat-icon>
       </button>
@@ -15,17 +15,17 @@
 
 
 
-  <div style="background-Image: url('assets/images/Image08-09.jpg')" class="background_NavBar div01" >
+  <div style="background-Image: url('assets/images/headerBandeau.jpg')" class="background_NavBar div01" >
     <div fxFlex fxLayout  fxLayoutAlign="end center"  fxHide.xs>
       <ul  fxLayout fxLayoutGap="15px" class="navigation-items ">
         <li>
-            <a class="Cursor" routerLink="/login">Login</a>
+            <a *ngIf ="!logger" class="Cursor" routerLink="/login">Login</a>
         </li>
         <li>
-            <a class="Cursor" routerLink="/register">Register</a>
+            <a *ngIf ="!logger" class="Cursor" routerLink="/register">Register</a>
         </li>
         <li>
-            <a class="Cursor" routerLink="/logout">Logout</a>
+            <a *ngIf ="logger"class="Cursor" routerLink="/logout">Logout</a>
         </li>
       </ul>
     </div>

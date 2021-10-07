@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { LoginService } from './login.service';
+import { Router } from '@angular/router';
+import { AuthenticateService } from '../authenticate.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   public showClearPassword: boolean;
   public error: string | null;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService) { }
+  constructor(private fb: FormBuilder, private authenticateService: AuthenticateService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -28,8 +29,8 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.error = null;
-    this.loginService.submitLogin(this.loginForm.value).subscribe(
-      (data) => console.log(data),
+    this.authenticateService.Login(this.loginForm.value).subscribe(
+      (data) => this.router.navigate(['']),
       (err) => {
         this.error = 'Http Status : ' + err.status + ' - ' + err.error;
         console.log(err);
