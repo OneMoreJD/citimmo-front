@@ -3,24 +3,26 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { LocationControlComponent } from './components/location-control/location-control.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DialogComponent } from '../dialog/dialog.component';
+
 
 @NgModule({
   declarations: [
-    LocationControlComponent
+    LocationControlComponent, DialogComponent
   ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule    
   ],
   exports: [
     MaterialModule,
     LocationControlComponent,
     CommonModule,
-    MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DialogComponent
   ]
 })
 export class SharedModule { }

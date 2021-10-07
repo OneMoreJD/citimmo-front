@@ -30,3 +30,9 @@ button {
 .eye-icon:hover {
     cursor: pointer;
 }
+
+.error {
+    color: whitesmoke;
+    background-color: #F44336;
+    font-weight: 500;
+  }

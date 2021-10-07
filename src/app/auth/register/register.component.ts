@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RegisterService } from './register.service';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  public emailAlreadyRegistered:boolean = false;  
   public registrationForm : FormGroup = this.fb.group({
     firstname: ['', Validators.required],
     lastname: ['', Validators.required],
@@ -28,10 +30,17 @@ export class RegisterComponent implements OnInit {
     this.showClearPassword = !this.showClearPassword;
   }
 
+  resetError(){
+    this.emailAlreadyRegistered = false;
+  }
+  
   onSubmit(){
     this.registerService.submitRegistration(this.registrationForm.value).subscribe(
       (res) => console.log(res),
-      (err) => console.log(err)
+      (err) => {
+        this.emailAlreadyRegistered = true;
+        console.log(err)
+      }
     );    
   }
 
