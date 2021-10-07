@@ -13,16 +13,12 @@ import { AuthModule } from './auth/auth.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdvertsModule } from './adverts/adverts.module';
-import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.component';
-import { RouterModule } from '@angular/router';
-import { ROUTES } from './app-routing.module';
 import {AuthHttpInterceptor} from './auth/auth-http.interceptor';
 import { HeaderModule } from './header/header.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AdvertsListComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
