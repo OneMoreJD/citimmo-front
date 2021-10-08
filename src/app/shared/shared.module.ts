@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { LocationControlComponent } from './components/location-control/location-control.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GridColsDirective } from './directives/grid-cols.directive';
 
 @NgModule({
   declarations: [
-    LocationControlComponent
+    LocationControlComponent,
+    GridColsDirective
   ],
   imports: [
     FormsModule,
@@ -20,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LocationControlComponent,
     CommonModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GridColsDirective
   ]
 })
 export class SharedModule { }
