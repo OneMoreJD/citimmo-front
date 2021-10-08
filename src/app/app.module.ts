@@ -15,10 +15,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdvertsModule } from './adverts/adverts.module';
 import {AuthHttpInterceptor} from './auth/auth-http.interceptor';
 import { HeaderModule } from './header/header.module';
+import { AdvertDetailsComponent } from './adverts/advert-details/advert-details.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { GridColsDirective } from './shared/directives/grid-cols.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AdvertDetailsComponent,
+    GridColsDirective,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +37,7 @@ import { HeaderModule } from './header/header.module';
     AuthModule,
     HttpClientModule,
     HeaderModule,
+    MatGridListModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR'},
