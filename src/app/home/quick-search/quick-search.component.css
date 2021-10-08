@@ -1,20 +1,9 @@
-.flex {
-  display: flex;
-}
-.col {
-  flex-direction: column;
-}
-.row {
-  flex-direction: row;
-}
+
 .space-between {
   justify-content: space-between;
 }
 .align-center {
   align-self: center;
-}
-.wrap {
-  flex-wrap: wrap;
 }
 
 .container {

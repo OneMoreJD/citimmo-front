@@ -39,7 +39,6 @@ export class QuickSearchComponent implements OnInit {
       this.intervalBudget = 100;
     }
     this.budgetControl.setValue('');
-    console.log(event);
   }
 
   onLocationsChange(locations: string[]) {
@@ -48,15 +47,11 @@ export class QuickSearchComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.locations);
-    console.log(this.transactionControl.value);
-    console.log(this.budgetControl.value);
     const budget = this.budgetControl.value == this.maxBudget ? '' : this.budgetControl.value;
-    let adverts = this.qsService.getAdverts(this.transactionControl.value, budget, this.locations).subscribe(
+    this.qsService.getAdverts(this.transactionControl.value, budget, this.locations).subscribe(
       data => {
-        adverts = data;
-        this.router.navigate(['/adverts'], { state: { adverts: JSON.stringify(adverts)}});
-        console.log(data)
+        this.qsService.adverts = data;
+        this.router.navigate(['/adverts']);
       },
       err => {
         console.log(err);

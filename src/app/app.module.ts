@@ -12,9 +12,7 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.component';
-import { RouterModule } from '@angular/router';
-import { ROUTES } from './app-routing.module';
+import { AdvertsModule } from './adverts/adverts.module';
 import {AuthHttpInterceptor} from './auth/auth-http.interceptor';
 import { HeaderModule } from './header/header.module';
 import { AdvertDetailsComponent } from './adverts/advert-details/advert-details.component';
@@ -24,23 +22,23 @@ import { GridColsDirective } from './shared/directives/grid-cols.directive';
 @NgModule({
   declarations: [
     AppComponent,
-    AdvertsListComponent,
     AdvertDetailsComponent,
     GridColsDirective,
   ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        HomeModule,
-        SharedModule,
-        AuthModule,
-        HttpClientModule,
-        HeaderModule,
-        MatGridListModule,
-    ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HomeModule,
+    AdvertsModule,
+    SharedModule,
+    AuthModule,
+    HttpClientModule,
+    HeaderModule,
+    MatGridListModule,
+  ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR'},
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }
