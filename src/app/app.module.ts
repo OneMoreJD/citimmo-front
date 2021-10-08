@@ -19,7 +19,7 @@ import {AuthHttpInterceptor} from './auth/auth-http.interceptor';
 import { HeaderModule } from './header/header.module';
 import { AdvertDetailsComponent } from './adverts/advert-details/advert-details.component';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { GridColsDirective } from './adverts/advert-details/grid-cols.directive';
+import { GridColsDirective } from './shared/directives/grid-cols.directive';
 
 @NgModule({
   declarations: [

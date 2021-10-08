@@ -6,14 +6,14 @@
   flex-direction: column;
 }
 
-.grid-cell-left >>> .mat-figure {
+.grid-cell-left ::ng-deep .mat-figure {
   display: flex;
   justify-content: left;
   align-items: center;
   text-align: left;
 }
 
-.grid-cell-right >>> .mat-figure {
+.grid-cell-right ::ng-deep .mat-figure {
   display: flex;
   justify-content: right;
   align-items: center;

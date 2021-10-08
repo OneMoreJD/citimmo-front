@@ -4,13 +4,13 @@
       <mat-card-title> {{ advertDetails.title }} </mat-card-title>
     </mat-grid-tile>
     <mat-grid-tile class="grid-cell-right">
-      <mat-card-title> {{ advertDetails.price | currency:'EUR' }} </mat-card-title>
+      <mat-card-title> {{ advertDetails.price | currency:'EUR':'symbol':'1.0-2' }} </mat-card-title>
     </mat-grid-tile>
   </mat-grid-list>
 
   <mat-card>
     <mat-card-title> Description </mat-card-title>
-    <mat-card-content> {{ advertDetails.description }} </mat-card-content>
+    <mat-card-content style="white-space:pre-wrap">{{ advertDetails.description }} </mat-card-content>
   </mat-card>
   <br>
   <mat-card>
