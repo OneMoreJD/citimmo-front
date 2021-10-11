@@ -25,12 +25,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCarouselModule } from '@ngbmodule/material-carousel';
 
 
+// @ts-ignore
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    MatCarouselModule.forRoot()
   ],
   exports: [
     MatDividerModule,
@@ -57,7 +60,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     FlexLayoutModule,
     MatToolbarModule,
     MatListModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCarouselModule
   ]
 })
 export class MaterialModule { }

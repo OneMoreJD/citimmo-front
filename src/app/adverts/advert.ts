@@ -11,5 +11,6 @@ export interface Advert {
   yearConstruction: number;
   conditionType: string;
   nbCarGarage: number;
+  listPictures: Array<string>;
 }
 

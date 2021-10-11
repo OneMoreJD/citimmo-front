@@ -4,11 +4,14 @@ import { MaterialModule } from './material/material.module';
 import { LocationControlComponent } from './components/location-control/location-control.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GridColsDirective } from './directives/grid-cols.directive';
+import { CarouselPicturesComponent } from './components/carousel-pictures/carousel-pictures.component';
+
 
 @NgModule({
   declarations: [
     LocationControlComponent,
-    GridColsDirective
+    GridColsDirective,
+    CarouselPicturesComponent
   ],
   imports: [
     FormsModule,
@@ -23,7 +26,8 @@ import { GridColsDirective } from './directives/grid-cols.directive';
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-    GridColsDirective
+    GridColsDirective,
+    CarouselPicturesComponent
   ]
 })
 export class SharedModule { }
