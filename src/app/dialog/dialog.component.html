@@ -1,13 +1,16 @@
-<div class="header">
+<div mat-dialog-content [id]="data?.dialogType" > 
     <h2 mat-dialog-title>{{data?.title}}</h2>
-    <button mat-icon-button [mat-dialog-close]="false">
+    <button class="close mat-button" mat-icon-button [mat-dialog-close]="false">
         <mat-icon>close</mat-icon>
     </button>
-    <div mat-dialog-content>
+    <div>
         {{data?.message}}
     </div>
     <div mat-dialog-actions [align]="'end'">
         <button mat-raised-button [mat-dialog-close]="false">{{data?.cancelText}}</button>
         <button mat-raised-button color="primary" [mat-dialog-close]="true">{{data?.confirmText}}</button>
+    </div>
+    <div *ngIf="data?.hasCountdown">
+        <mat-progress-bar color="accent" mode="determinate" [value]="progressbarValue"></mat-progress-bar>
     </div>
 </div>

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RegisterService } from './register.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogData } from '../../dialog/dialog.model';
+import { DialogComponent } from '../../dialog/dialog.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,30 +22,57 @@ export class RegisterComponent implements OnInit {
     password: ['', Validators.required]
   });
 
+  private readonly registrationSuccessful : DialogData = {
+    dialogType: "success",
+    title: "Success",
+    message: "Your registration has been completed. Redirecting you to the login page...",
+    hasCountdown: true,
+    countdownDuration: 5,
+  }
+
   public showClearPassword: boolean;
 
   constructor(private fb:FormBuilder,
-              private registerService:RegisterService) { }
+              private registerService:RegisterService,
+              private dialog:MatDialog,
+              private router:Router) { }
 
   ngOnInit(): void {
   }
 
-  toggleShowClearPassword(){
+  toggleShowClearPassword():void {
     this.showClearPassword = !this.showClearPassword;
   }
 
-  resetError(){
+  resetError():void {
     this.emailAlreadyRegistered = false;
   }
   
-  onSubmit(){
+  onSubmit():void {
     this.registerService.submitRegistration(this.registrationForm.value).subscribe(
-      (res) => console.log(res),
+      (res) => { 
+            console.log(res);
+      },
       (err) => {
         this.emailAlreadyRegistered = true;
         console.log(err)
+      },
+      () => {
+        this.showSuccessfulRegistrationDialog();
+        this.router.navigate(['/login']);  
       }
     );    
+  }
+
+  showSuccessfulRegistrationDialog() : void { 
+    let dialogRef = this.dialog.open(DialogComponent, {
+        data: this.registrationSuccessful,
+        height: '400px',
+        width: '600px'
+    });
+    setTimeout(() => {
+      dialogRef.close();
+    }, 5000) 
   }
 
 }
