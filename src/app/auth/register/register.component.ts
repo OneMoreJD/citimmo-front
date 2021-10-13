@@ -25,9 +25,9 @@ export class RegisterComponent implements OnInit {
   private readonly registrationSuccessful : DialogData = {
     dialogType: "success",
     title: "Success",
-    message: "Your registration has been completed. Redirecting you to the login page...",
+    message: "Your registration has been completed.<br />Redirecting you to the login page...",
     hasCountdown: true,
-    countdownDuration: 5,
+    countdownDuration: 6,
   }
 
   public showClearPassword: boolean;
@@ -67,12 +67,12 @@ export class RegisterComponent implements OnInit {
   showSuccessfulRegistrationDialog() : void { 
     let dialogRef = this.dialog.open(DialogComponent, {
         data: this.registrationSuccessful,
-        height: '400px',
-        width: '600px'
+        height: '200px',
+        width: '550px'
     });
     setTimeout(() => {
       dialogRef.close();
-    }, 5000) 
+    }, 6000) 
   }
 
 }

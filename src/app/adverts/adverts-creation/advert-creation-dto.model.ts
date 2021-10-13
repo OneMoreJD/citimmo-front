@@ -16,14 +16,6 @@ export interface AdvertCreationDetails {
     location: string;
 }
 
-export enum EstateType {
-    HOUSE="House",
-    APPARTMENT="Appartment",
-    LOFT="Loft",
-    BARGE="Barge",
-    STUDIO="Studio",
-    DUPLEX="Duplex",
-    TRIPLEX="Triplex",
-    TROGLODYTE="Troglodyte",
-    UNDEFINABLE="Undefinable"
+export interface EstateType {
+    estateType: string;
 }

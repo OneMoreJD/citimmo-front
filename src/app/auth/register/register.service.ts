@@ -18,9 +18,7 @@ export class RegisterService {
   }
 
   private obfuscateMe(value: string): string {
-    value = btoa(value);
-    let obfuscated: string[] = [];
-    return value;
+    return btoa(value);
   }
 
 }

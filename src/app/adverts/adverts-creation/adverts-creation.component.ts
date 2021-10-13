@@ -9,7 +9,7 @@ import { AdvertCreationService } from './advert-creation.service';
   styleUrls: ['./adverts-creation.component.css']
 })
 export class AdvertsCreationComponent implements OnInit {
-  public estateTypeList=EstateType;
+  public estateTypeList:string[];
   public createAdvertForm : FormGroup = this.fb.group({
     title: ['', Validators.required],
     description: ['', Validators.required],
@@ -28,9 +28,13 @@ export class AdvertsCreationComponent implements OnInit {
     location: ['', Validators.required]
   });
 
-  constructor(private fb:FormBuilder, private advertCreationService:AdvertCreationService) { }
+  constructor(private fb:FormBuilder, private advertCreationService:AdvertCreationService) { 
+    // this.advertCreationService.getEstateTypes().subscribe((data: string[]) => this.estateTypeList = data);
+    console.log("CONSTRUCTOR::" + JSON.stringify(this.advertCreationService.getEstateTypes().subscribe((data: string[]) => this.estateTypeList = data)));
+  }
 
   ngOnInit(): void {
+    console.log("Estate Type List ::" + JSON.stringify(this.estateTypeList));
   }
 
   onSubmit(){

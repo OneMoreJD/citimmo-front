@@ -9,7 +9,12 @@ export const environment = {
     quickSearch: '/adverts/filter',
     createAdvert: '/adverts/create',
     register: '/register',
-    login: '/login'
+    login: '/login',
+    conditionTypeFilters: '/adverts/filters/conditiontype',
+    transactionTypeFilters: '/adverts/filters/transactiontype',
+    statusFilters: '/adverts/filters/status',
+    estateTypeFilters: '/adverts/filters/estatetype',
+    heatingTypeFilters: '/adverts/filters/heatingtype'
   }
 };
 
