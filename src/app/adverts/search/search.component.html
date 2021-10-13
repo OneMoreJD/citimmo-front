@@ -1,13 +1,13 @@
-<form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+<form [formGroup]="searchForm" (ngSubmit)="searchForm.valid && onSearch()">
   <div class="flex row wrap space-between">
     <mat-form-field appearance="outline">
       <mat-label>Type de bien</mat-label>
       <mat-select [formControl]="searchForm.controls['estateTypeControl']" multiple>
-        <mat-option *ngFor="let type of estateTypeList" [value]="type">{{type}}</mat-option>
+        <mat-option *ngFor="let type of estateTypeList" [value]="type.value">{{type.label}}</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <app-location-control (locationsChanged)="onLocationsChange($event)"></app-location-control>
+    <app-location-control [locations]="locations" (locationsChanged)="onLocationsChange($event)"></app-location-control>
 
     <mat-form-field appearance="outline">
       <mat-label>Nb de pièces</mat-label>
@@ -98,7 +98,7 @@
       </mat-expansion-panel>
     </mat-accordion>
 
-    <button id="search-button" mat-raised-button color="primary">Rechercher</button>
+    <button id="search-button" mat-raised-button color="primary" [disabled]="searchForm.invalid">Rechercher</button>
   </div>
 
 </form>

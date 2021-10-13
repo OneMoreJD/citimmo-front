@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { QuickSearchService } from '../../home/quick-search/quick-search.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Options } from '@angular-slider/ngx-slider';
+import { SearchService } from './search.service';
+import { Criteria } from './criteria';
 
 @Component({
   selector: 'app-search',
@@ -20,11 +22,11 @@ export class SearchComponent implements OnInit {
   locations = [];
 
   currentCriteria: any;
-  estateTypeList: string[] = [
-    'Maison',
-    'Appartement',
-    'Garage',
-    'Péniche'
+  estateTypeList: any[] = [
+    {value: 'house', label:'Maison'},
+    {value: 'appartment', label:'Appartement'},
+    {value: 'garage', label:'Garage'},
+    {value: 'other', label:'Autre'}
   ];
 
   searchForm: FormGroup = new FormGroup({
@@ -67,7 +69,7 @@ export class SearchComponent implements OnInit {
   collapseBudget: boolean;
   collapseOther: boolean;
 
-  constructor(private qsService: QuickSearchService) {
+  constructor(private qsService: QuickSearchService, private searchService: SearchService) {
 
     this.insideSliderOptions = {
       floor: this.floorIntSurface,
@@ -106,7 +108,12 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.currentCriteria = this.qsService.criteria;
     console.log(this.currentCriteria);
-
+    if (this.currentCriteria?.budget) {
+      this.maxBudget = Number(this.currentCriteria.budget);
+    }
+    if (this.currentCriteria?.locations) {
+      this.onLocationsChange(this.currentCriteria.locations);
+    }
   }
 
   onLocationsChange(locations: string[]) {
@@ -123,9 +130,24 @@ export class SearchComponent implements OnInit {
   }
 
   onSearch() {
-    console.log(this.searchForm);
     this.collapseBudget = false;
     this.collapseOther = false;
     this.collapseSurface = false;
+
+    const criteria: Criteria = {
+      transactionType: this.currentCriteria.transaction,
+      estateType: this.searchForm.controls['estateTypeControl'].value,
+      locations: this.searchForm.controls['locationControl'].value,
+      rooms: this.searchForm.controls['roomsControl']?.value,
+      bedrooms: this.searchForm.controls['bedroomsControl']?.value,
+      intSurfaceMin: this.searchForm.controls['insideSurfaceControl']?.value[0],
+      intSurfaceMax: this.searchForm.controls['insideSurfaceControl']?.value[1],
+      extSurfaceMax: this.searchForm.controls['outsideSurfaceControl']?.value,
+      budgetMin: this.searchForm.controls['budgetControl']?.value[0],
+      budgetMax: this.searchForm.controls['budgetControl']?.value[1]
+    };
+    this.searchService.getAdverts(criteria).subscribe(
+      data => console.log(data)
+    );
   }
 }
