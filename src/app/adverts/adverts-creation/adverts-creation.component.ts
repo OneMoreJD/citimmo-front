@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { EstateType } from './advert-creation-dto.model';
+import { GetFilterResponse } from './advert-creation-dto.model';
 import { AdvertCreationService } from './advert-creation.service';
 
 @Component({
@@ -8,8 +8,13 @@ import { AdvertCreationService } from './advert-creation.service';
   templateUrl: './adverts-creation.component.html',
   styleUrls: ['./adverts-creation.component.css']
 })
-export class AdvertsCreationComponent implements OnInit {
+export class AdvertsCreationComponent implements OnInit {  
+  public conditionTypeList:string[];
+  public transactionTypeList:string[];
   public estateTypeList:string[];
+  public statusList:string[];
+  public heatingTypeList:string[];
+
   public createAdvertForm : FormGroup = this.fb.group({
     title: ['', Validators.required],
     description: ['', Validators.required],
@@ -18,23 +23,24 @@ export class AdvertsCreationComponent implements OnInit {
     bedrooms: ['', Validators.required],
     indoorSurface: ['', Validators.required],
     outdoroSurface: ['', Validators.required],
+    parkingQuantity: ['', Validators.required],    
     constructionDate: ['', Validators.required],
-    parkingQuantity: ['', Validators.required],
     condition: ['', Validators.required],
+    heatingType: ['', Validators.required],
     status: ['', Validators.required],
     transactionType: ['', Validators.required],
-    estateType: ['', Validators.required],
-    heatingType: ['', Validators.required],
+    estateType: ['', Validators.required],    
     location: ['', Validators.required]
   });
 
-  constructor(private fb:FormBuilder, private advertCreationService:AdvertCreationService) { 
-    // this.advertCreationService.getEstateTypes().subscribe((data: string[]) => this.estateTypeList = data);
-    console.log("CONSTRUCTOR::" + JSON.stringify(this.advertCreationService.getEstateTypes().subscribe((data: string[]) => this.estateTypeList = data)));
-  }
+  constructor(private fb:FormBuilder, private advertCreationService:AdvertCreationService) { }
 
-  ngOnInit(): void {
-    console.log("Estate Type List ::" + JSON.stringify(this.estateTypeList));
+  ngOnInit(): void {    
+    this.advertCreationService.getConditionTypes().subscribe((data: GetFilterResponse) => this.conditionTypeList = data.data);
+    this.advertCreationService.getTransactionTypes().subscribe((data: GetFilterResponse) => this.transactionTypeList = data.data);
+    this.advertCreationService.getStatus().subscribe((data: GetFilterResponse) => this.statusList = data.data);
+    this.advertCreationService.getEstateTypes().subscribe((data: GetFilterResponse) => this.estateTypeList = data.data);
+    this.advertCreationService.getHeatingTypes().subscribe((data: GetFilterResponse) => this.heatingTypeList = data.data);
   }
 
   onSubmit(){

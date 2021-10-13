@@ -20,7 +20,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
     }
     request = this.addCorsHeaders(request);
     request = this.addToken(request);
-    console.log("Intercepted request == " + JSON.stringify(request));
+    // console.log("Intercepted request == " + JSON.stringify(request));
     return next.handle(request);
   }
 

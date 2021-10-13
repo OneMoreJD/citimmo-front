@@ -16,6 +16,8 @@ export interface AdvertCreationDetails {
     location: string;
 }
 
-export interface EstateType {
-    estateType: string;
+export interface GetFilterResponse {
+    data: Array<string>;
+    message: string;
+    status: number;
 }
