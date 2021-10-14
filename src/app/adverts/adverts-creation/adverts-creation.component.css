@@ -26,3 +26,7 @@ mat-radio-button {
 .transaction-type{
     width: 20%;
 }
+
+button {
+    margin-left: 10px;
+}

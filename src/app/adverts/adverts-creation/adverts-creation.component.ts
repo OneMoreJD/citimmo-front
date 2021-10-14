@@ -9,6 +9,9 @@ import { AdvertCreationService } from './advert-creation.service';
   styleUrls: ['./adverts-creation.component.css']
 })
 export class AdvertsCreationComponent implements OnInit {  
+
+  public readonly baseConstructionDate : Date = new Date("1970-01-01");
+  
   public conditionTypeList:string[];
   public transactionTypeList:string[];
   public estateTypeList:string[];
@@ -22,15 +25,13 @@ export class AdvertsCreationComponent implements OnInit {
     rooms: ['', Validators.required],
     bedrooms: ['', Validators.required],
     indoorSurface: ['', Validators.required],
-    outdoroSurface: ['', Validators.required],
+    outdoorSurface: ['', Validators.required],
     parkingQuantity: ['', Validators.required],    
     constructionDate: ['', Validators.required],
-    condition: ['', Validators.required],
+    conditionType: ['', Validators.required],
     heatingType: ['', Validators.required],
-    status: ['', Validators.required],
     transactionType: ['', Validators.required],
-    estateType: ['', Validators.required],    
-    location: ['', Validators.required]
+    estateType: ['', Validators.required]
   });
 
   constructor(private fb:FormBuilder, private advertCreationService:AdvertCreationService) { }

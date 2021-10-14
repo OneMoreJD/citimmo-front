@@ -9,11 +9,9 @@ export interface AdvertCreationDetails {
     constructionDate: Date;
     parkingQuantity: number;
     condition: string;
-    status: string;
     transactionType: string;
     estateType: string;
     heatingType: string;
-    location: string;
 }
 
 export interface GetFilterResponse {
