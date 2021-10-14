@@ -5,6 +5,7 @@ import { LocationControlComponent } from './components/location-control/location
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogComponent } from '../dialog/dialog.component';
 import { GridColsDirective } from './directives/grid-cols.directive';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { GridColsDirective } from './directives/grid-cols.directive';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    MaterialModule   
+    MaterialModule,
+    NgxSliderModule
   ],
   exports: [
     MaterialModule,
@@ -24,7 +26,8 @@ import { GridColsDirective } from './directives/grid-cols.directive';
     CommonModule,
     ReactiveFormsModule,
     DialogComponent,
-    GridColsDirective
+    GridColsDirective,
+    NgxSliderModule
   ]
 })
 export class SharedModule { }

@@ -24,12 +24,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
-<<<<<<< HEAD
 import { MatDialogModule } from '@angular/material/dialog';
-=======
 import { MatGridListModule } from '@angular/material/grid-list';
 
->>>>>>> 68bcdbe19697255dd986701d9edd776720b61fa2
 
 @NgModule({
   declarations: [],
@@ -61,11 +58,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     FlexLayoutModule,
     MatToolbarModule,
     MatListModule,
-<<<<<<< HEAD
-    MatDialogModule
-=======
+    MatDialogModule,
     MatGridListModule
->>>>>>> 68bcdbe19697255dd986701d9edd776720b61fa2
   ]
 })
 export class MaterialModule { }

@@ -15,15 +15,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdvertsModule } from './adverts/adverts.module';
 import { AuthHttpInterceptor } from './auth/auth-http.interceptor';
 import { HeaderModule } from './header/header.module';
-import { AdvertsCreationComponent } from './adverts/adverts-creation/adverts-creation.component'
-import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AdvertsListComponent,
-    AdvertsCreationComponent    
+    AppComponent
   ],
   imports: [
     BrowserModule,
