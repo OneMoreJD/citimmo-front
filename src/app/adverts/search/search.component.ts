@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { QuickSearchService } from '../../home/quick-search/quick-search.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Options } from '@angular-slider/ngx-slider';
 import { SearchService } from './search.service';
 import { Criteria } from './criteria';
 import { Constants } from '../../shared/constants';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-search',
@@ -16,12 +17,7 @@ export class SearchComponent implements OnInit {
   locations = [];
 
   currentCriteria: any;
-  estateTypeList: any[] = [
-    {value: 'house', label:'Maison'},
-    {value: 'appartment', label:'Appartement'},
-    {value: 'garage', label:'Garage'},
-    {value: 'other', label:'Autre'}
-  ];
+  estateTypeList: any[];
 
   searchForm: FormGroup = new FormGroup({
     estateTypeControl: new FormControl(),
@@ -66,7 +62,7 @@ export class SearchComponent implements OnInit {
   collapseBudget: boolean;
   collapseOther: boolean;
 
-  constructor(private qsService: QuickSearchService, private searchService: SearchService) {
+  constructor(private qsService: QuickSearchService, private searchService: SearchService, private snackBar: MatSnackBar) {
 
     this.insideSliderOptions = {
       floor: this.floorIntSurface,
@@ -103,6 +99,10 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.searchService.getEstateTypes().subscribe(
+      data => this.estateTypeList = data
+    );
+
     this.currentCriteria = this.qsService.criteria;
     console.log(this.currentCriteria);
     if (this.currentCriteria?.budget) {
@@ -122,10 +122,6 @@ export class SearchComponent implements OnInit {
     this.maxRooms = Math.max(...this.searchForm.controls['roomsControl'].value);
   }
 
-  test(event) {
-    console.log(event);
-  }
-
   onSearch() {
     this.collapseBudget = false;
     this.collapseOther = false;
@@ -143,8 +139,13 @@ export class SearchComponent implements OnInit {
       budgetMin: this.searchForm.controls['budgetControl']?.value[0],
       budgetMax: this.searchForm.controls['budgetControl']?.value[1]
     };
+
     this.searchService.getAdverts(criteria).subscribe(
-      data => console.log(data)
+      data => console.log(data),
+      err => {
+        console.log(err);
+        this.snackBar.open("Oups, il y a un problème...", "Fermer");
+      }
     );
   }
 }

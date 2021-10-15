@@ -13,6 +13,19 @@ export class SearchService {
 
   constructor(private http: HttpClient) { }
 
+  getEstateTypes() {
+    return this.http
+      .get(environment.domain + environment.urls.estateTypes)
+      .pipe(
+        map((data: any[]) => {
+          let estates = [];
+          data.forEach(element => {
+            estates.push({value: element.name, label: element.frLabel})
+          });
+          return estates;
+        }));
+  }
+
   getAdverts(criteria: Criteria): Observable<any> {
     const url = environment.domain + environment.urls.search;
     let params = new HttpParams()

@@ -7,6 +7,7 @@ export const environment = {
   domain: 'http://localhost:8080',
   urls: {
     quickSearch: '/adverts/quicksearch',
+    estateTypes: '/estates',
     search: '/adverts/search',
     register: '/register',
     login: '/login'
