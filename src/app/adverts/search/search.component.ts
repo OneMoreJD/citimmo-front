@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Options } from '@angular-slider/ngx-slider';
 import { SearchService } from './search.service';
 import { Criteria } from './criteria';
+import { Constants } from '../../shared/constants';
 
 @Component({
   selector: 'app-search',
@@ -11,13 +12,6 @@ import { Criteria } from './criteria';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-
-  readonly PRIMARY_COLOR = '#3f51b5';
-  readonly ACCENT_COLOR = '#ff4081';
-  readonly MAX_INT_SURFACE = 200;
-  readonly MAX_EXT_SURFACE = 100;
-  readonly SLIDER_STEP = 10;
-
 
   locations = [];
 
@@ -41,24 +35,27 @@ export class SearchComponent implements OnInit {
 
   maxRooms: number = 0;
 
-  minBudget: number = 0;
-  maxBudget: number = 1000000;
-  floorBudget: number = 0;
-  ceilBudget: number = 1000000;
-  stepBudget: number = 10000;
+  // budget variables
+  minBudget: number = Constants.MIN_BUY_BUDGET;
+  maxBudget: number = Constants.MAX_BUY_BUDGET;
+  floorBudget: number = Constants.MIN_BUY_BUDGET;
+  ceilBudget: number = Constants.MAX_BUY_BUDGET;
+  stepBudget: number = Constants.STEP_BUY_BUDGET;
   BudgetLabel: string = '';
 
-  minIntSurface: number = 0;
-  maxIntSurface: number = this.MAX_INT_SURFACE;
-  floorIntSurface: number = 0;
-  ceilIntSurface: number = this.MAX_INT_SURFACE;
-  stepIntSurface: number = this.SLIDER_STEP;
+  // inside surface variables
+  minIntSurface: number = Constants.MIN_INT_SURFACE;
+  maxIntSurface: number = Constants.MAX_INT_SURFACE;
+  floorIntSurface: number = Constants.MIN_INT_SURFACE;
+  ceilIntSurface: number = Constants.MAX_INT_SURFACE;
+  stepIntSurface: number = Constants.STEP_INT_SURFACE;
   intSurfaceLabel: string = '';
 
-  maxExtSurface: number = 0;
-  floorExtSurface: number = 0;
-  ceilExtSurface: number = this.MAX_EXT_SURFACE;
-  stepExtSurface: number = this.SLIDER_STEP;
+  // outside surface variables
+  maxExtSurface: number = Constants.MIN_EXT_SURFACE;
+  floorExtSurface: number = Constants.MIN_BUY_BUDGET;
+  ceilExtSurface: number = Constants.MAX_EXT_SURFACE;
+  stepExtSurface: number = Constants.STEP_EXT_SURFACE;
   extSurfaceLabel: string = '';
 
   insideSliderOptions: Options;
@@ -76,8 +73,8 @@ export class SearchComponent implements OnInit {
       ceil: this.ceilIntSurface,
       step: this.stepIntSurface,
       noSwitching: true,
-      getSelectionBarColor: () => {return this.PRIMARY_COLOR},
-      getPointerColor: () => {return this.PRIMARY_COLOR},
+      getSelectionBarColor: () => { return Constants.PRIMARY_COLOR },
+      getPointerColor: () => { return Constants.PRIMARY_COLOR },
       hideLimitLabels: true,
       hidePointerLabels: true
     };
@@ -87,8 +84,8 @@ export class SearchComponent implements OnInit {
       ceil: this.ceilExtSurface,
       step: this.stepExtSurface,
       showSelectionBar: true,
-      getSelectionBarColor: () => { return this.PRIMARY_COLOR },
-      getPointerColor: () => { return this.PRIMARY_COLOR },
+      getSelectionBarColor: () => { return Constants.PRIMARY_COLOR },
+      getPointerColor: () => { return Constants.PRIMARY_COLOR },
       hideLimitLabels: true,
       hidePointerLabels: true
     };
@@ -98,12 +95,12 @@ export class SearchComponent implements OnInit {
       ceil: this.ceilBudget,
       step: this.stepBudget,
       noSwitching: true,
-      getSelectionBarColor: () => {return this.PRIMARY_COLOR},
-      getPointerColor: () => {return this.PRIMARY_COLOR},
+      getSelectionBarColor: () => { return Constants.PRIMARY_COLOR },
+      getPointerColor: () => { return Constants.PRIMARY_COLOR },
       hideLimitLabels: true,
       hidePointerLabels: true
     };
-   }
+  }
 
   ngOnInit(): void {
     this.currentCriteria = this.qsService.criteria;
