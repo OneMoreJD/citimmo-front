@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Criteria } from './criteria';
@@ -10,6 +10,7 @@ import { Criteria } from './criteria';
 })
 export class SearchService {
   adverts: any[];
+  advertsChange: Subject<any[]> = new Subject<any[]>();
 
   constructor(private http: HttpClient) { }
 
@@ -52,7 +53,7 @@ export class SearchService {
     return this.http
       .get(url, { params })
       .pipe(map(
-        data => console.log(data)
+        (data: any[]) => this.advertsChange.next(data)
       ));
   }
 }
