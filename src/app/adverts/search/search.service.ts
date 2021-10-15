@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Constants } from 'src/app/shared/constants';
 import { environment } from 'src/environments/environment';
 import { Criteria } from './criteria';
 
@@ -44,11 +45,17 @@ export class SearchService {
       params = params.append('bedrooms', criteria.bedrooms.toString());
     }
 
-    params = criteria.intSurfaceMin > 0 ? params.append('intSurfaceMin', criteria.intSurfaceMin.toString()) : params;
-    params = criteria.intSurfaceMax < 200 ? params.append('intSurfaceMax', criteria.intSurfaceMax.toString()) : params;
-    params = criteria.extSurfaceMax > 0 ? params.append('extSurfaceMax', criteria.extSurfaceMax.toString()) : params;
-    params = criteria.budgetMin > 0 ? params.append('budgetMin', criteria.budgetMin.toString()) : params;
-    params = criteria.budgetMax < 1000000 ? params.append('budgetMax', criteria.budgetMax.toString()) : params;
+    params = criteria.intSurfaceMin > Constants.MIN_INT_SURFACE ? params.append('intSurfaceMin', criteria.intSurfaceMin.toString()) : params;
+    params = criteria.intSurfaceMax < Constants.MAX_INT_SURFACE ? params.append('intSurfaceMax', criteria.intSurfaceMax.toString()) : params;
+    params = criteria.extSurfaceMax > Constants.MIN_EXT_SURFACE ? params.append('extSurfaceMax', criteria.extSurfaceMax.toString()) : params;
+
+    if (criteria.transactionType === 'buy') {
+      params = criteria.budgetMin > Constants.MIN_BUY_BUDGET ? params.append('budgetMin', criteria.budgetMin.toString()) : params;
+      params = criteria.budgetMax < Constants.MAX_BUY_BUDGET ? params.append('budgetMax', criteria.budgetMax.toString()) : params;
+    } else {
+      params = criteria.budgetMin > Constants.MIN_RENT_BUDGET ? params.append('budgetMin', criteria.budgetMin.toString()) : params;
+      params = criteria.budgetMax < Constants.MAX_RENT_BUDGET ? params.append('budgetMax', criteria.budgetMax.toString()) : params;
+    }
 
     return this.http
       .get(url, { params })

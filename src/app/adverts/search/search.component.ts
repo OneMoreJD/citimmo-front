@@ -64,6 +64,21 @@ export class SearchComponent implements OnInit {
 
   constructor(private qsService: QuickSearchService, private searchService: SearchService, private snackBar: MatSnackBar) {
 
+    this.currentCriteria = this.qsService.criteria;
+    if (this.currentCriteria.transaction === 'rent') {
+      this.minBudget = Constants.MIN_RENT_BUDGET;
+      this.maxBudget = Constants.MAX_RENT_BUDGET;
+      this.floorBudget = Constants.MIN_RENT_BUDGET;
+      this.ceilBudget = Constants.MAX_RENT_BUDGET;
+      this.stepBudget = Constants.STEP_RENT_BUDGET;
+    }
+    if (this.currentCriteria?.budget) {
+      this.maxBudget = Number(this.currentCriteria.budget);
+    }
+    if (this.currentCriteria?.locations) {
+      this.onLocationsChange(this.currentCriteria.locations);
+    }
+
     this.insideSliderOptions = {
       floor: this.floorIntSurface,
       ceil: this.ceilIntSurface,
@@ -102,15 +117,6 @@ export class SearchComponent implements OnInit {
     this.searchService.getEstateTypes().subscribe(
       data => this.estateTypeList = data
     );
-
-    this.currentCriteria = this.qsService.criteria;
-    console.log(this.currentCriteria);
-    if (this.currentCriteria?.budget) {
-      this.maxBudget = Number(this.currentCriteria.budget);
-    }
-    if (this.currentCriteria?.locations) {
-      this.onLocationsChange(this.currentCriteria.locations);
-    }
   }
 
   onLocationsChange(locations: string[]) {
