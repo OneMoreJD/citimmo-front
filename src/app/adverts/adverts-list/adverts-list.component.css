@@ -26,3 +26,13 @@ button {
   align-self: flex-end;
   margin-top: 6px;
 }
+
+.not-found-img {
+  width: 10vw;
+  align-self: center;
+  margin-top: 30px;
+}
+.not-found-text {
+  margin: 30px;
+  text-align: center;
+}
