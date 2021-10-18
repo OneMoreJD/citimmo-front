@@ -7,15 +7,16 @@ import { SearchComponent } from './search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { RoomsPipe } from './adverts-list/rooms.pipe';
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { IntSurfaceSliderPipe } from './search/int-surface-slider.pipe';
 import { ExtSurfaceSliderPipe } from './search/ext-surface-slider.pipe';
+import { AdvertsCreationComponent } from './adverts-creation/adverts-creation.component';
 
 @NgModule({
   declarations: [
     AdvertsComponent,
     AdvertsListComponent,
     AdvertDetailsComponent,
+    AdvertsCreationComponent,
     SearchComponent,
     RoomsPipe,
     IntSurfaceSliderPipe,
@@ -25,8 +26,7 @@ import { ExtSurfaceSliderPipe } from './search/ext-surface-slider.pipe';
     CommonModule,
     FormsModule,
     SharedModule,
-    ReactiveFormsModule,
-    NgxSliderModule
+    ReactiveFormsModule
   ],
   exports: [
     AdvertsComponent

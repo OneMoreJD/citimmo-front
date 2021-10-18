@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { LocationControlComponent } from './components/location-control/location-control.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DialogComponent } from '../dialog/dialog.component';
 import { GridColsDirective } from './directives/grid-cols.directive';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { CarouselPicturesComponent } from './components/carousel-pictures/carousel-pictures.component';
-
 
 @NgModule({
   declarations: [
     LocationControlComponent,
+    DialogComponent,
     GridColsDirective,
     CarouselPicturesComponent
   ],
@@ -18,15 +20,16 @@ import { CarouselPicturesComponent } from './components/carousel-pictures/carous
     ReactiveFormsModule,
     CommonModule,
     MaterialModule,
-    ReactiveFormsModule
+    NgxSliderModule
   ],
   exports: [
     MaterialModule,
     LocationControlComponent,
     CommonModule,
-    MaterialModule,
     ReactiveFormsModule,
+    DialogComponent,
     GridColsDirective,
+    NgxSliderModule,
     CarouselPicturesComponent
   ]
 })

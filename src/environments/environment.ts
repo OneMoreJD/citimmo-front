@@ -7,8 +7,14 @@ export const environment = {
   domain: 'http://localhost:8080',
   urls: {
     quickSearch: '/adverts/filter',
+    createAdvert: '/adverts/create',
     register: '/register',
-    login: '/login'
+    login: '/login',
+    conditionTypeFilters: '/adverts/filters/conditiontype',
+    transactionTypeFilters: '/adverts/filters/transactiontype',
+    statusFilters: '/adverts/filters/status',
+    estateTypeFilters: '/adverts/filters/estatetype',
+    heatingTypeFilters: '/adverts/filters/heatingtype'
   }
 };
 
