@@ -1,0 +1,31 @@
+<div id="advert">
+  <mat-grid-list [gridCols]="{xs: 1, sm: 1, md: 2, lg: 2, xl: 2}" rowHeight="5em">
+    <mat-grid-tile class="grid-cell-left">
+      <mat-card-title> {{ advertDetails.title }} </mat-card-title>
+    </mat-grid-tile>
+    <mat-grid-tile class="grid-cell-right">
+      <mat-card-title> {{ advertDetails.price | currency:'EUR':'symbol':'1.0-2' }} </mat-card-title>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-card>
+    <mat-card-title> Description </mat-card-title>
+    <mat-card-content style="white-space:pre-wrap">{{ advertDetails.description }} </mat-card-content>
+  </mat-card>
+  <br>
+  <mat-card>
+    <mat-card-title> Caractéristique </mat-card-title>
+    <mat-card-content>
+      <mat-grid-list [gridCols]="{xs: 1, sm: 1, md: 2, lg: 3, xl: 4}" rowHeight="2em" class="grid-cell-left">
+        <mat-grid-tile>Type de transaction : {{ advertDetails.transactionType }}</mat-grid-tile>
+        <mat-grid-tile>Type de bien : {{ advertDetails.estateType }}</mat-grid-tile>
+        <mat-grid-tile>Nombre de piéces : {{ advertDetails.nbRooms }}</mat-grid-tile>
+        <mat-grid-tile>Surface habitable : {{ advertDetails.surfaceInt }} m²</mat-grid-tile>
+        <mat-grid-tile>Surface du terrain : {{ advertDetails.surfaceExt }} m²</mat-grid-tile>
+        <mat-grid-tile>Année de construction : {{ advertDetails.yearConstruction }}</mat-grid-tile>
+        <mat-grid-tile>Etat : {{ advertDetails.conditionType }}</mat-grid-tile>
+        <mat-grid-tile>Nombre de place de stationnement : {{ advertDetails.nbCarGarage }}</mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+  </mat-card>
+</div>

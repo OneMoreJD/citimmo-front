@@ -13,8 +13,9 @@ import { AuthModule } from './auth/auth.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdvertsModule } from './adverts/adverts.module';
-import {AuthHttpInterceptor} from './auth/auth-http.interceptor';
+import { AuthHttpInterceptor } from './auth/auth-http.interceptor';
 import { HeaderModule } from './header/header.module';
+
 
 @NgModule({
   declarations: [
@@ -31,11 +32,11 @@ import { HeaderModule } from './header/header.module';
     SharedModule,
     AuthModule,
     HttpClientModule,
-    HeaderModule,
+    HeaderModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'fr-FR'},
-    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }
+    {provide: LOCALE_ID, useValue: 'fr-FR'},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
