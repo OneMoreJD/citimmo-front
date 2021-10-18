@@ -1,19 +1,29 @@
 <div  class="flex row wrap list-container space-evenly">
-  <mat-card *ngFor="let adv of adverts">
-    <div class="flex col container">
-      <div class="flex row wrap">
-        <img src="https://via.placeholder.com/200x150.png">
-        <div class="flex col wrap card-content">
-          <mat-card-title class="font-primary">{{adv.title}}</mat-card-title>
-          <mat-card-subtitle class="font-accent">{{adv.price | currency:'EUR':'':'1.0-0':'fr-FR'}}€</mat-card-subtitle>
-            <div class="flex col">
-              <span>{{adv.address.city}}</span>
-              <span>{{adv.surfaceInt}} m²</span>
-              <span>{{adv.rooms | rooms:adv.bedrooms}}</span>
-            </div>
+  <ng-container *ngIf="adverts.length > 0; else elseTemplate">
+    <mat-card *ngFor="let adv of adverts">
+      <div class="flex col container">
+        <div class="flex row wrap">
+          <img src="https://via.placeholder.com/200x150.png">
+          <div class="flex col wrap card-content">
+            <mat-card-title class="font-primary">{{adv.title}}</mat-card-title>
+            <mat-card-subtitle class="font-accent">{{adv.price | currency:'EUR':'':'1.0-0':'fr-FR'}}€</mat-card-subtitle>
+              <div class="flex col">
+                <span>{{adv.address.city}}</span>
+                <span>{{adv.surfaceInt}} m²</span>
+                <span>{{adv.rooms | rooms:adv.bedrooms}}</span>
+              </div>
+          </div>
         </div>
+        <button mat-raised-button color="accent" [disabled]="false" aria-label="Postuler">Postuler</button>
       </div>
-      <button mat-raised-button color="accent" [disabled]="false" aria-label="Postuler">Postuler</button>
+    </mat-card>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <div class="flex col">
+      <img src="/assets/images/thinking.png" alt="thinking emoji" class="not-found-img">
+      <mat-label class="mat-h3 not-found-text">Hum... soit le marché de l'immobilier est hyper tendu, soit tu es très difficile et il va falloir revoir les critères...</mat-label>
     </div>
-  </mat-card>
+
+    <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+  </ng-template>
 </div>
