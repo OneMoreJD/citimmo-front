@@ -28,3 +28,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .font-accent {
   color: #ff4081;
 }
+.bg-primary {
+  background-color: #3f51b5;
+}
