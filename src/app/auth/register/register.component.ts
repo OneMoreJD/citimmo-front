@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RegisterService } from './register.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogData } from '../../dialog/dialog.model';
+import { DialogComponent } from '../../dialog/dialog.component';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-register',
@@ -8,6 +13,7 @@ import { RegisterService } from './register.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  public emailAlreadyRegistered:boolean = false;  
   public registrationForm : FormGroup = this.fb.group({
     firstname: ['', Validators.required],
     lastname: ['', Validators.required],
@@ -16,23 +22,57 @@ export class RegisterComponent implements OnInit {
     password: ['', Validators.required]
   });
 
+  private readonly registrationSuccessful : DialogData = {
+    dialogType: "success",
+    title: "Success",
+    message: "Your registration has been completed.<br />Redirecting you to the login page...",
+    hasCountdown: true,
+    countdownDuration: 6,
+  }
+
   public showClearPassword: boolean;
 
   constructor(private fb:FormBuilder,
-              private registerService:RegisterService) { }
+              private registerService:RegisterService,
+              private dialog:MatDialog,
+              private router:Router) { }
 
   ngOnInit(): void {
   }
 
-  toggleShowClearPassword(){
+  toggleShowClearPassword():void {
     this.showClearPassword = !this.showClearPassword;
   }
 
-  onSubmit(){
+  resetError():void {
+    this.emailAlreadyRegistered = false;
+  }
+  
+  onSubmit():void {
     this.registerService.submitRegistration(this.registrationForm.value).subscribe(
-      (res) => console.log(res),
-      (err) => console.log(err)
+      (res) => { 
+            console.log(res);
+      },
+      (err) => {
+        this.emailAlreadyRegistered = true;
+        console.log(err)
+      },
+      () => {
+        this.showSuccessfulRegistrationDialog();
+        this.router.navigate(['/login']);  
+      }
     );    
+  }
+
+  showSuccessfulRegistrationDialog() : void { 
+    let dialogRef = this.dialog.open(DialogComponent, {
+        data: this.registrationSuccessful,
+        height: '200px',
+        width: '550px'
+    });
+    setTimeout(() => {
+      dialogRef.close();
+    }, 6000) 
   }
 
 }

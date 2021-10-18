@@ -24,6 +24,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 
 
@@ -57,6 +58,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     FlexLayoutModule,
     MatToolbarModule,
     MatListModule,
+    MatDialogModule,
     MatGridListModule
   ]
 })
