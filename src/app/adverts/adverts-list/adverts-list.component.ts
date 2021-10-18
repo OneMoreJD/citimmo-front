@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { QuickSearchService } from '../../home/quick-search/quick-search.service';
 import { SearchService } from '../search/search.service';
@@ -11,12 +12,13 @@ import { SearchService } from '../search/search.service';
 export class AdvertsListComponent implements OnInit, OnDestroy {
 
   adverts: any[] = [];
+  advertsSubscription: Subscription;
 
   constructor(private qsService: QuickSearchService, private searchService: SearchService) {
 
     this.adverts = this.qsService.adverts;
 
-    this.searchService.advertsChange.subscribe(data => this.adverts = data);
+    this.advertsSubscription = this.searchService.advertsChange.subscribe(data => this.adverts = data);
 
     if (!environment.production) {
       if (!this.adverts) {
@@ -51,7 +53,7 @@ export class AdvertsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.searchService.advertsChange.unsubscribe();
+    this.advertsSubscription.unsubscribe();
   }
 
 }
