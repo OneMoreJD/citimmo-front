@@ -13,4 +13,3 @@ export interface Advert {
   nbCarGarage: number;
   listPictures: Array<string>;
 }
-

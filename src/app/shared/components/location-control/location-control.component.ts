@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { FormControl, Validators } from '@angular/forms';
@@ -13,6 +13,9 @@ export class LocationControlComponent implements OnInit {
 
   locationControl = new FormControl('', Validators.required);
 
+  @Input()
+  locations: string[];
+
   @Output()
   locationsChanged = new EventEmitter<string[]>();
 
@@ -21,11 +24,13 @@ export class LocationControlComponent implements OnInit {
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  locations: string[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
+    if (!this.locations) {
+      this.locations = [];
+    }
   }
 
   add(event: MatChipInputEvent): void {
