@@ -7,7 +7,7 @@ export class IntSurfaceSliderPipe implements PipeTransform {
 
   transform(max: number, ceil: number, min: number, floor: number): string {
     if (min === floor && max === ceil) {
-      return `${max} m² et +`;
+      return `pas de critère`;
     }
 
     if (min === floor && max < ceil) {

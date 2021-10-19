@@ -4,6 +4,7 @@
     justify-content: left;
     align-items: stretch;
     flex-direction: column;
+    width: 500px;
 }
 
 mat-form-field {
@@ -35,4 +36,4 @@ button {
     color: whitesmoke;
     background-color: #F44336;
     font-weight: 500;
-  }
+ }

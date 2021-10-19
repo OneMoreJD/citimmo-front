@@ -15,11 +15,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdvertsModule } from './adverts/adverts.module';
 import { AuthHttpInterceptor } from './auth/auth-http.interceptor';
 import { HeaderModule } from './header/header.module';
-
+import { FileUploadComponent } from './fileUpload/file-upload.component.';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule,

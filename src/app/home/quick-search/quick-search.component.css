@@ -7,11 +7,14 @@
 }
 
 .container {
-  margin: auto;
+  margin: 20px auto;
   border-radius: 25px;
-  border: 2px solid;
   padding: 20px;
   max-width: 500px;
+}
+
+form {
+  margin-top: 20px;
 }
 
 .mat-radio-button ~ .mat-radio-button {

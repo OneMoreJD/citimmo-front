@@ -1,34 +1,37 @@
-<mat-toolbar color="primary" class="mat-toolbar" >
+<mat-toolbar class="mat-toolbar">
 
-  <div  fxFlex fxLayout >
-    <div  fxHide.xs class="div02">
+  <div fxFlex fxLayout>
+    <div fxHide.xs class="div02">
       <img src="../assets/images/headerLogo.jpg" alt="headerLogo" class="headerLogo Cursor" routerLink="/">
     </div>
 
-
-    <div fxHide.gt-xs style="background-Image: url('assets/images/headerLogo.jpg')" class="Cursor background_NavBar div02">
-      <button  fxFlex fxLayout  fxLayoutAlign="right" mat-icon-button class="colorMatIcon" (click)="onToggleSidenav()">
-          <mat-icon >menu</mat-icon>
+    <div fxHide.gt-xs style="background-Image: url('assets/images/headerLogo.jpg')"
+      class="Cursor background_NavBar div02">
+      <button fxFlex fxLayout fxLayoutAlign="right" mat-icon-button class="colorMatIcon" (click)="onToggleSidenav()">
+        <mat-icon>menu</mat-icon>
       </button>
     </div>
-  </div>
 
-
-
-  <div style="background-Image: url('assets/images/headerBandeau.jpg')" class="background_NavBar div01" >
-    <div fxFlex fxLayout  fxLayoutAlign="end center"  fxHide.xs>
-      <ul  fxLayout fxLayoutGap="15px" class="navigation-items ">
-        <li>
-            <a *ngIf ="!logger" class="Cursor" routerLink="/login">Login</a>
-        </li>
-        <li>
-            <a *ngIf ="!logger" class="Cursor" routerLink="/register">Register</a>
-        </li>
-        <li>
-            <a *ngIf ="logger"class="Cursor" routerLink="/logout">Logout</a>
-        </li>
-      </ul>
+    <div style="background-Image: url('assets/images/headerBandeau.jpg')" class="background_NavBar div01">
     </div>
+
+    <div fxFlex fxLayout fxLayoutAlign="end center" fxHide.xs fxLayoutGap="15px" class="btn-container">
+
+      <ng-container *ngIf="!logger; else elseTemplate">
+          <a routerLink="/login"><button mat-stroked-button color="primary">Login</button></a>
+          <a routerLink="/register"><button mat-stroked-button color="primary">Register</button></a>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <div class="flex col">
+            <img class="user-img" src="assets/images/user.png">
+            <mat-label style="align-self: center;">{{ name }}</mat-label>
+          </div>
+          <a routerLink="/logout"><button mat-stroked-button color="primary">Logout</button></a>
+        </ng-template>
+    </div>
+
+
   </div>
+
 
 </mat-toolbar>

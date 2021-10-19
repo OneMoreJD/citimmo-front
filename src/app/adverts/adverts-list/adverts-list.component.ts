@@ -17,7 +17,6 @@ export class AdvertsListComponent implements OnInit, OnDestroy {
   constructor(private qsService: QuickSearchService, private searchService: SearchService) {
 
     this.adverts = this.qsService.adverts;
-
     this.advertsSubscription = this.searchService.advertsChange.subscribe(data => this.adverts = data);
 
     if (!environment.production) {
