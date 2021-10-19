@@ -5,6 +5,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AdvertsComponent } from './adverts/adverts.component';
 import {LogoutComponent} from './auth/logout/logout.component';
+import { FileUploadComponent} from './fileUpload/file-upload.component.';
 import { AdvertsCreationComponent } from './adverts/adverts-creation/adverts-creation.component';
 import {AdvertDetailsComponent} from './adverts/advert-details/advert-details.component';
 
@@ -15,7 +16,8 @@ export const ROUTES: Routes = [
   { path: 'adverts/:advertId', component: AdvertDetailsComponent},
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent},
-  { path: '', component: HomeComponent }
+  { path: '', component: HomeComponent },
+  { path: 'uploadFile', component: FileUploadComponent }
 ];
 
 @NgModule({

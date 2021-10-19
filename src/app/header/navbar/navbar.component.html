@@ -17,8 +17,7 @@
 
     <div fxFlex fxLayout fxLayoutAlign="end center" fxHide.xs fxLayoutGap="15px" class="btn-container">
 
-
-        <ng-container *ngIf="!logger; else elseTemplate">
+      <ng-container *ngIf="!logger; else elseTemplate">
           <a routerLink="/login"><button mat-stroked-button color="primary">Login</button></a>
           <a routerLink="/register"><button mat-stroked-button color="primary">Register</button></a>
         </ng-container>
@@ -33,8 +32,6 @@
 
 
   </div>
-
-
 
 
 </mat-toolbar>

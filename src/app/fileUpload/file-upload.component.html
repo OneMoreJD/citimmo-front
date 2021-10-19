@@ -1,0 +1,72 @@
+
+
+ <head>
+  <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+
+<div class="container">
+<div class="card" >
+  <label class="btn btn-default">
+    <label for="Upload_Image">
+      <h2>Sélectionner les images à uploader</h2>
+    </label>
+    <div>
+      <input type="file" id="Upload_Image" name="Upload_Image" accept="image/*" multiple (change)="selectFiles($event)" />
+      <button class="btn btn-secondary" [disabled]="!selectedFiles" (click)="uploadFiles()">Upload</button>
+      <div class="alert alert-light" role="alert">{{ message }}</div>
+    </div>
+  </label>
+
+
+</div>
+</div>
+
+<div class="container" >
+<div class="accordion" id="idAccordeon">
+<div class="card"  >
+
+  <!--****************** Première card **************************** -->
+    <div class="card-header text-center">
+      <h2>
+        <a href="#item-01" class="card-link" data-toggle="collapse" aria-expanded="false">Liste des fichiers à uploader</a>
+      </h2>
+    </div>
+
+    <div class="collapse show" id="item-01" data-parent="#idAccordeon">
+
+      <div class="card-body" >
+        <p>Fichiers :&nbsp; </p>
+        <p  class="listeFichiers" *ngFor="let file of fileInfos" > &nbsp;{{ file.name }}, </p>
+      </div>
+
+    </div>
+
+  <!--****************** Deuxième card **************************** -->
+    <div class="card-header text-center">
+
+      <h2>
+        <a href="#item-02" class="card-link" data-toggle="collapse" aria-expanded="false">Traitement des fichiers</a>
+      </h2>
+
+    </div>
+
+    <div  class="collapse show" id="item-02" data-parent="#idAccordeon">
+
+      <div class="card-body">
+
+        <div *ngFor="let progressInfo of progressInfos" class="mb-2 ">
+          <span>{{ progressInfo.fileName }}</span>
+          <div class="progress">
+            <div  class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+              attr.aria-valuenow="{{ progressInfo.value }}" aria-valuemin="0"
+              aria-valuemax="100" [ngStyle]="{ width: progressInfo.value + '%' }"> {{ progressInfo.value }}%
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+</div>
+</div>
+</div>
