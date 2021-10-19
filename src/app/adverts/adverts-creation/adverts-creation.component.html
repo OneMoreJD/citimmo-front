@@ -80,6 +80,40 @@
                     </ng-container>        
                 </mat-select>
             </mat-form-field>
+            <mat-card formGroupName="address"> 
+                <h3>Address</h3>
+                <mat-form-field appearance="fill">
+                    <mat-label>City</mat-label>
+                    <input matInput #city (keyup)="onTypingZipCodeOrCityName($event)" type="text" formControlName="city" required name="city" id="city" placeholder="Paris" [matAutocomplete]="cityGroup">
+                    <mat-autocomplete #cityGroup="matAutocomplete" (optionSelected)="onZipcodeOrCitySuggestionSelect($event.option.value, false)" >
+                        <mat-option *ngFor="let city of cityZipCodeSuggestionList | keyvalue" [value]="city.value" >
+                        {{city.value}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Zip Code</mat-label>
+                    <input #zipcode (keyup)="onTypingZipCodeOrCityName($event)" matInput type="text" formControlName="zipcode" required name="zipcode" id="zipcode" [matAutocomplete]="zipCodeGroup">
+                    <mat-autocomplete #zipCodeGroup="matAutocomplete" (optionSelected)="onZipcodeOrCitySuggestionSelect($event.option.value, true)" >
+                        <mat-option *ngFor="let zip of cityZipCodeSuggestionList | keyvalue" [value]="zip.key">
+                        {{zip.key}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Street Name</mat-label>
+                    <input #street (keyup)="onTypingAddress($event)" matInput type="text" formControlName="street" required name="street" id="street" placeholder="boulevard des italiens" [matAutocomplete]="streetGroup">
+                    <mat-autocomplete #streetGroup="matAutocomplete">
+                        <mat-option *ngFor="let street of addressSuggestionList" [value]="street">
+                        {{street}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Street Number</mat-label>
+                    <input matInput type="text" min="1" formControlName="atNumber" required name="atNumber" id="atNumber" placeholder="1">
+                </mat-form-field>
+            </mat-card>
             <div fxLayoutAlign="end end">
                 <button type="submit" mat-raised-button [disabled]="createAdvertForm.invalid" color="primary">Submit</button>
                 <button type="reset" mat-raised-button>Reset</button>

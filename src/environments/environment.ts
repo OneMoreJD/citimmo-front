@@ -17,7 +17,9 @@ export const environment = {
     transactionTypeFilters: '/adverts/filters/transactiontype',
     statusFilters: '/adverts/filters/status',
     estateTypeFilters: '/adverts/filters/estatetype',
-    heatingTypeFilters: '/adverts/filters/heatingtype'
+    heatingTypeFilters: '/adverts/filters/heatingtype',
+    cityZipCodeSearchApi: 'https://datanova.legroupe.laposte.fr/api/records/1.0/search/?dataset=laposte_hexasmal&rows=20&q=',
+    addressSearchApi: 'https://api-adresse.data.gouv.fr/search/?limit=25&type=street&q='
   }
 };
 
