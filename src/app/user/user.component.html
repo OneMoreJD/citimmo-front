@@ -1,1 +1,15 @@
-<p>user works!</p>
+<div class="flex col wrap container">
+  <div class="flex row wrap identity-container">
+    <img src="assets/images/user.png">
+    <div style="width: 40px;"></div>
+    <div class="flex col wrap">
+      <mat-label class="mat-h1">{{ user.firstName }} {{ user.lastName }}</mat-label>
+      <mat-label class="mat-h2">{{ user.email }}</mat-label>
+      <mat-label class="mat-h3">{{ role }}</mat-label>
+    </div>
+  </div>
+  <ng-container *ngIf="role == 'REAL_ESTATE_AGENT'">
+    <button mat-flat-button color="primary" routerLink="../adverts/create" class="create">Nouvelle annonce</button>
+  </ng-container>
+
+</div>
