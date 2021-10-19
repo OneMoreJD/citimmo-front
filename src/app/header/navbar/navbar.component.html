@@ -23,10 +23,12 @@
           <a routerLink="/register"><button mat-stroked-button color="primary">Register</button></a>
         </ng-container>
         <ng-template #elseTemplate>
-          <div class="flex col">
-            <img class="user-img" src="assets/images/user.png">
-            <mat-label style="align-self: center;">{{ name }}</mat-label>
-          </div>
+          <a routerLink="/user" class="font-primary">
+            <div class="flex col">
+              <img class="user-img" src="assets/images/user.png">
+              <mat-label style="align-self: center;">{{ name }}</mat-label>
+            </div>
+          </a>
           <a routerLink="/logout"><button mat-stroked-button color="primary">Logout</button></a>
         </ng-template>
     </div>
