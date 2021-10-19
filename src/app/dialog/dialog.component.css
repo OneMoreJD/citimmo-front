@@ -1,0 +1,30 @@
+#dialog-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close.mat-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 15px;
+    padding: 10px;
+    line-height: 14px;
+    min-width: auto;
+  }
+
+#success {
+    align-items: center;
+    position: relative;
+}
+
+#success h2 {
+    color: #28CC50;
+    font-weight: bold;
+    padding: 2 0 2 5;
+}
+
+mat-progress-bar {
+    margin-top: 20px;
+}

@@ -12,12 +12,11 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.component';
-import { RouterModule } from '@angular/router';
-import { ROUTES } from './app-routing.module';
-import {AuthHttpInterceptor} from './auth/auth-http.interceptor';
+import { AdvertsModule } from './adverts/adverts.module';
+import { AuthHttpInterceptor } from './auth/auth-http.interceptor';
 import { HeaderModule } from './header/header.module';
 import { FileUploadComponent } from './fileUpload/file-upload.component.';
+
 
 
 @NgModule({
@@ -33,14 +32,15 @@ import { FileUploadComponent } from './fileUpload/file-upload.component.';
     AppRoutingModule,
     BrowserAnimationsModule,
     HomeModule,
+    AdvertsModule,
     SharedModule,
     AuthModule,
     HttpClientModule,
-    HeaderModule    
+    HeaderModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'fr-FR'},
-    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }
+    {provide: LOCALE_ID, useValue: 'fr-FR'},
+    {provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

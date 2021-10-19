@@ -1,0 +1,32 @@
+#advert {
+  display: flex;
+  margin: 5% 15% 5% 15%;
+  justify-content: left;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.grid-cell-left ::ng-deep .mat-figure {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  text-align: left;
+}
+
+.grid-cell-right ::ng-deep .mat-figure {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  text-align: right;
+}
+
+@media screen and (max-width: 600px) {
+  #advert {
+    display: flex;
+    margin: 1% 1% 1% 1%;
+    justify-content: left;
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+

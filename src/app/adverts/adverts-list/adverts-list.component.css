@@ -1,0 +1,38 @@
+.list-container {
+  margin: 30px 15vw;
+}
+
+mat-card {
+  max-width: 400px;
+  margin: 12px;
+}
+
+.container {
+  justify-content: space-between;
+  height: 100%;
+}
+
+img {
+  width: 180px;
+  align-self: flex-start;
+}
+
+.card-content {
+  width: 200px;
+  margin-left: 12px;
+}
+
+button {
+  align-self: flex-end;
+  margin-top: 6px;
+}
+
+.not-found-img {
+  width: 10vw;
+  align-self: center;
+  margin-top: 30px;
+}
+.not-found-text {
+  margin: 30px;
+  text-align: center;
+}

@@ -6,9 +6,20 @@ export const environment = {
   production: false,
   domain: 'http://localhost:8080',
   urls: {
-    quickSearch: '/adverts/filter',
+    quickSearch: '/adverts/quicksearch',
+    estateTypes: '/estates',
+    search: '/adverts/search',
+    createAdvert: '/adverts/create',
     register: '/register',
-    login: '/login'
+    login: '/login',
+    user: '/user',
+    conditionTypeFilters: '/adverts/filters/conditiontype',
+    transactionTypeFilters: '/adverts/filters/transactiontype',
+    statusFilters: '/adverts/filters/status',
+    estateTypeFilters: '/adverts/filters/estatetype',
+    heatingTypeFilters: '/adverts/filters/heatingtype',
+    cityZipCodeSearchApi: 'https://datanova.legroupe.laposte.fr/api/records/1.0/search/?dataset=laposte_hexasmal&rows=20&q=',
+    addressSearchApi: 'https://api-adresse.data.gouv.fr/search/?limit=25&type=street&q='
   }
 };
 

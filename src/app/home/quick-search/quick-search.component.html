@@ -1,5 +1,5 @@
 <div class="flex col container">
-  <p class="align-center">Je viens faire une recherche</p>
+  <mat-label class="align-center mat-h2 font-primary">Je viens faire une recherche</mat-label>
   <form class="flex col" [formGroup]="quickSearchForm" (ngSubmit)="quickSearchForm.valid && onSubmit()">
 
     <mat-radio-group [formControl]="transactionControl" (change)="onTransactionChange($event)" labelPosition="before">

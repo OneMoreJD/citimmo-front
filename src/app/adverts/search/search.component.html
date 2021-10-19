@@ -1,0 +1,103 @@
+<form [formGroup]="searchForm" (ngSubmit)="searchForm.valid && onSearch()">
+  <div class="flex row wrap space-between select-container">
+    <mat-form-field appearance="outline">
+      <mat-label>Type de bien</mat-label>
+      <mat-select [formControl]="searchForm.controls['estateTypeControl']" multiple>
+        <mat-option *ngFor="let type of estateTypeList" [value]="type.value">{{type.label}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <app-location-control [locations]="locations" (locationsChanged)="onLocationsChange($event)"></app-location-control>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nb de pièces</mat-label>
+      <mat-select [formControl]="searchForm.controls['roomsControl']" multiple (selectionChange)="updateMaxRooms()">
+        <mat-option value="1">Studio</mat-option>
+        <mat-option value="2">2 pièces</mat-option>
+        <mat-option value="3">3 pièces</mat-option>
+        <mat-option value="4">4 pièces</mat-option>
+        <mat-option value="5">5 pièces et +</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nb de chambres</mat-label>
+      <mat-select [formControl]="searchForm.controls['bedroomsControl']" multiple
+        [disabled]="searchForm.controls['roomsControl'].value <= 1">
+        <mat-option value="1">1 chambre</mat-option>
+        <mat-option value="2" [disabled]="maxRooms <= 2">2 chambres</mat-option>
+        <mat-option value="3" [disabled]="maxRooms <= 3">3 chambres</mat-option>
+        <mat-option value="4" [disabled]="maxRooms <= 4">4 chambres et +</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="flex row wrap space-between">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle [(expanded)]="collapseSurface">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Surface
+          </mat-panel-title>
+          <mat-panel-description>
+            <ng-container *ngIf="minIntSurface != floorIntSurface || maxIntSurface != ceilIntSurface || maxExtSurface != floorExtSurface; else surfaceTemplate">
+              <div class="flex col wrap">
+                <span>Int : {{maxIntSurface | intSurfaceSlider:ceilIntSurface:minIntSurface:floorIntSurface}}</span>
+                <span>Ext : {{maxExtSurface | extSurfaceSlider:ceilExtSurface:floorExtSurface}}</span>
+              </div>
+            </ng-container>
+            <ng-template #surfaceTemplate>
+              <span>Pas de critère</span>
+            </ng-template>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <span>
+          <mat-label>Surface intérieure : </mat-label>
+          <mat-label class="mat-body-2">{{maxIntSurface | intSurfaceSlider:ceilIntSurface:minIntSurface:floorIntSurface}}</mat-label>
+        </span>
+        <ngx-slider formControlName="insideSurfaceControl" [options]="insideSliderOptions" [(value)]="minIntSurface" [(highValue)]="maxIntSurface"></ngx-slider>
+        <span>
+          <mat-label>Surface extérieure (balcon, terrasse, jardin...) : </mat-label>
+          <mat-label class="mat-body-2">{{maxExtSurface | extSurfaceSlider:ceilExtSurface:floorExtSurface}}</mat-label>
+        </span>
+        <ngx-slider formControlName="outsideSurfaceControl" [options]="outsideSliderOptions" [(value)]="maxExtSurface"></ngx-slider>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel hideToggle [(expanded)]="collapseBudget">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Budget
+          </mat-panel-title>
+          <mat-panel-description>
+            <ng-container *ngIf="(minBudget == floorBudget && maxBudget == ceilBudget); else budgetDescriptionTemplate">
+              <mat-label>{{maxBudget | currency:'EUR':'':'1.0-0':'fr-FR'}}€ et +</mat-label>
+            </ng-container>
+            <ng-template #budgetDescriptionTemplate>
+              <div class="flex col wrap">
+                <span *ngIf="minBudget > floorBudget">min : {{minBudget | currency:'EUR':'':'1.0-0':'fr-FR'}}€</span>
+                <span *ngIf="maxBudget < ceilBudget">max : {{maxBudget | currency:'EUR':'':'1.0-0':'fr-FR'}}€</span>
+              </div>
+            </ng-template>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ngx-slider formControlName="budgetControl" [options]="budgetSliderOptions" [(value)]="minBudget" [(highValue)]="maxBudget"></ngx-slider>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel hideToggle [(expanded)]="collapseOther">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Autres
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-label>Plein de nouveaux filtres à découvrir dans de prochains sprints!</mat-label>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <button id="search-button" mat-raised-button color="primary" [disabled]="searchForm.invalid">Rechercher</button>
+  </div>
+
+</form>

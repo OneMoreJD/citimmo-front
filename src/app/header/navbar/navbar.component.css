@@ -9,7 +9,6 @@
 }
 
 .div02{
-    width: 100% ;
     height: 150px;
 }
 
@@ -61,4 +60,14 @@ mat-toolbar{
   mat-toolbar{
       border-radius: 0px;
   }
+}
+
+.btn-container {
+  margin: 15px;
+}
+
+.user-img {
+  height: 50px;
+  max-width: 50px;
+  align-self: center;
 }
