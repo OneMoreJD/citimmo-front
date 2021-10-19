@@ -26,12 +26,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCarouselModule } from '@ngbmodule/material-carousel';
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    MatCarouselModule.forRoot()
   ],
   exports: [
     MatDividerModule,
@@ -59,7 +61,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatToolbarModule,
     MatListModule,
     MatDialogModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCarouselModule
   ]
 })
 export class MaterialModule { }
