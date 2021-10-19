@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { QuickSearchService } from '../../home/quick-search/quick-search.service';
 import { SearchService } from '../search/search.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-adverts-list',
