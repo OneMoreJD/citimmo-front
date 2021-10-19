@@ -15,9 +15,9 @@ export const ROUTES: Routes = [
   { path: 'adverts/create', component: AdvertsCreationComponent},
   { path: 'adverts/:advertId', component: AdvertDetailsComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent},
-  { path: '', component: HomeComponent },
-  { path: 'uploadFile', component: FileUploadComponent }
+  { path: 'logout', component: LogoutComponent},  
+  { path: 'uploadFile', component: FileUploadComponent },
+  { path: '', component: HomeComponent }
 ];
 
 @NgModule({
