@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AdvertCreationDetails, GetFilterResponse } from './advert-creation-dto.model';
+import { AdvertCreationDetails, GetFilterResponse, ZipOrCityQueryResult, AddressQueryResult } from './advert-creation-dto.model';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 
@@ -41,6 +41,14 @@ export class AdvertCreationService {
   createAdvert(advertCreationDetails: AdvertCreationDetails): Observable<any> {
     console.log(advertCreationDetails);
     return this.http.post(this.createAdvertUrl, advertCreationDetails);
+  }
+
+  searchByZipOrCity(partialZipOrCity:number|string) : Observable<ZipOrCityQueryResult>{
+    return this.http.get<ZipOrCityQueryResult>(environment.urls.cityZipCodeSearchApi+partialZipOrCity);
+  }
+
+  searchAddress(partialAddress:string) : Observable<AddressQueryResult>{
+    return this.http.get<AddressQueryResult>(environment.urls.addressSearchApi+partialAddress);
   }
 
 }

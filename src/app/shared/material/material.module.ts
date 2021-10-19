@@ -26,40 +26,46 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
+const materialModules = [
+  MatDividerModule,
+  MatCardModule,
+  MatIconModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatButtonModule,
+  MatInputModule,
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatTabsModule,
+  MatRadioModule,
+  MatSnackBarModule,
+  MatChipsModule,
+  MatSliderModule,
+  MatSidenavModule,
+  FlexLayoutModule,
+  MatToolbarModule,
+  MatListModule,
+  MatDialogModule,
+  MatGridListModule,
+  MatAutocompleteModule
+];
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    ...materialModules
   ],
   exports: [
-    MatDividerModule,
-    MatCardModule,
-    MatIconModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatTabsModule,
-    MatRadioModule,
-    MatSnackBarModule,
-    MatChipsModule,
-    MatSliderModule,
-    MatSidenavModule,
-    FlexLayoutModule,
-    MatToolbarModule,
-    MatListModule,
-    MatDialogModule,
-    MatGridListModule
+    ...materialModules
   ]
 })
 export class MaterialModule { }
