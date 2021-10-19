@@ -17,11 +17,15 @@ import { RouterModule } from '@angular/router';
 import { ROUTES } from './app-routing.module';
 import {AuthHttpInterceptor} from './auth/auth-http.interceptor';
 import { HeaderModule } from './header/header.module';
+import { FileUploadComponent } from './fileUpload/file-upload.component.';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AdvertsListComponent,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +38,7 @@ import { HeaderModule } from './header/header.module';
     AuthModule,
     HttpClientModule,
     HeaderModule,
+    MatProgressBarModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR'},
