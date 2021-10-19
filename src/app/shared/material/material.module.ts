@@ -56,18 +56,19 @@ const materialModules = [
   MatListModule,
   MatDialogModule,
   MatGridListModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatCarouselModule
 ];
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    ...materialModules
-  ],
-  exports: [
     ...materialModules,
     MatCarouselModule.forRoot()
+  ],
+  exports: [
+    ...materialModules
   ]
 })
 export class MaterialModule { }

@@ -15,6 +15,12 @@ export interface AdvertCreationDetails {
     address:AdvertAddress;
 }
 
+export interface AdvertCreationResult {
+    data:string;
+    message:string;
+    status:number;
+}
+
 export interface GetFilterResponse {
     data: Array<string>;
     message: string;

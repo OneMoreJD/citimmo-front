@@ -1,6 +1,9 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AddressQueryResult, GetFilterResponse, ZipOrCityQueryResult } from './advert-creation-dto.model';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DialogComponent } from 'src/app/dialog/dialog.component';
+import { DialogData } from 'src/app/dialog/dialog.model';
+import { AddressQueryResult, GetFilterResponse, ZipOrCityQueryResult, AdvertCreationResult } from './advert-creation-dto.model';
 import { AdvertCreationService } from './advert-creation.service';
 
 @Component({
@@ -9,7 +12,7 @@ import { AdvertCreationService } from './advert-creation.service';
   styleUrls: ['./adverts-creation.component.css']
 })
 export class AdvertsCreationComponent implements OnInit {  
-
+  CLOSE_DIALOG_TIMEOUT : number = 5000;
   public readonly baseConstructionDate : Date = new Date("1970-01-01"); 
   public cityZipCodeSuggestionList:{[key: number]: string}={};
   public addressSuggestionList:string[];
@@ -40,8 +43,8 @@ export class AdvertsCreationComponent implements OnInit {
       city: ['', Validators.required]
     })
   });
-
-    constructor(private fb:FormBuilder, private advertCreationService:AdvertCreationService) { }
+ 
+  constructor(private fb:FormBuilder, private advertCreationService:AdvertCreationService, private dialog:MatDialog) { }
 
   get address():FormGroup{
     return this.createAdvertForm.get("address") as FormGroup;
@@ -57,9 +60,32 @@ export class AdvertsCreationComponent implements OnInit {
 
   onSubmit(){
     this.advertCreationService.createAdvert(this.createAdvertForm.value).subscribe(
-      (res) => console.log(res),
-      (err) => console.log(err)
+      (res) => { 
+        this.showAdvertCreationResult(res);
+      }    
     );    
+  }
+
+  showAdvertCreationResult(result:AdvertCreationResult):void {
+    let registrationStatus : DialogData ;    
+    if (this.isAdvertCreationSuccessFull(result)) {
+      registrationStatus = {
+        dialogType :'success',
+        title:'Success',
+        hasCountdown:true,
+        message:result.data
+      }
+     } else {
+      registrationStatus = {
+        dialogType :'error',
+        title:'Failed',
+        message:result.data
+      }
+     } 
+    let dialogRef : MatDialogRef<DialogComponent> = this.openDialog(registrationStatus);
+    if (this.isAdvertCreationSuccessFull(result)) {
+      this.closeDialog(dialogRef, this.CLOSE_DIALOG_TIMEOUT);
+    }
   }
 
   onTypingZipCodeOrCityName(event: KeyboardEvent) : void {
@@ -134,4 +160,21 @@ export class AdvertsCreationComponent implements OnInit {
     }
   }
 
+  private isAdvertCreationSuccessFull(advertCreationResult:AdvertCreationResult): boolean {
+    return advertCreationResult.status === 200 ;
+  }
+
+  private openDialog(data:DialogData): MatDialogRef<DialogComponent>{
+    return this.dialog.open(DialogComponent, {
+      data: data,
+      height: '200px',
+      width: '550px'
+    });
+  }
+
+  private closeDialog(dialogRef:MatDialogRef<DialogComponent>, timeout:number){    
+    setTimeout(() => {
+      dialogRef.close();
+    }, timeout);    
+  }
 }
