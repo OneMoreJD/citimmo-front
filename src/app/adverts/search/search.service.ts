@@ -32,7 +32,7 @@ export class SearchService {
     const url = environment.domain + environment.urls.search;
     let params = new HttpParams()
       .set('transactionType', criteria.transactionType)
-      .set("locations", criteria.locations.toString()
+      .set('locations', criteria.locations.toString()
       );
 
     if (criteria.estateType && criteria.estateType?.length > 0) {

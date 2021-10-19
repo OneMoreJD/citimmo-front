@@ -17,7 +17,7 @@ export class AuthenticateService {
 
   constructor(private http: HttpClient ) { }
 
-  Login(loginDto: LoginDto):Observable<any> {
+  Login(loginDto: LoginDto): Observable<any> {
     return this.http.post<any>(this.url, loginDto).pipe(
       tap(userData => {
         sessionStorage.setItem('username', loginDto.username);
@@ -38,7 +38,7 @@ export class AuthenticateService {
     this.logger$.next(this.isLogger());
   }
 
-  isLogger():boolean{
+  isLogger(): boolean{
     return  (sessionStorage.getItem('username') != null  && sessionStorage.getItem('token') != null)? true : false;
   }
 }

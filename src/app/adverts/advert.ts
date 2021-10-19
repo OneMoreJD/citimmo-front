@@ -3,13 +3,29 @@ export interface Advert {
   title: string;
   description: string;
   price: number;
-  transactionType: string;
-  estateType: string;
-  nbRooms: number;
-  surfaceInt: number;
-  surfaceExt: number;
-  yearConstruction: number;
-  conditionType: string;
-  nbCarGarage: number;
+  rooms: number;
+  bedrooms: number;
+  surfaceIn: number;
+  surfaceOut: number;
+  publicationDate: Date;
+  contructionDate: Date;
+  nbCarInGarage: number;
+  conditionType: {
+    name: string,
+    frLabel: string
+  };
+  status: string;
+  transactionType:{
+    name: string,
+    frLabel: string
+  };
+  estateType: {
+    name: string,
+    frLabel: string
+  };
+  heatingType: {
+    name: string,
+    frLabel: string
+  };
   listPictures: Array<string>;
 }

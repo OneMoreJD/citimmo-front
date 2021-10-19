@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   public showClearPassword: boolean;
   public error: string | null;
 
-  constructor(private fb: FormBuilder, private authenticateService: AuthenticateService, private router:Router) { }
+  constructor(private fb: FormBuilder, private authenticateService: AuthenticateService, private router: Router) { }
 
   ngOnInit(): void {
   }
