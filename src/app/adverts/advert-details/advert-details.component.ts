@@ -26,10 +26,6 @@ export class AdvertDetailsComponent implements OnInit {
       'Cette magnifique maison Gronlandaise de 1930 est situé en plein centre de Bignolle avec un terrain de 800 m2 et une surface habitable de 145 m2................... ' +
       'Cette magnifique maison Gronlandaise de 1930 est situé en plein centre de Bignolle avec un terrain de 800 m2 et une surface habitable de 145 m2................... ' +
       'Cette magnifique maison Gronlandaise de 1930 est situé en plein centre de Bignolle avec un terrain de 800 m2 et une surface habitable de 145 m2................... ' +
-      'Cette magnifique maison Gronlandaise de 1930 est situé en plein centre de Bignolle avec un terrain de 800 m2 et une surface habitable de 145 m2................... ' +
-      'Cette magnifique maison Gronlandaise de 1930 est situé en plein centre de Bignolle avec un terrain de 800 m2 et une surface habitable de 145 m2................... ' +
-      'Cette magnifique maison Gronlandaise de 1930 est situé en plein centre de Bignolle avec un terrain de 800 m2 et une surface habitable de 145 m2................... ' +
-      'Cette magnifique maison Gronlandaise de 1930 est situé en plein centre de Bignolle avec un terrain de 800 m2 et une surface habitable de 145 m2................... ' +
       'Cette magnifique maison Gronlandaise de 1930 est situé en plein centre de Bignolle avec un terrain de 800 m2 et une surface habitable de 145 m2................... ',
     price: 155000,
     transactionType: 'Vente',
