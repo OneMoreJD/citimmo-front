@@ -26,18 +26,18 @@ export class AuthHttpInterceptor implements HttpInterceptor {
 
   private addCorsHeaders(request: HttpRequest<any>): HttpRequest<any> {
     return request.clone({
-      headers: request.headers.set("Access-Control-Allow-Origin", "*")
+      headers: request.headers.set('Access-Control-Allow-Origin', '*')
     });
   }
 
   private addToken(request: HttpRequest<any>): HttpRequest<any> {
     if (sessionStorage.getItem('username') && sessionStorage.getItem('token')) {
       return request.clone({
-        headers: request.headers.set("Authorization", sessionStorage.getItem('token'))
+        headers: request.headers.set('Authorization', sessionStorage.getItem('token'))
       });
     } else {
       return request;
     }
-    
+
   }
 }
