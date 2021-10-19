@@ -16,7 +16,7 @@ import { AdvertsModule } from './adverts/adverts.module';
 import { AuthHttpInterceptor } from './auth/auth-http.interceptor';
 import { HeaderModule } from './header/header.module';
 import { FileUploadComponent } from './fileUpload/file-upload.component.';
-
+import { AdvertsListComponent } from './adverts/adverts-list/adverts-list.component';
 
 
 @NgModule({
