@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { QuickSearchService } from '../../home/quick-search/quick-search.service';
 import { SearchService } from '../search/search.service';
+import { AuthenticateService } from '../../auth/authenticate.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-adverts-list',
@@ -13,46 +15,30 @@ export class AdvertsListComponent implements OnInit, OnDestroy {
 
   adverts: any[] = [];
   advertsSubscription: Subscription;
+  profile;
 
-  constructor(private qsService: QuickSearchService, private searchService: SearchService) {
+  constructor(private qsService: QuickSearchService, private searchService: SearchService, private authService: AuthenticateService, private router: Router) {
 
     this.adverts = this.qsService.adverts;
-    this.advertsSubscription = this.searchService.advertsChange.subscribe(data => this.adverts = data);
-
-    if (!environment.production) {
-      if (!this.adverts) {
-        this.adverts = [];
-        this.adverts.push({
-          title: 'tres bel appartement',
-          bedrooms: 3,
-          rooms: 5,
-          description: 'Très bel appartement\nA visiter absolument',
-          address: {
-            city: 'Paris'
-          },
-          price: 850000,
-          surfaceInt: 167
-        },
-        {
-          title: '3 pièces lumineux',
-          bedrooms: 1,
-          rooms: 3,
-          description: 'Très bel appartement\nA visiter absolument',
-          address: {
-            city: 'Paris'
-          },
-          price: 650000,
-          surfaceInt: 74
-        });
-      }
+    if (!this.adverts) {
+      this.adverts = [];
     }
+    this.advertsSubscription = this.searchService.advertsChange.subscribe(data => this.adverts = data);
   }
 
   ngOnInit(): void {
+    this.authService.logger$.subscribe(logger => {
+      if (logger) {
+        this.profile = this.authService.getCurrentProfile();
+      }
+    });
   }
 
   ngOnDestroy(): void {
     this.advertsSubscription.unsubscribe();
   }
 
+  test(advert) {
+    this.router.navigate(['/adverts/' + advert.id]);
+  }
 }
