@@ -68,4 +68,6 @@ mat-toolbar{
 
 .user-img {
   height: 50px;
+  max-width: 50px;
+  align-self: center;
 }

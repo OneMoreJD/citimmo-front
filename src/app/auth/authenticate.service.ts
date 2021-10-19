@@ -41,4 +41,8 @@ export class AuthenticateService {
   isLogger():boolean{
     return  (sessionStorage.getItem('username') != null  && sessionStorage.getItem('token') != null)? true : false;
   }
+
+  getUsername(): string {
+    return sessionStorage.getItem('username');
+  }
 }

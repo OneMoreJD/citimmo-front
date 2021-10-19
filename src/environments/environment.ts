@@ -12,6 +12,7 @@ export const environment = {
     createAdvert: '/adverts/create',
     register: '/register',
     login: '/login',
+    user: '/user',
     conditionTypeFilters: '/adverts/filters/conditiontype',
     transactionTypeFilters: '/adverts/filters/transactiontype',
     statusFilters: '/adverts/filters/status',
