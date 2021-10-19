@@ -18,7 +18,6 @@ import { ROUTES } from './app-routing.module';
 import {AuthHttpInterceptor} from './auth/auth-http.interceptor';
 import { HeaderModule } from './header/header.module';
 import { FileUploadComponent } from './fileUpload/file-upload.component.';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -37,8 +36,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     SharedModule,
     AuthModule,
     HttpClientModule,
-    HeaderModule,
-    MatProgressBarModule
+    HeaderModule    
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR'},
