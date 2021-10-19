@@ -27,6 +27,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCarouselModule } from '@ngbmodule/material-carousel';
 
 const materialModules = [
   MatDividerModule,
@@ -65,7 +66,8 @@ const materialModules = [
     ...materialModules
   ],
   exports: [
-    ...materialModules
+    ...materialModules,
+    MatCarouselModule.forRoot()
   ]
 })
 export class MaterialModule { }

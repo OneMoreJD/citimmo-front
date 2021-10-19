@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { QuickSearchService } from '../../home/quick-search/quick-search.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Options } from '@angular-slider/ngx-slider';
+import { SearchService } from './search.service';
+import { Criteria } from './criteria';
+import { Constants } from '../../shared/constants';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-search',
@@ -10,22 +14,10 @@ import { Options } from '@angular-slider/ngx-slider';
 })
 export class SearchComponent implements OnInit {
 
-  readonly PRIMARY_COLOR = '#3f51b5';
-  readonly ACCENT_COLOR = '#ff4081';
-  readonly MAX_INT_SURFACE = 200;
-  readonly MAX_EXT_SURFACE = 100;
-  readonly SLIDER_STEP = 10;
-
-
   locations = [];
 
   currentCriteria: any;
-  estateTypeList: string[] = [
-    'Maison',
-    'Appartement',
-    'Garage',
-    'Péniche'
-  ];
+  estateTypeList: any[];
 
   searchForm: FormGroup = new FormGroup({
     estateTypeControl: new FormControl(),
@@ -39,24 +31,27 @@ export class SearchComponent implements OnInit {
 
   maxRooms: number = 0;
 
-  minBudget: number = 0;
-  maxBudget: number = 1000000;
-  floorBudget: number = 0;
-  ceilBudget: number = 1000000;
-  stepBudget: number = 10000;
+  // budget variables
+  minBudget: number = Constants.MIN_BUY_BUDGET;
+  maxBudget: number = Constants.MAX_BUY_BUDGET;
+  floorBudget: number = Constants.MIN_BUY_BUDGET;
+  ceilBudget: number = Constants.MAX_BUY_BUDGET;
+  stepBudget: number = Constants.STEP_BUY_BUDGET;
   BudgetLabel: string = '';
 
-  minIntSurface: number = 0;
-  maxIntSurface: number = this.MAX_INT_SURFACE;
-  floorIntSurface: number = 0;
-  ceilIntSurface: number = this.MAX_INT_SURFACE;
-  stepIntSurface: number = this.SLIDER_STEP;
+  // inside surface variables
+  minIntSurface: number = Constants.MIN_INT_SURFACE;
+  maxIntSurface: number = Constants.MAX_INT_SURFACE;
+  floorIntSurface: number = Constants.MIN_INT_SURFACE;
+  ceilIntSurface: number = Constants.MAX_INT_SURFACE;
+  stepIntSurface: number = Constants.STEP_INT_SURFACE;
   intSurfaceLabel: string = '';
 
-  maxExtSurface: number = 0;
-  floorExtSurface: number = 0;
-  ceilExtSurface: number = this.MAX_EXT_SURFACE;
-  stepExtSurface: number = this.SLIDER_STEP;
+  // outside surface variables
+  maxExtSurface: number = Constants.MIN_EXT_SURFACE;
+  floorExtSurface: number = Constants.MIN_BUY_BUDGET;
+  ceilExtSurface: number = Constants.MAX_EXT_SURFACE;
+  stepExtSurface: number = Constants.STEP_EXT_SURFACE;
   extSurfaceLabel: string = '';
 
   insideSliderOptions: Options;
@@ -67,15 +62,30 @@ export class SearchComponent implements OnInit {
   collapseBudget: boolean;
   collapseOther: boolean;
 
-  constructor(private qsService: QuickSearchService) {
+  constructor(private qsService: QuickSearchService, private searchService: SearchService, private snackBar: MatSnackBar) {
+
+    this.currentCriteria = this.qsService.criteria;
+    if (this.currentCriteria.transaction === 'rent') {
+      this.minBudget = Constants.MIN_RENT_BUDGET;
+      this.maxBudget = Constants.MAX_RENT_BUDGET;
+      this.floorBudget = Constants.MIN_RENT_BUDGET;
+      this.ceilBudget = Constants.MAX_RENT_BUDGET;
+      this.stepBudget = Constants.STEP_RENT_BUDGET;
+    }
+    if (this.currentCriteria?.budget) {
+      this.maxBudget = Number(this.currentCriteria.budget);
+    }
+    if (this.currentCriteria?.locations) {
+      this.onLocationsChange(this.currentCriteria.locations);
+    }
 
     this.insideSliderOptions = {
       floor: this.floorIntSurface,
       ceil: this.ceilIntSurface,
       step: this.stepIntSurface,
       noSwitching: true,
-      getSelectionBarColor: () => {return this.PRIMARY_COLOR},
-      getPointerColor: () => {return this.PRIMARY_COLOR},
+      getSelectionBarColor: () => { return Constants.PRIMARY_COLOR },
+      getPointerColor: () => { return Constants.PRIMARY_COLOR },
       hideLimitLabels: true,
       hidePointerLabels: true
     };
@@ -85,8 +95,8 @@ export class SearchComponent implements OnInit {
       ceil: this.ceilExtSurface,
       step: this.stepExtSurface,
       showSelectionBar: true,
-      getSelectionBarColor: () => { return this.PRIMARY_COLOR },
-      getPointerColor: () => { return this.PRIMARY_COLOR },
+      getSelectionBarColor: () => { return Constants.PRIMARY_COLOR },
+      getPointerColor: () => { return Constants.PRIMARY_COLOR },
       hideLimitLabels: true,
       hidePointerLabels: true
     };
@@ -96,17 +106,17 @@ export class SearchComponent implements OnInit {
       ceil: this.ceilBudget,
       step: this.stepBudget,
       noSwitching: true,
-      getSelectionBarColor: () => {return this.PRIMARY_COLOR},
-      getPointerColor: () => {return this.PRIMARY_COLOR},
+      getSelectionBarColor: () => { return Constants.PRIMARY_COLOR },
+      getPointerColor: () => { return Constants.PRIMARY_COLOR },
       hideLimitLabels: true,
       hidePointerLabels: true
     };
-   }
+  }
 
   ngOnInit(): void {
-    this.currentCriteria = this.qsService.criteria;
-    console.log(this.currentCriteria);
-
+    this.searchService.getEstateTypes().subscribe(
+      data => this.estateTypeList = data
+    );
   }
 
   onLocationsChange(locations: string[]) {
@@ -118,14 +128,30 @@ export class SearchComponent implements OnInit {
     this.maxRooms = Math.max(...this.searchForm.controls['roomsControl'].value);
   }
 
-  test(event) {
-    console.log(event);
-  }
-
   onSearch() {
-    console.log(this.searchForm);
     this.collapseBudget = false;
     this.collapseOther = false;
     this.collapseSurface = false;
+
+    const criteria: Criteria = {
+      transactionType: this.currentCriteria.transaction,
+      estateType: this.searchForm.controls['estateTypeControl'].value,
+      locations: this.searchForm.controls['locationControl'].value,
+      rooms: this.searchForm.controls['roomsControl']?.value,
+      bedrooms: this.searchForm.controls['bedroomsControl']?.value,
+      intSurfaceMin: this.searchForm.controls['insideSurfaceControl']?.value[0],
+      intSurfaceMax: this.searchForm.controls['insideSurfaceControl']?.value[1],
+      extSurfaceMax: this.searchForm.controls['outsideSurfaceControl']?.value,
+      budgetMin: this.searchForm.controls['budgetControl']?.value[0],
+      budgetMax: this.searchForm.controls['budgetControl']?.value[1]
+    };
+
+    this.searchService.getAdverts(criteria).subscribe(
+      data => console.log(data),
+      err => {
+        console.log(err);
+        this.snackBar.open("Oups, il y a un problème...", "Fermer");
+      }
+    );
   }
 }

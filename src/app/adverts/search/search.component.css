@@ -19,3 +19,7 @@ app-location-control {
 mat-panel-title {
   align-items: center;
 }
+
+.select-container {
+  min-height: 100px;
+}

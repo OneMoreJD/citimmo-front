@@ -1,21 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { QuickSearchService } from '../../home/quick-search/quick-search.service';
+import { SearchService } from '../search/search.service';
 
 @Component({
   selector: 'app-adverts-list',
   templateUrl: './adverts-list.component.html',
   styleUrls: ['./adverts-list.component.css']
 })
-export class AdvertsListComponent implements OnInit {
+export class AdvertsListComponent implements OnInit, OnDestroy {
 
   adverts: any[] = [];
+  advertsSubscription: Subscription;
 
-  constructor(private qsService: QuickSearchService) {
+  constructor(private qsService: QuickSearchService, private searchService: SearchService) {
 
     this.adverts = this.qsService.adverts;
-    
-    if (!environment.production) {      
+
+    this.advertsSubscription = this.searchService.advertsChange.subscribe(data => this.adverts = data);
+
+    if (!environment.production) {
       if (!this.adverts) {
         this.adverts = [];
         this.adverts.push({
@@ -45,6 +50,10 @@ export class AdvertsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+    this.advertsSubscription.unsubscribe();
   }
 
 }
