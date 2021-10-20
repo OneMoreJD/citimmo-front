@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, Output, OnInit, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from 'src/app/dialog/dialog.component';
 import { DialogData } from 'src/app/dialog/dialog.model';
+import { FileUploadComponent } from 'src/app/fileUpload/file-upload.component.';
 import { AddressQueryResult, GetFilterResponse, ZipOrCityQueryResult, AdvertCreationResult } from './advert-creation-dto.model';
 import { AdvertCreationService } from './advert-creation.service';
 
@@ -43,6 +44,7 @@ export class AdvertsCreationComponent implements OnInit {
       city: ['', Validators.required]
     })
   });
+
  
   constructor(private fb:FormBuilder, private advertCreationService:AdvertCreationService, private dialog:MatDialog) { }
 
