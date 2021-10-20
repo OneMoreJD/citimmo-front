@@ -10,6 +10,7 @@ import { RoomsPipe } from './adverts-list/rooms.pipe';
 import { IntSurfaceSliderPipe } from './search/int-surface-slider.pipe';
 import { ExtSurfaceSliderPipe } from './search/ext-surface-slider.pipe';
 import { AdvertsCreationComponent } from './adverts-creation/adverts-creation.component';
+import { AdvertsUpdateComponent } from './adverts-update/adverts-update.component';
 
 @NgModule({
   declarations: [
@@ -17,10 +18,12 @@ import { AdvertsCreationComponent } from './adverts-creation/adverts-creation.co
     AdvertsListComponent,
     AdvertDetailsComponent,
     AdvertsCreationComponent,
+    AdvertsUpdateComponent,
     SearchComponent,
     RoomsPipe,
     IntSurfaceSliderPipe,
-    ExtSurfaceSliderPipe
+    ExtSurfaceSliderPipe,
+    AdvertsUpdateComponent
   ],
   imports: [
     CommonModule,
