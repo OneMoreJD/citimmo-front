@@ -5,6 +5,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AdvertsComponent } from './adverts/adverts.component';
 import {LogoutComponent} from './auth/logout/logout.component';
+import { FileUploadComponent} from './fileUpload/file-upload.component.';
 import { AdvertsCreationComponent } from './adverts/adverts-creation/adverts-creation.component';
 import {AdvertDetailsComponent} from './adverts/advert-details/advert-details.component';
 import { UserComponent } from './user/user.component';
@@ -17,6 +18,7 @@ export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent},
   { path: 'user', component: UserComponent},
+  { path: 'uploadFile', component: FileUploadComponent },
   { path: '', component: HomeComponent }
 ];
 

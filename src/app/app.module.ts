@@ -16,12 +16,13 @@ import { AdvertsModule } from './adverts/adverts.module';
 import { AuthHttpInterceptor } from './auth/auth-http.interceptor';
 import { HeaderModule } from './header/header.module';
 import { UserComponent } from './user/user.component';
-
+import { FileUploadComponent } from './fileUpload/file-upload.component.';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent
+    UserComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,

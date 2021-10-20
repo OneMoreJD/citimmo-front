@@ -20,6 +20,12 @@
   text-align: right;
 }
 
+.error {
+  color: whitesmoke;
+  background-color: #F44336;
+  font-weight: 500;
+}
+
 @media screen and (max-width: 600px) {
   #advert {
     display: flex;
