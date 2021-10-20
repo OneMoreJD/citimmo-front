@@ -1,3 +1,5 @@
+import {Address} from './address';
+
 export interface Advert {
   id: number;
   title: string;
@@ -27,5 +29,6 @@ export interface Advert {
     name: string,
     frLabel: string
   };
-  listPictures: Array<string>;
+  address: Address;
+  pictures: string[];
 }
