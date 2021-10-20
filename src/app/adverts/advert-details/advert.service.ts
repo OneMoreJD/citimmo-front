@@ -21,7 +21,7 @@ export class AdvertService {
         }
       }),
       tap( advert => {
-            advert.pictures = advert.pictures.map( p => p.source);
+            advert.picturesList = advert.pictures.map( p => p.source);
         }
       )
 

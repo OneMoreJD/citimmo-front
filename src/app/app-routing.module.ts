@@ -9,12 +9,14 @@ import { FileUploadComponent} from './fileUpload/file-upload.component.';
 import { AdvertsCreationComponent } from './adverts/adverts-creation/adverts-creation.component';
 import {AdvertDetailsComponent} from './adverts/advert-details/advert-details.component';
 import { UserComponent } from './user/user.component';
+import {AdvertsUpdateComponent} from './adverts/adverts-update/adverts-update.component';
 
 export const ROUTES: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'adverts', component: AdvertsComponent},
   { path: 'adverts/create', component: AdvertsCreationComponent},
   { path: 'adverts/:advertId', component: AdvertDetailsComponent},
+  { path: 'adverts/update/:advertId', component: AdvertsUpdateComponent},
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent},
   { path: 'user', component: UserComponent},
