@@ -17,14 +17,6 @@ export class UploadFileService {
             reportProgress: true,
             responseType: 'text',
         });
-
-        newRequest = newRequest.clone({
-          setHeaders: {
-            Authorization: sessionStorage.getItem('token')
-          }
-        });
-
-          console.log("uploadFileService : " + newRequest.headers.get('Authorization'))
         return this.https.request(newRequest);
   }
 

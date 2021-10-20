@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 import { UploadFileService } from './upload-file.service';
 import { Observable } from 'RxJs';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.css']
 })
@@ -15,6 +15,9 @@ export class FileUploadComponent implements OnInit {
     pathselectedFiles: string;
     progressInfos = [];
     message ='';
+
+    @Output() 
+    uploadedPictures = new EventEmitter<string[]>();
 
     //fileInfos: Observable<any>;
     fileInfos = [];
