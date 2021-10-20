@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Advert} from '../advert';
 import {Router} from '@angular/router';
-import {AdvertService} from './advert.service';
+import {AdvertDetailsService} from './advert-details.service';
 import {Observable, pipe, Subscription} from 'rxjs';
 import {map} from 'rxjs/operators';
 
@@ -19,7 +19,7 @@ export class AdvertDetailsComponent implements OnInit {
   //     'assets/images/adverts/demo/Epiais-les-Louvres_95_ferme_du_Manoir_rue_du_Manoir_2.jpg', 'assets/images/adverts/demo/1280px-Flag_of_Groland.png',
   //     'assets/images/adverts/demo/demo.png', 'assets/images/adverts/demo/Groland_la_fete.gif']
 
-  constructor(private router: Router, private advertService: AdvertService) { }
+  constructor(private router: Router, private advertService: AdvertDetailsService) { }
 
   ngOnInit(): void {
     this.getAdvertDetails(this.router.url);
