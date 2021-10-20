@@ -1,18 +1,18 @@
 #advert-creation {
-    display: flex;
     margin: 2% 5% 5% 5%;
-    justify-content: left;
-    align-items: stretch;
     flex-direction: column;
+}
+
+#creationForm {
+    width: 100%;
+}
+
+#fileuploader{
+    margin-bottom: 25px;
 }
 
 h2 {
     text-align: center;
-}
-
-.advert-creation-form {
-    margin: 0 10 10 10;
-    width: 100%;
 }
 
 mat-form-field {
@@ -29,4 +29,20 @@ mat-radio-button {
 
 button {
     margin: 10px 0 0 10px;
+}
+
+mat-form-field.small {
+    width: 33%;
+}
+
+mat-form-field.medium {
+    width: 50%;
+}
+
+mat-form-field.large {
+    width: 80%;
+}
+
+mat-form-field.smallest {
+    width: 20%;
 }

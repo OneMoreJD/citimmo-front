@@ -1,14 +1,20 @@
 <div id="advert" *ngIf="advertDetails">
-  <mat-grid-list [gridCols]="{xs: 1, sm: 1, md: 2, lg: 2, xl: 2}" rowHeight="4em">
+  <mat-grid-list [gridCols]="{xs: 1, sm: 1, md: 2, lg: 2, xl: 2}" rowHeight="3em">
     <mat-grid-tile class="grid-cell-left">
       <mat-card-title> {{ advertDetails.title }} </mat-card-title>
     </mat-grid-tile>
     <mat-grid-tile class="grid-cell-right">
       <mat-card-title> {{ advertDetails.price | currency:'EUR':'symbol':'1.0-2' }} </mat-card-title>
     </mat-grid-tile>
+    <mat-grid-tile class="grid-cell-left">
+      <mat-card-title> Localisation : {{ advertDetails.address.zipCode }} </mat-card-title>
+    </mat-grid-tile>
+    <mat-grid-tile class="grid-cell-right">
+      <mat-card-title> {{ advertDetails.address.city }} </mat-card-title>
+    </mat-grid-tile>
   </mat-grid-list>
   <mat-card>
-    <app-carousel-pictures [slidesList]="advertDetails.listPictures"></app-carousel-pictures>
+    <app-carousel-pictures [slidesList]="advertDetails.pictures"></app-carousel-pictures>
   </mat-card>
   <br>
   <mat-card>

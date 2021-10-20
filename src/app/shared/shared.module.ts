@@ -7,13 +7,15 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { GridColsDirective } from './directives/grid-cols.directive';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { CarouselPicturesComponent } from './components/carousel-pictures/carousel-pictures.component';
+import { FileUploadComponent } from '../fileUpload/file-upload.component.';
 
 @NgModule({
   declarations: [
     LocationControlComponent,
     DialogComponent,
     GridColsDirective,
-    CarouselPicturesComponent
+    CarouselPicturesComponent,
+    FileUploadComponent
   ],
   imports: [
     FormsModule,
@@ -30,7 +32,8 @@ import { CarouselPicturesComponent } from './components/carousel-pictures/carous
     DialogComponent,
     GridColsDirective,
     NgxSliderModule,
-    CarouselPicturesComponent
+    CarouselPicturesComponent,
+    FileUploadComponent
   ]
 })
 export class SharedModule { }
