@@ -30,7 +30,7 @@
               </div>
             </a>
             <div class="flex row user-btns-container">
-              <a routerLink="/adverts/create"><button mat-flat-button color="primary">
+              <a routerLink="/adverts/create" *ngIf="profile == 'REAL_ESTATE_AGENT'"><button mat-flat-button color="primary">
                 <mat-icon>add</mat-icon>
                  annonce</button></a>
               <a routerLink="/logout"><button mat-flat-button color="warn" id="logout-btn">
