@@ -62,11 +62,29 @@ mat-toolbar{
 }
 
 .btn-container {
-  margin: 15px;
+  margin: 0 30px;
 }
 
 .user-img {
   height: 50px;
   max-width: 50px;
   align-self: center;
+}
+
+.user-container {
+  margin: 15px;
+  justify-content: space-between;
+}
+
+.user-btns-container {
+  justify-content: space-evenly;
+}
+
+.name {
+  align-self: center;
+  margin-left: 20px;
+}
+
+#logout-btn {
+  margin-left: 20px;
 }
