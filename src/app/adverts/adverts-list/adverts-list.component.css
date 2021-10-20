@@ -36,3 +36,7 @@ button {
   margin: 30px;
   text-align: center;
 }
+
+.details-container:hover {
+  cursor: pointer;
+}

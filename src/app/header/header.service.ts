@@ -8,6 +8,8 @@ import { environment } from 'src/environments/environment';
 })
 export class HeaderService {
 
+  currentUser: any;
+
   constructor(private http: HttpClient) { }
 
   getUser(username: string) {
@@ -15,8 +17,12 @@ export class HeaderService {
     const params = new HttpParams().set('username', username);
     return this.http.get(url, { params })
       .pipe(map((data: any) => {
-        console.log(data);
-        return { firstName: data.firstName, lastName: data.lastName };
+        this.currentUser = {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email
+        };
+        return this.currentUser;
       }));
   }
 }

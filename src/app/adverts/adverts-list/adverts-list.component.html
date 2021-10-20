@@ -2,7 +2,7 @@
   <ng-container *ngIf="adverts.length > 0; else elseTemplate">
     <mat-card *ngFor="let adv of adverts">
       <div class="flex col container">
-        <div class="flex row wrap">
+        <div class="flex row wrap details-container" (click)="test(adv)">
           <img src="https://via.placeholder.com/200x150.png">
           <div class="flex col wrap card-content">
             <mat-card-title class="font-primary">{{adv.title}}</mat-card-title>
@@ -14,7 +14,7 @@
               </div>
           </div>
         </div>
-        <button mat-raised-button color="accent" [disabled]="false" aria-label="Postuler">Postuler</button>
+        <button mat-raised-button color="accent" [disabled]="profile!='USER'" aria-label="Postuler">Postuler</button>
       </div>
     </mat-card>
   </ng-container>

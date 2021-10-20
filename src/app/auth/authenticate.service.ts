@@ -15,7 +15,9 @@ export class AuthenticateService {
 
   logger$ = new BehaviorSubject(false);
 
-  constructor(private http: HttpClient ) { }
+  constructor(private http: HttpClient ) {
+    this.logger$.next(this.isLogger());
+  }
 
   Login(loginDto: LoginDto): Observable<any> {
     return this.http.post<any>(this.url, loginDto).pipe(
@@ -28,7 +30,6 @@ export class AuthenticateService {
         this.logger$.next(this.isLogger());
       })
     );
-
   }
 
   logout(): void {
@@ -44,5 +45,9 @@ export class AuthenticateService {
 
   getUsername(): string {
     return sessionStorage.getItem('username');
+  }
+
+  getProfile(): string {
+    return sessionStorage.getItem('profile');
   }
 }
