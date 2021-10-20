@@ -14,7 +14,6 @@ export class AuthenticateService {
   private url: string = environment.domain + environment.urls.login;
 
   logger$ = new BehaviorSubject(false);
-  profile: string;
 
   constructor(private http: HttpClient ) {
     this.logger$.next(this.isLogger());
@@ -26,8 +25,6 @@ export class AuthenticateService {
         sessionStorage.setItem('username', loginDto.username);
         const tokenStr = 'Bearer ' + userData.token;
         sessionStorage.setItem('token', tokenStr);
-        // @ts-ignore
-        this.profile = jwt_decode(userData.token).profile;
         // @ts-ignore
         sessionStorage.setItem('profile', jwt_decode(userData.token).profile);
         this.logger$.next(this.isLogger());
@@ -48,10 +45,6 @@ export class AuthenticateService {
 
   getUsername(): string {
     return sessionStorage.getItem('username');
-  }
-
-  getCurrentProfile(): string {
-    return this.profile;
   }
 
   getProfile(): string {

@@ -29,7 +29,7 @@ export class AdvertsListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.authService.logger$.subscribe(logger => {
       if (logger) {
-        this.profile = this.authService.getCurrentProfile();
+        this.profile = this.authService.getProfile();
       }
     });
   }
