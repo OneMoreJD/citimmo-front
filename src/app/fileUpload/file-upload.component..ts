@@ -4,7 +4,7 @@ import { UploadFileService } from './upload-file.service';
 import { Observable } from 'RxJs';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.css']
 })
