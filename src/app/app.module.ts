@@ -16,7 +16,6 @@ import { AdvertsModule } from './adverts/adverts.module';
 import { AuthHttpInterceptor } from './auth/auth-http.interceptor';
 import { HeaderModule } from './header/header.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,

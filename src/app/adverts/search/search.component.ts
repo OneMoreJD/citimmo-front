@@ -65,6 +65,11 @@ export class SearchComponent implements OnInit {
   constructor(private qsService: QuickSearchService, private searchService: SearchService, private snackBar: MatSnackBar) {
 
     this.currentCriteria = this.qsService.criteria;
+    if (!this.currentCriteria?.transaction) {
+      this.currentCriteria = {
+        transaction: 'buy'
+      }
+    }
     if (this.currentCriteria.transaction === 'rent') {
       this.minBudget = Constants.MIN_RENT_BUDGET;
       this.maxBudget = Constants.MAX_RENT_BUDGET;
