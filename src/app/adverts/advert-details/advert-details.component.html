@@ -1,5 +1,8 @@
 <div id="advert" *ngIf="advertDetails">
-  <mat-grid-list [gridCols]="{xs: 1, sm: 1, md: 2, lg: 2, xl: 2}" rowHeight="3em">
+  <div class="button-modify-advert" *ngIf="profile=='REAL_ESTATE_AGENT'">
+    <button mat-flat-button color="primary" (click)="modifyAdvert(advertDetails.id)">Modifier l'annonce</button>
+  </div>
+  <mat-grid-list [gridCols]="{xs: 1, sm: 1, md: 2, lg: 2, xl: 2}" rowHeight="4em">
     <mat-grid-tile class="grid-cell-left">
       <mat-card-title> {{ advertDetails.title }} </mat-card-title>
     </mat-grid-tile>
