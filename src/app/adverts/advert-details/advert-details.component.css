@@ -20,6 +20,11 @@
   text-align: right;
 }
 
+.button-modify-advert {
+  align-items: flex-end;
+  flex-direction: row;
+}
+
 .error {
   color: whitesmoke;
   background-color: #F44336;

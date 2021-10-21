@@ -4,7 +4,8 @@
     <mat-card *ngFor="let adv of adverts" [ngClass]="{'card-applied':adv.status.id == 2}">
       <div class="flex col container">
         <div class="flex row wrap details-container" (click)="goToDetails(adv)">
-          <img src="https://via.placeholder.com/200x150.png">
+          <img *ngIf="adv.pictures[0]" [src]="adv.pictures[0].source">
+          <img *ngIf="!adv.pictures[0]" src="https://via.placeholder.com/200x150.png">
           <div class="flex col wrap card-content">
             <mat-card-title class="font-primary">{{adv.title}}</mat-card-title>
             <mat-card-subtitle class="font-accent">{{adv.price | currency:'EUR':'':'1.0-0':'fr-FR'}}€</mat-card-subtitle>
