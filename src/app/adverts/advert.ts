@@ -1,4 +1,5 @@
 import {Address} from './address';
+import {Picture} from './picture';
 
 export interface Advert {
   id: number;
@@ -17,7 +18,7 @@ export interface Advert {
     frLabel: string
   };
   status: string;
-  transactionType:{
+  transactionType: {
     name: string,
     frLabel: string
   };
@@ -30,5 +31,6 @@ export interface Advert {
     frLabel: string
   };
   address: Address;
-  pictures: string[];
+  pictures: Picture[];
+  picturesList: string[];
 }

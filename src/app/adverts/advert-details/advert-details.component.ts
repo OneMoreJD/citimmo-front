@@ -25,7 +25,6 @@ export class AdvertDetailsComponent implements OnInit {
     this.getAdvertDetails(this.router.url);
   }
 
-  // tslint:disable-next-line:typedef
   getAdvertDetails(href: string) {
     return this.advertService.getAdvert(href).subscribe(
       (data) => { this.advertDetails = data; console.log(data); },
