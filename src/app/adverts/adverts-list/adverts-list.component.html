@@ -1,8 +1,9 @@
 <div  class="flex row wrap list-container space-evenly">
+
   <ng-container *ngIf="adverts.length > 0; else elseTemplate">
-    <mat-card *ngFor="let adv of adverts">
+    <mat-card *ngFor="let adv of adverts" [ngClass]="{'card-applied':adv.status.id == 2}">
       <div class="flex col container">
-        <div class="flex row wrap details-container" (click)="test(adv)">
+        <div class="flex row wrap details-container" (click)="goToDetails(adv)">
           <img src="https://via.placeholder.com/200x150.png">
           <div class="flex col wrap card-content">
             <mat-card-title class="font-primary">{{adv.title}}</mat-card-title>
@@ -14,7 +15,11 @@
               </div>
           </div>
         </div>
-        <button mat-raised-button color="accent" [disabled]="profile!='USER'" aria-label="Postuler">Postuler</button>
+        <div class="flex row space-between">
+          <mat-label *ngIf="adv.status.id == 2" style="align-self: center;" class="font-accent"><mat-icon>report_problem</mat-icon> Quelqu'un a postulé à cette annonce</mat-label>
+          <mat-label *ngIf="adv.status.id != 2" style="align-self: center;"></mat-label>
+          <button mat-raised-button color="accent" [disabled]="profile!='USER'" aria-label="Postuler" (click)="apply(adv)">Postuler</button>
+        </div>
       </div>
     </mat-card>
   </ng-container>

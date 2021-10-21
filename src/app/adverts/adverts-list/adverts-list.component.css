@@ -7,6 +7,10 @@ mat-card {
   margin: 12px;
 }
 
+.card-applied {
+  border: 3px solid #ff4081;
+}
+
 .container {
   justify-content: space-between;
   height: 100%;

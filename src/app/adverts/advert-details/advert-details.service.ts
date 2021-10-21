@@ -8,7 +8,7 @@ import {tap} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class AdvertService {
+export class AdvertDetailsService {
 
   constructor(private http: HttpClient) { }
 

@@ -18,6 +18,7 @@ export class NavbarComponent {
 
   logger:boolean;
   name: string;
+  profile: string;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
@@ -32,8 +33,8 @@ export class NavbarComponent {
     this.authenticateService.logger$.subscribe(logger => {
       this.logger = logger;
       if (logger) {
+        this.profile = this.authenticateService.getProfile();
         this.headerService.getUser(this.authenticateService.getUsername()).subscribe(data => {
-          console.log(data);
           this.name = data.firstName + ' ' + data.lastName;
         });
       }

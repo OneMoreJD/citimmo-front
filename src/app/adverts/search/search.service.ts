@@ -12,6 +12,7 @@ import { Criteria } from './criteria';
 export class SearchService {
   adverts: any[];
   advertsChange: Subject<any[]> = new Subject<any[]>();
+  criteria;
 
   constructor(private http: HttpClient) { }
 
@@ -29,6 +30,7 @@ export class SearchService {
   }
 
   getAdverts(criteria: Criteria): Observable<any> {
+    this.criteria = criteria;
     const url = environment.domain + environment.urls.search;
     let params = new HttpParams()
       .set('transactionType', criteria.transactionType)
