@@ -21,8 +21,8 @@
 }
 
 .button-modify-advert {
-  align-items: flex-end;
-  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .error {
