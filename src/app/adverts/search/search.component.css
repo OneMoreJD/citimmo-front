@@ -1,0 +1,25 @@
+form {
+  margin: 20px 15vw;
+}
+mat-accordion {
+  width: 20vw;
+  margin: .25em 0;
+}
+ngx-slider {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+app-location-control {
+  width: 25vw;
+}
+
+#search-button {
+  align-self: center;
+}
+mat-panel-title {
+  align-items: center;
+}
+
+.select-container {
+  min-height: 100px;
+}

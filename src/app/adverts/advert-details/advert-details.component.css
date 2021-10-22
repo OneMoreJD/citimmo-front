@@ -1,0 +1,43 @@
+#advert {
+  display: flex;
+  margin: 5% 15% 5% 15%;
+  justify-content: left;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.grid-cell-left ::ng-deep .mat-figure {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  text-align: left;
+}
+
+.grid-cell-right ::ng-deep .mat-figure {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  text-align: right;
+}
+
+.button-modify-advert {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.error {
+  color: whitesmoke;
+  background-color: #F44336;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 600px) {
+  #advert {
+    display: flex;
+    margin: 1% 1% 1% 1%;
+    justify-content: left;
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+

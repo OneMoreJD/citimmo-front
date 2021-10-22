@@ -1,0 +1,47 @@
+<mat-toolbar class="mat-toolbar">
+
+  <div fxFlex fxLayout>
+    <div fxHide.xs class="div02">
+      <img src="../assets/images/headerLogo.jpg" alt="headerLogo" class="headerLogo Cursor" routerLink="/">
+    </div>
+
+    <div fxHide.gt-xs style="background-Image: url('assets/images/headerLogo.jpg')"
+      class="Cursor background_NavBar div02">
+      <button fxFlex fxLayout fxLayoutAlign="right" mat-icon-button class="colorMatIcon" (click)="onToggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <div style="background-Image: url('assets/images/headerBandeau.jpg')" class="background_NavBar div01">
+    </div>
+
+    <div fxFlex fxLayout fxLayoutAlign="end center" fxHide.xs fxLayoutGap="20px" class="btn-container">
+
+      <ng-container *ngIf="!logger; else elseTemplate">
+          <a routerLink="/login"><button mat-flat-button color="primary">Login</button></a>
+          <a routerLink="/register"><button mat-flat-button color="accent">Register</button></a>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <div class="flex col">
+            <a routerLink="/user" class="font-primary">
+              <div class="flex row user-container">
+                <img class="user-img" src="assets/images/user.png">
+                <mat-label class="name">{{ name }}</mat-label>
+              </div>
+            </a>
+            <div class="flex row user-btns-container">
+              <a routerLink="/adverts/create" *ngIf="profile == 'REAL_ESTATE_AGENT'"><button mat-flat-button color="primary">
+                <mat-icon>add</mat-icon>
+                 annonce</button></a>
+              <a routerLink="/logout"><button mat-flat-button color="warn" id="logout-btn">
+                Logout
+              </button></a>
+            </div>
+          </div>
+        </ng-template>
+    </div>
+
+  </div>
+
+
+</mat-toolbar>

@@ -1,0 +1,40 @@
+<div id="login">
+  <fieldset>
+    <h2 class="login-title">Login</h2>
+    <form  (ngSubmit)="loginForm.valid && onSubmit()" [formGroup]="loginForm">
+      <table class="login-form">
+        <tr>
+          <td>
+            <mat-form-field appearance="fill">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="username" required name="username" id="username">
+            </mat-form-field>
+          </td>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field appearance="fill">
+              <mat-label>Password</mat-label>
+              <input matInput [type]="showClearPassword ? 'text' : 'password'" formControlName="password" required name="password" id="password">
+              <mat-icon *ngIf="!showClearPassword" matSuffix class="eye-icon" (click)="toggleShowClearPassword()">visibility</mat-icon>
+              <mat-icon *ngIf="showClearPassword" matSuffix class="eye-icon" (click)="toggleShowClearPassword()">visibility_off</mat-icon>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-card *ngIf="error" class="error"> {{ error }} </mat-card>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="submit" mat-raised-button [disabled]="loginForm.invalid" color="primary">Login</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <h2 class="login-title">Don't have an account ?  <a [routerLink]="['/register']">Sign Up</a></h2>
+  </fieldset>
+</div>

@@ -1,0 +1,151 @@
+<div id="advert-creation">
+    <h2 class="advert-creation-title">New Advert</h2>
+    <mat-card fxLayout="row" fxLayoutGap="10px">
+            <form id="creationForm" (ngSubmit)="createAdvertForm.valid && onSubmit()" [formGroup]="createAdvertForm">
+                <div fxLayout="column" style="width: 100%;">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Title</mat-label>
+                            <input matInput type="text" formControlName="title" required name="title" id="title">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Description</mat-label>
+                            <textarea matInput formControlName="description" required name="description" id="description"></textarea>
+                        </mat-form-field>
+<!--                    <div id="fileuploader">-->
+<!--                        <app-file-upload></app-file-upload>-->
+<!--                    </div>-->
+                </div>
+                <div fxLayout="column">
+                    <div fxLayout="row" fxLayoutGap="16px">
+                        <mat-form-field appearance="fill" class="small">
+                            <mat-label>Type of operation </mat-label>
+                            <mat-select formControlName="transactionType" id="transactionType" name="transactionType" required>
+                                <ng-container *ngFor="let type of transactionTypeList | keyvalue">
+                                    <mat-option value="{{type.value}}">{{ type.value }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="small">
+                            <mat-label>Estate Type</mat-label>
+                            <mat-select formControlName="estateType" id="estateType" name="estateType" required>
+                                <ng-container *ngFor="let type of estateTypeList | keyvalue">
+                                    <mat-option value="{{type.value}}">{{ type.value }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="small">
+                            <mat-label>Price</mat-label>
+                            <input matInput type="number" min="1" step="10" formControlName="price" required name="price" id="price" placeholder="100000">
+                            <span matSuffix>&euro;</span>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="column">
+                    <div fxLayout="row" fxLayoutGap="16px">
+                        <mat-form-field appearance="fill" class="medium" >
+                            <mat-label>Number of rooms</mat-label>
+                            <input matInput type="number" min="1" formControlName="rooms" required name="rooms" id="rooms" placeholder="1">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill"class="medium" >
+                            <mat-label>Number of bedrooms</mat-label>
+                            <input matInput type="number" value="0" min="0" formControlName="bedrooms" required name="bedrooms" id="bedrooms" placeholder="0">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="column">
+                    <div fxLayout="row" fxLayoutGap="16px">
+                        <mat-form-field appearance="fill" class="medium">
+                            <mat-label>Indoor surface</mat-label>
+                            <input matInput min="10" type="number" formControlName="indoorSurface" required name="indoorSurface" id="indoorSurface" placeholder="10">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="medium">
+                            <mat-label>Outdoor surface</mat-label>
+                            <input matInput type="number" formControlName="outdoorSurface" min="0" required name="outdoorSurface" id="outdoorSurface" placeholder="0">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="column">
+                    <div fxLayout="row" fxLayoutGap="16px">
+                        <mat-form-field appearance="fill" class="medium">
+                            <mat-label>Number of parkings</mat-label>
+                            <input matInput type="number" formControlName="parkingQuantity" min="0" required name="parkingQuantity" id="parkingQuantity" placeholder="0">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="medium">
+                            <mat-label>Heating Type</mat-label>
+                            <mat-select formControlName="heatingType" id="heatingType" name="heatingType" required>
+                                <ng-container *ngFor="let type of heatingTypeList | keyvalue">
+                                    <mat-option value="{{type.value}}">{{ type.value }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="column">
+                    <div fxLayout="row" fxLayoutGap="16px">
+                        <mat-form-field appearance="fill" class="medium">
+                            <mat-label>Construction Date</mat-label>
+                            <input matInput (click)="constructionDate.open()" [matDatepicker]="constructionDate" formControlName="constructionDate" required name="constructionDate" id="constructionDate">
+                            <mat-datepicker-toggle matSuffix [for]="constructionDate">
+                                <mat-datepicker [startAt]="baseConstructionDate" #constructionDate></mat-datepicker>
+                            </mat-datepicker-toggle>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="medium">
+                            <mat-label>Condition</mat-label>
+                            <mat-select formControlName="conditionType" id="conditionType" name="conditionType" required>
+                                <ng-container *ngFor="let type of conditionTypeList | keyvalue">
+                                    <mat-option value="{{type.value}}">{{ type.value }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <mat-card formGroupName="address">
+                    <h3>Address</h3>
+                    <div fxLayout="column">
+                        <div fxLayout="row" fxLayoutGap="16px">
+                            <mat-form-field appearance="fill" class="medium">
+                                <mat-label>City</mat-label>
+                                <input matInput #city (keyup)="onTypingZipCodeOrCityName($event)" type="text" formControlName="city" required name="city" id="city" placeholder="Paris" [matAutocomplete]="cityGroup">
+                                <mat-autocomplete #cityGroup="matAutocomplete" (optionSelected)="onZipcodeOrCitySuggestionSelect($event.option.value, false)" >
+                                    <mat-option *ngFor="let city of cityZipCodeSuggestionList | keyvalue" [value]="city.value" >
+                                    {{city.value}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" class="medium">
+                                <mat-label>Zip Code</mat-label>
+                                <input #zipcode (keyup)="onTypingZipCodeOrCityName($event)" matInput type="text" formControlName="zipcode" required name="zipcode" id="zipcode" [matAutocomplete]="zipCodeGroup">
+                                <mat-autocomplete #zipCodeGroup="matAutocomplete" (optionSelected)="onZipcodeOrCitySuggestionSelect($event.option.value, true)" >
+                                    <mat-option *ngFor="let zip of cityZipCodeSuggestionList | keyvalue" [value]="zip.key">
+                                    {{zip.key}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div fxLayout="column">
+                        <div fxLayout="row" fxLayoutGap="16px">
+                            <mat-form-field appearance="fill" class="large">
+                                <mat-label>Street Name</mat-label>
+                                <input #street (keyup)="onTypingAddress($event)" matInput type="text" formControlName="street" required name="street" id="street" placeholder="boulevard des italiens" [matAutocomplete]="streetGroup">
+                                <mat-autocomplete #streetGroup="matAutocomplete">
+                                    <mat-option *ngFor="let street of addressSuggestionList" [value]="street">
+                                    {{street}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" class="smallest">
+                                <mat-label>Number</mat-label>
+                                <input matInput type="text" min="1" formControlName="atNumber" required name="atNumber" id="atNumber" placeholder="1">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </mat-card>
+                <div fxLayoutAlign="end end">
+                    <button type="submit" mat-raised-button [disabled]="createAdvertForm.invalid" color="primary">Submit</button>
+                    <button type="reset" mat-raised-button>Reset</button>
+                </div>
+            </form>
+
+    </mat-card>
+</div>

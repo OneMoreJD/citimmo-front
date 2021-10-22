@@ -1,0 +1,49 @@
+#advert-creation {
+    margin: 2% 5% 5% 5%;
+    flex-direction: column;
+}
+
+#creationForm {
+    width: 100%;
+}
+
+#fileuploader{
+    margin-bottom: 25px;
+}
+
+h2 {
+  text-align: center;
+  color: #3f51b5;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+mat-radio-button {
+    margin: 0 12px;
+}
+
+.transaction-type{
+    width: 20%;
+}
+
+button {
+    margin: 10px 0 0 10px;
+}
+
+mat-form-field.small {
+    width: 33%;
+}
+
+mat-form-field.medium {
+    width: 50%;
+}
+
+mat-form-field.large {
+    width: 80%;
+}
+
+mat-form-field.smallest {
+    width: 20%;
+}

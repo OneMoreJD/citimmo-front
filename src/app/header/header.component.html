@@ -1,0 +1,15 @@
+    <mat-sidenav-container class="mat-sidenav-container" fullscreen>
+
+      <mat-sidenav #sidenav role="navigation">
+        <app-side-nav (sidenavClose)="sidenav.close()"></app-side-nav>
+      </mat-sidenav>
+
+      <mat-sidenav-content fxLayout="column">
+        <app-navbar (sidenavToggle)="sidenav.toggle()"></app-navbar>
+        <main>
+          <router-outlet></router-outlet>
+        </main>
+        <app-footer fxFlexOffset="auto"></app-footer>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+

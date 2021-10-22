@@ -10,8 +10,6 @@
                             <input matInput type="text" formControlName="firstname" required name="firstname" id="firstname">
                         </mat-form-field>
                     </td>
-                    <td>                    
-                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -20,17 +18,20 @@
                             <input matInput type="text" formControlName="lastname" required name="lastname" id="lastname">
                         </mat-form-field>
                     </td>
-                    <td>                    
-                    </td>
                 </tr>
+                <ng-container *ngIf="emailAlreadyRegistered">
+                    <tr>
+                        <td>
+                            <mat-card class="error">Sorry, an account with that email is already registered.</mat-card>
+                        </td>
+                    </tr>
+                </ng-container>
                 <tr>
                     <td>
                         <mat-form-field appearance="fill">
                             <mat-label>Email</mat-label>
                             <input matInput type="email" formControlName="email" required name="email" id="email">
                         </mat-form-field>
-                    </td>
-                    <td>                    
                     </td>
                 </tr>
                 <tr>
@@ -40,25 +41,22 @@
                             <input matInput type="text" formControlName="phone" name="phone" id="phone">
                         </mat-form-field>
                     </td>
-                    <td>                    
-                    </td>
                 </tr>
                 <tr>
                     <td>
                         <mat-form-field appearance="fill">
                             <mat-label>Password</mat-label>
                             <input matInput [type]="showClearPassword ? 'text' : 'password'" formControlName="password" required name="password" id="password">
-                            <mat-icon class="eye-icon" (click)="toggleShowClearPassword()">remove_red_eye</mat-icon>
+                            <mat-icon *ngIf="!showClearPassword" matSuffix class="eye-icon" (click)="toggleShowClearPassword()">visibility</mat-icon>
+                            <mat-icon *ngIf="showClearPassword" matSuffix class="eye-icon" (click)="toggleShowClearPassword()">visibility_off</mat-icon>
                         </mat-form-field>
-                    </td>
-                    <td>                    
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
                         <button type="submit" mat-raised-button [disabled]="registrationForm.invalid" color="primary">Register</button>
-                        <button type="reset" mat-raised-button>Reset</button>
-                    </td>   
+                        <button type="reset" (click)="resetError()" mat-raised-button>Reset</button>
+                    </td>
                 </tr>
             </table>
         </form>

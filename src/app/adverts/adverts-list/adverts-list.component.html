@@ -1,0 +1,33 @@
+<div  class="flex row wrap list-container space-evenly">
+
+  <ng-container *ngIf="adverts.length > 0; else elseTemplate">
+    <mat-card *ngFor="let adv of adverts" [ngClass]="{'card-applied':adv.status.id == 2}">
+      <div class="flex col container">
+        <div class="flex row wrap details-container" (click)="goToDetails(adv)">
+          <img *ngIf="adv.pictures[0]" [src]="adv.pictures[0].source">
+          <img *ngIf="!adv.pictures[0]" src="https://via.placeholder.com/200x150.png">
+          <div class="flex col wrap card-content">
+            <mat-card-title class="font-primary">{{adv.title}}</mat-card-title>
+            <mat-card-subtitle class="font-accent">{{adv.price | currency:'EUR':'':'1.0-0':'fr-FR'}}€</mat-card-subtitle>
+              <div class="flex col">
+                <span>{{adv.address.city}}</span>
+                <span>{{adv.surfaceIn}} m²</span>
+                <span>{{adv.rooms | rooms:adv.bedrooms}}</span>
+              </div>
+          </div>
+        </div>
+        <div class="flex row space-between">
+          <mat-label *ngIf="adv.status.id == 2" style="align-self: center;" class="font-accent"><mat-icon>report_problem</mat-icon> Quelqu'un a postulé à cette annonce</mat-label>
+          <mat-label *ngIf="adv.status.id != 2" style="align-self: center;"></mat-label>
+          <button mat-raised-button color="accent" [disabled]="profile!='USER'" aria-label="Postuler" (click)="apply(adv)">Postuler</button>
+        </div>
+      </div>
+    </mat-card>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <div class="flex col">
+      <img src="/assets/images/thinking.png" alt="thinking emoji" class="not-found-img">
+      <mat-label class="mat-h3 not-found-text">Hum... soit le marché de l'immobilier est hyper tendu, soit tu es très difficile et il va falloir revoir les critères...</mat-label>
+    </div>
+  </ng-template>
+</div>

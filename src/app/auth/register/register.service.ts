@@ -7,25 +7,18 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class RegisterService {
-  private url: string = environment.API_BACK_URL + '/register';
+  private url: string = environment.domain + environment.urls.register;
 
   constructor(private http: HttpClient) { }
 
   submitRegistration(registrationDetails: RegistrationDetails) {
     registrationDetails.password = this.obfuscateMe(registrationDetails.password);
+    console.log(registrationDetails);
     return this.http.post(this.url, registrationDetails);
   }
 
   private obfuscateMe(value: string): string {
-    value = btoa(value);
-    let obfuscated: string[] = [];
-    return value;
-    /***
-    for(let i=0; i<value.length;i++){
-      obfuscated.push(Number(value.charCodeAt(i)).toString(16));
-    }
-    return obfuscated.join("").toString();
-     */
+    return btoa(value);
   }
 
 }

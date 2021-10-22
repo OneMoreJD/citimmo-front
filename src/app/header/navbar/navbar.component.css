@@ -1,0 +1,90 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.div01{
+  width: 90% ;
+  height : 150px;
+}
+
+.div02{
+    height: 150px;
+}
+
+.headerLogo{
+    width: 100% ;
+    height: 150px;
+}
+
+.Cursor:hover{
+    cursor:pointer;
+}
+
+.background_NavBar {
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.mat-toolbar{
+  margin: 0;
+  padding:0;
+  height: 150px;
+}
+
+.colorMatIcon{
+  color:black;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover, a:active{
+  color: black;
+}
+
+.navigation-items{
+  list-style-type: none;
+  padding-right: 1%;
+  margin: 0;
+}
+
+mat-toolbar{
+  border-radius: 3px;
+}
+
+@media(max-width: 959px){
+  mat-toolbar{
+      border-radius: 0px;
+  }
+}
+
+.btn-container {
+  margin: 0 30px;
+}
+
+.user-img {
+  height: 50px;
+  max-width: 50px;
+  align-self: center;
+}
+
+.user-container {
+  margin: 15px;
+  justify-content: space-between;
+}
+
+.user-btns-container {
+  align-self: flex-end;
+}
+
+.name {
+  align-self: center;
+  margin-left: 20px;
+}
+
+#logout-btn {
+  margin-left: 20px;
+}

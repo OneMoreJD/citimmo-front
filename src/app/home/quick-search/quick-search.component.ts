@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { QuickSearchService } from './quick-search.service';
+import { Router } from '@angular/router';
+import { Constants } from 'src/app/shared/constants';
 
 @Component({
   selector: 'app-quick-search',
@@ -11,15 +13,15 @@ import { QuickSearchService } from './quick-search.service';
 export class QuickSearchComponent implements OnInit {
 
   locations = [];
-  maxBudget = 1000000;
-  intervalBudget = 10000;
+  maxBudget = Constants.MAX_BUY_BUDGET;
+  intervalBudget = Constants.STEP_BUY_BUDGET;
 
   quickSearchForm: FormGroup;
   transactionControl = new FormControl('buy');
   locationControl = new FormControl('', Validators.required);
   budgetControl = new FormControl('');
 
-  constructor(private formBuilder: FormBuilder, private qsService: QuickSearchService, private snackBar: MatSnackBar) { }
+  constructor(private formBuilder: FormBuilder, private qsService: QuickSearchService, private snackBar: MatSnackBar, private router: Router) { }
 
   ngOnInit(): void {
     this.quickSearchForm = this.formBuilder.group({
@@ -31,13 +33,13 @@ export class QuickSearchComponent implements OnInit {
 
   onTransactionChange(event) {
     if (this.transactionControl.value === 'buy') {
-      this.maxBudget = 1000000;
-      this.intervalBudget = 10000;
+      this.maxBudget = Constants.MAX_BUY_BUDGET;
+      this.intervalBudget = Constants.STEP_BUY_BUDGET;
     } else {
-      this.maxBudget = 5000;
-      this.intervalBudget = 100;
+      this.maxBudget = Constants.MAX_RENT_BUDGET;
+      this.intervalBudget = Constants.STEP_RENT_BUDGET;
     }
-    console.log(event);
+    this.budgetControl.setValue('');
   }
 
   onLocationsChange(locations: string[]) {
@@ -46,15 +48,16 @@ export class QuickSearchComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.locations);
-    console.log(this.transactionControl.value);
-    console.log(this.budgetControl.value);
-    let adverts = this.qsService.getAdverts(this.transactionControl.value, this.budgetControl.value, this.locations).subscribe(
+    const budget = this.budgetControl.value == this.maxBudget ? '' : this.budgetControl.value;
+    this.qsService.getAdverts(this.transactionControl.value, budget, this.locations).subscribe(
       data => {
-        adverts = data;
-        console.log(data)
+        this.qsService.adverts = data;
+        this.router.navigate(['/adverts']);
       },
-      err => this.snackBar.open("Oups, il y a un problème...", "Fermer")
-    )
+      err => {
+        console.log(err);
+        this.snackBar.open("Oups, il y a un problème...", "Fermer");
+      }
+    );
   }
 }

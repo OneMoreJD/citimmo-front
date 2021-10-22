@@ -7,17 +7,25 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class QuickSearchService {
+  criteria: any;
+  adverts: any[];
 
   constructor(private http: HttpClient) { }
 
   getAdverts(transaction: string, budget: string, locations: string[]): Observable<any> {
+
+    this.criteria = {
+      transaction: transaction,
+      budget: budget,
+      locations: locations
+    };
     const url = environment.domain + environment.urls.quickSearch;
     const params = new HttpParams()
-      .set("transaction", transaction)
-      .set("location", locations.toString())
-      .set("budget", budget);
+      .set("transaction", this.criteria.transaction)
+      .set("locations", this.criteria.locations.toString())
+      .set("budget", this.criteria.budget);
 
-    const adverts = this.http.get(url, { params });
-    return adverts;
+    const request = this.http.get(url, { params });
+    return request;
   }
 }
