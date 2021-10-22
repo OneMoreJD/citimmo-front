@@ -1,19 +1,19 @@
 <div id="advert-creation">
     <h2 class="advert-creation-title">New Advert</h2>
-    <mat-card fxLayout="row" fxLayoutGap="10px"> 
+    <mat-card fxLayout="row" fxLayoutGap="10px">
             <form id="creationForm" (ngSubmit)="createAdvertForm.valid && onSubmit()" [formGroup]="createAdvertForm">
                 <div fxLayout="column" style="width: 100%;">
                         <mat-form-field appearance="fill">
                             <mat-label>Title</mat-label>
                             <input matInput type="text" formControlName="title" required name="title" id="title">
-                        </mat-form-field>                
+                        </mat-form-field>
                         <mat-form-field appearance="fill">
                             <mat-label>Description</mat-label>
                             <textarea matInput formControlName="description" required name="description" id="description"></textarea>
-                        </mat-form-field>                    
-                    <div id="fileuploader">
-                        <app-file-upload></app-file-upload>
-                    </div>
+                        </mat-form-field>
+<!--                    <div id="fileuploader">-->
+<!--                        <app-file-upload></app-file-upload>-->
+<!--                    </div>-->
                 </div>
                 <div fxLayout="column">
                     <div fxLayout="row" fxLayoutGap="16px">
@@ -22,7 +22,7 @@
                             <mat-select formControlName="transactionType" id="transactionType" name="transactionType" required>
                                 <ng-container *ngFor="let type of transactionTypeList | keyvalue">
                                     <mat-option value="{{type.value}}">{{ type.value }}</mat-option>
-                                </ng-container>        
+                                </ng-container>
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field appearance="fill" class="small">
@@ -30,9 +30,9 @@
                             <mat-select formControlName="estateType" id="estateType" name="estateType" required>
                                 <ng-container *ngFor="let type of estateTypeList | keyvalue">
                                     <mat-option value="{{type.value}}">{{ type.value }}</mat-option>
-                                </ng-container>        
+                                </ng-container>
                             </mat-select>
-                        </mat-form-field> 
+                        </mat-form-field>
                         <mat-form-field appearance="fill" class="small">
                             <mat-label>Price</mat-label>
                             <input matInput type="number" min="1" step="10" formControlName="price" required name="price" id="price" placeholder="100000">
@@ -75,7 +75,7 @@
                             <mat-select formControlName="heatingType" id="heatingType" name="heatingType" required>
                                 <ng-container *ngFor="let type of heatingTypeList | keyvalue">
                                     <mat-option value="{{type.value}}">{{ type.value }}</mat-option>
-                                </ng-container>        
+                                </ng-container>
                             </mat-select>
                         </mat-form-field>
                     </div>
@@ -94,12 +94,12 @@
                             <mat-select formControlName="conditionType" id="conditionType" name="conditionType" required>
                                 <ng-container *ngFor="let type of conditionTypeList | keyvalue">
                                     <mat-option value="{{type.value}}">{{ type.value }}</mat-option>
-                                </ng-container>        
+                                </ng-container>
                             </mat-select>
                         </mat-form-field>
                     </div>
                 </div>
-                <mat-card formGroupName="address"> 
+                <mat-card formGroupName="address">
                     <h3>Address</h3>
                     <div fxLayout="column">
                         <div fxLayout="row" fxLayoutGap="16px">
@@ -146,6 +146,6 @@
                     <button type="reset" mat-raised-button>Reset</button>
                 </div>
             </form>
-        
+
     </mat-card>
 </div>

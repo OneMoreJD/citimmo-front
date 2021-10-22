@@ -12,7 +12,8 @@
 }
 
 h2 {
-    text-align: center;
+  text-align: center;
+  color: #3f51b5;
 }
 
 mat-form-field {
